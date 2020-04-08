@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Item;
+package status;
 
 /**
  *
  * @author User
  */
-public class Item {
-    
+public enum STATUS {
+    DEAD,ALIVE
 }
