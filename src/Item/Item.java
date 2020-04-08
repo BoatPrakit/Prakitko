@@ -9,6 +9,6 @@ package Item;
  *
  * @author User
  */
-public class Item {
+public abstract class Item {
     
 }
