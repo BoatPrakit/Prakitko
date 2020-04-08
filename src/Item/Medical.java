@@ -5,10 +5,25 @@
  */
 package Item;
 
-/**
- *
- * @author User
- */
-public class Medical {
+import Field.Item;
+
+public class Medical extends Item{
+    
+    private Medical[] Medical;
+    
+    public Medical(String name) {
+        super(name);
+    }
+    
+    public int regenHP(){
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Medical{" + "Medical=" + Medical + '}';
+    }
+    
+    
     
 }
