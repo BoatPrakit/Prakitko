@@ -16,7 +16,7 @@ public abstract class Character {
     private int currentStamina;
     private int level = 1;
     private STATUS status = STATUS.ALIVE;
-  
+    protected Item item;
     
     protected Character(String name){
         this.name = name;
@@ -47,7 +47,13 @@ public abstract class Character {
     int recieveDamage(int atk){
         return currentHp - atk;
     }
-    void recieveItem(Item item){
-        
+    protected void plusLevel(){
+        this.level++;
+    }
+    public int getLevel(){
+        return level;
+    }
+    public void changeName(String name){
+        this.name = name;
     }
 }

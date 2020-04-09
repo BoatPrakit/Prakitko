@@ -8,6 +8,6 @@ import prototype.Prakitko;
  */
 public class Fish extends Prakitko{
     public Fish(String name){
-        super(name);
+        super(name,100,30,24);
     }
 }
