@@ -20,15 +20,13 @@ public abstract class Prakitko extends Character{
         super(name,maxHp,atk,speed);
     }
     public void receiveExp(int exp){
-        int temp = currentExp + exp;
-        if(temp>=currentMaxExp){
+        currentExp += exp;
+        while(isLevelUp()==true){
             levelUp();
-          currentExp =  exp -currentMaxExp;
-        }else{
-            this.currentExp = temp;
         }
     }
     private void levelUp(){
+     currentExp -= currentMaxExp;
      super.plusLevel();   
      try{
      this.nextCurrentMaxExp();
@@ -36,7 +34,9 @@ public abstract class Prakitko extends Character{
            currentMaxExp= EXPTOLEVELUP[EXPTOLEVELUP.length-1];
         }
     }
-
+    private boolean isLevelUp(){
+        return (currentExp>=currentMaxExp)?true:false;
+    }
     public int getCurrentExp() {
         return currentExp;
     }
@@ -44,7 +44,7 @@ public abstract class Prakitko extends Character{
     public int getCurrentMaxExp() {
         return currentMaxExp;
     }
-    private void nextCurrentMaxExp(){
+    private void nextCurrentMaxExp() throws ArrayIndexOutOfBoundsException{
         int next = super.getLevel()-1;
        
             currentMaxExp = EXPTOLEVELUP[next];
