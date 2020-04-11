@@ -66,5 +66,6 @@ public abstract class Prakitko extends Character{
         return false;
     }
 
+    
 }
     
