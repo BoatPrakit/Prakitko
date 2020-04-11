@@ -49,7 +49,6 @@ public abstract class Prakitko extends Character{
         int next = super.getLevel()-1;
             currentMaxExp = EXPTOLEVELUP[next];
     }
-<<<<<<< HEAD
     private void calculateStat(){
         super.plusAtk(atkPerLvl);
         super.plusAtkSpeed(atkSpeedPerLvl);
@@ -67,9 +66,5 @@ public abstract class Prakitko extends Character{
         return false;
     }
 
-=======
-    
-    
->>>>>>> b9166139ae4679a8390d16105014e00b4ce21c01
 }
     
