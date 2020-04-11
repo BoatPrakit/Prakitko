@@ -1,8 +1,14 @@
 import Field.Character;
 import prakitkomodel.Dog;
+import prototype.Prakitko;
 public class Launcher {
     public static void main(String[] args) {
-       Character c = new Dog("Test");
-        System.out.println(c.getStatus());
+       Prakitko c = new Dog("Test");
+       c.receiveExp(4000);
+        System.out.println(c.getLevel());
+        System.out.println(c.getCurrentExp());
+        System.out.println(c.getCurrentMaxExp());
+
+        
 }
 }

@@ -14,7 +14,7 @@ public abstract class Prakitko extends Character{
     private double hpPerLvl;
     private double atkPerLvl;
     private double staminaPerLvl;
-    private double speedPerLvl;
+    private double atkSpeedPerLvl;
     
     protected Prakitko(String name,int maxHp,int atk,int speed){
         super(name,maxHp,atk,speed);
@@ -23,6 +23,7 @@ public abstract class Prakitko extends Character{
         currentExp += exp;
         while(isLevelUp()==true){
             levelUp();
+            calculateStat();
         }
     }
     private void levelUp(){
@@ -46,9 +47,24 @@ public abstract class Prakitko extends Character{
     }
     private void nextCurrentMaxExp() throws ArrayIndexOutOfBoundsException{
         int next = super.getLevel()-1;
-       
             currentMaxExp = EXPTOLEVELUP[next];
-       
     }
-    
+    private void calculateStat(){
+        super.plusAtk(atkPerLvl);
+        super.plusAtkSpeed(atkSpeedPerLvl);
+        super.plusMaxHp(hpPerLvl);
+        super.plusMaxStamina(staminaPerLvl);
+    }
+    protected boolean useItem(Item item){
+        if(item == null)return false;
+        for (int i = 0; i < inventory.length; i++) {
+            if(inventory[i]==item){
+                inventory[i]=null;
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
+    

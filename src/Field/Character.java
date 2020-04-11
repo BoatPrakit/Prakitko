@@ -12,8 +12,9 @@ public abstract class Character {
     private int maxHp;
     private int currentHp;
     private int atk;
-    private int speed;
+    private int atkSpeed;
     private int currentStamina;
+    private int maxStamina;
     private int level = 1;
     private STATUS status = STATUS.ALIVE;
     protected Item item;
@@ -22,20 +23,31 @@ public abstract class Character {
         this.name = name;
         
     }
-    protected Character(String name,int maxHp,int atk,int speed){
+    protected Character(String name,int maxHp,int atk,int atkSpeed){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;
         this.atk = atk;
-        this.speed = speed;
+        this.atkSpeed = atkSpeed;
     }
-
+    protected void plusAtk(double atkPerLvl){
+        this.atk += atkPerLvl;
+    }
+    protected void plusMaxHp(double hpPerLvl){
+        this.maxHp += hpPerLvl;
+    }
+    protected void plusMaxStamina(double staminaPerLvl){
+        this.maxStamina += staminaPerLvl;
+    }
+    protected void plusAtkSpeed(double atkSpeedPerLvl){
+        this.atkSpeed += atkSpeedPerLvl;
+    }
     public String getName() {
         return name;
     }
 
     public int getSpeed() {
-        return speed;
+        return atkSpeed;
     }
 
     public STATUS getStatus() {
@@ -55,5 +67,5 @@ public abstract class Character {
     }
     public void changeName(String name){
         this.name = name;
-    }
+    } 
 }
