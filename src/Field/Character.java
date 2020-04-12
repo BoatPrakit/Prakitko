@@ -6,7 +6,7 @@ import status.STATUS;
  *
  * @author User
  */
-public abstract class Character {
+public abstract class Character{
     private final int MAXLEVEL = 30;
     private String name;
     private int maxHp;
@@ -27,7 +27,7 @@ public abstract class Character {
         this.name = name;
         
     }
-    protected Character(String name,int maxHp,int atk,int atkSpeed,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl){
+    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;
@@ -37,6 +37,7 @@ public abstract class Character {
         this.atkPerLvl = atkPerLvl;
         this.staminaPerLvl = staminaPerLvl;
         this.atkSpeedPerLvl = atkSpeedPerLvl;
+        this.maxStamina = maxStamina;
     }
     protected void plusAtk(){
         this.atk += atkPerLvl;
@@ -54,8 +55,20 @@ public abstract class Character {
         return name;
     }
 
-    public int getSpeed() {
+    public int getAtkSpeed() {
         return atkSpeed;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public int getMaxStamina() {
+        return maxStamina;
     }
 
     public STATUS getStatus() {
