@@ -15,8 +15,9 @@ public class Medical extends Item{
         super(name);
     }
     
-    public int regenHP(){
-        return 0;
+    @Override
+    public int regenHp(){
+        return 1;
     }
 
     @Override
