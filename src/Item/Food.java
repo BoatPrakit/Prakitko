@@ -16,16 +16,18 @@ public class Food extends Item{
     }
     
     public int regenStamina(){
-        return 0;
+        return REGENSTAMINA;
     }
     
-    public int regenHP(){
-        return 0;
+    @Override
+    public int regenHp(){
+        return 1;
     }
+    
 
     @Override
     public String toString() {
-        return "Food{" + "REGENSTAMINA=" + REGENSTAMINA + ", Food=" + Food + '}';
+        return "Food{" + "REGENSTAMINA=" + REGENSTAMINA + ", Food=" + super.getName() + ", REGENHP=" + regenHp()+ '}';
     }
     
     
