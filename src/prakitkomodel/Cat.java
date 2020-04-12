@@ -8,7 +8,7 @@ import prototype.Prakitko;
  */
 public class Cat extends Prakitko{
     public Cat(String name){
-        super(name,90,32,21);
+        super(name,90,32,21,8,3,10,3);
     }
    
 }

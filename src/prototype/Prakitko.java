@@ -2,6 +2,7 @@
 package prototype;
 import Field.Character;
 import Field.Item;
+import java.util.ArrayList;
 /**
  *
  * @author User
@@ -11,13 +12,10 @@ public abstract class Prakitko extends Character{
     private int currentExp ;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private Item[] inventory;
-    private double hpPerLvl;
-    private double atkPerLvl;
-    private double staminaPerLvl;
-    private double atkSpeedPerLvl;
     
-    protected Prakitko(String name,int maxHp,int atk,int speed){
-        super(name,maxHp,atk,speed);
+    
+    protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl){
+        super(name,maxHp,atk,atkSpeed,hpPerLvl,atkPerLvl,staminaPerLvl,atkSpeedPerLvl);
     }
     public void receiveExp(int exp){
         currentExp += exp;
@@ -50,10 +48,10 @@ public abstract class Prakitko extends Character{
             currentMaxExp = EXPTOLEVELUP[next];
     }
     private void calculateStat(){
-        super.plusAtk(atkPerLvl);
-        super.plusAtkSpeed(atkSpeedPerLvl);
-        super.plusMaxHp(hpPerLvl);
-        super.plusMaxStamina(staminaPerLvl);
+        super.plusAtk();
+        super.plusAtkSpeed();
+        super.plusMaxHp();
+        super.plusMaxStamina();
     }
     protected boolean useItem(Item item){
         if(item == null)return false;
@@ -65,7 +63,11 @@ public abstract class Prakitko extends Character{
         }
         return false;
     }
-
+//    Item[] receiveItem(Item item){
+//        ArrayList<Item> al = new ArrayList<Item>();
+//            al.toArray();
+//            
+//    }
     
 }
     

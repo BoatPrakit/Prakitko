@@ -1,6 +1,9 @@
 import Field.Character;
+import java.util.ArrayList;
+import prakitkomodel.Cat;
 import prakitkomodel.Dog;
 import prototype.Prakitko;
+
 public class Launcher {
     public static void main(String[] args) {
        Prakitko c = new Dog("Test");
