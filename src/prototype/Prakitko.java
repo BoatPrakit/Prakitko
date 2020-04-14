@@ -19,6 +19,7 @@ public abstract class Prakitko extends Character{
     }
     public void receiveExp(int exp){
         currentExp += exp;
+        if(currentExp < 0) currentExp = 0;
         while(isLevelUp()==true){
             levelUp();
             calculateStat();

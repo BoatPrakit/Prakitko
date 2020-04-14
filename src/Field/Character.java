@@ -82,6 +82,7 @@ public abstract class Character{
     }
     protected void plusLevel(){
         this.level++;
+        if(level == MAXLEVEL) level = MAXLEVEL;
     }
     public int getLevel(){
         return level;
@@ -89,4 +90,12 @@ public abstract class Character{
     public void changeName(String name){
         this.name = name;
     } 
+
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    public int getCurrentStamina() {
+        return currentStamina;
+    }
 }
