@@ -9,22 +9,8 @@ import Field.Item;
 
 public class Medical extends Item{
     
-    private Medical[] Medical;
-    
-    public Medical(String name) {
-        super(name);
-    }
-    
-    @Override
-    public int regenHp(){
-        return 1;
+    public Medical(int regen) {
+        super(regen);
     }
 
-    @Override
-    public String toString() {
-        return "Medical{" + "Medical=" + Medical + '}';
-    }
-    
-    
-    
 }

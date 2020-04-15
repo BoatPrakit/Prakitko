@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Item;
 
-/**
- *
- * @author User
- */
-public class Burger {
+public class Burger extends Food{
+    
+     private static int regenHp = 50;
+    
+    public Burger() {
+        super(regenHp);
+    }
+    
+     @Override
+    public String toString() {
+        return "Burger{" +"RegenHp : " + super.getRegen() + '}';
+    }
+  
     
 }
