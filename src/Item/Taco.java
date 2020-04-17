@@ -5,14 +5,18 @@ package Item;
 public class Taco extends Food{
     
     private static int regenHp = 20;
-    
-    public Taco() {
-        super(regenHp);
-    }
+    private static String Id = "Id : Item001";
 
+    public Taco() {
+        super(regenHp, Id);
+    }
+    
+   
+
+    
     @Override
     public String toString() {
-        return "Taco{" +"RegenHp : " + super.getRegen() + '}';
+        return "Taco{" +"RegenHp : " + super.getRegen() +'}';
     }
 
 }

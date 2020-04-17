@@ -3,9 +3,10 @@ package Item;
 
 public class StaminaPotion extends Potions{
     private static int regenStamina = 70;
-    
-    public StaminaPotion(){
-        super(regenStamina);
+    private static String Id = "Id :Item005";
+
+    public StaminaPotion() {
+        super(regenStamina, Id);
     }
 
     @Override

@@ -6,11 +6,17 @@ public abstract class Item {
     private String name;
     private int regen;
     private int amount;
+    private String Id;
     
-    public Item (int regen){
+    public Item (int regen, String Id){
         this.regen = regen;
+        this.Id = Id;
     }
 
+    public String getId() {
+        return Id;
+    }
+    
     public String getName() {
         return name;
     }

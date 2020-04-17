@@ -4,10 +4,9 @@ import Field.Item;
 
 
 public class Food extends Item{
-  
-    public Food(int regen) {
-        super(regen);
+
+    public Food(int regen, String Id) {
+        super(regen, Id);
     }
  
-    
 }
