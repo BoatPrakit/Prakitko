@@ -2,6 +2,8 @@
 package prototype;
 import Field.Character;
 import Field.Item;
+import Item.Burger;
+import Item.Taco;
 import java.util.ArrayList;
 /**
  *
@@ -65,9 +67,14 @@ public abstract class Prakitko extends Character{
         return false;
     }
     public void receiveItem(Item item){
-        int i = 0;
-        inventory[i++] = item;
-        i++;
+        inventory[0] = new Burger();
+        inventory[1] = new Taco();
+        for (int i = 0; i < inventory.length; i++) {
+            if(inventory[i].equals(item)){
+            inventory[i].increaseAmount();
+        }
+            
+        }
     }
     public void showInventory(){
         for (Item item1 : inventory) {
