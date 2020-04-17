@@ -11,7 +11,7 @@ public abstract class Prakitko extends Character{
     private final int[] EXPTOLEVELUP = {100,120,1000,2000};
     private int currentExp ;
     private int currentMaxExp = EXPTOLEVELUP[0];
-    private Item[] inventory;
+    private Item[] inventory = new Item[5];
     
     
     protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl){
@@ -64,11 +64,16 @@ public abstract class Prakitko extends Character{
         }
         return false;
     }
-//    Item[] receiveItem(Item item){
-//        ArrayList<Item> al = new ArrayList<Item>();
-//            al.toArray();
-//            
-//    }
+    public void receiveItem(Item item){
+        int i = 0;
+        inventory[i++] = item;
+        i++;
+    }
+    public void showInventory(){
+        for (Item item1 : inventory) {
+            System.out.println(item1);
+        }
+    }
     
 }
     
