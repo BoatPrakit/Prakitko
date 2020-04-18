@@ -25,7 +25,7 @@ public abstract class Item {
         return regen;
     }
     
-    public void increseAmount(){ //เพิ่มค่า amount
+    public void increaseAmount(){ //เพิ่มค่า amount
         amount++;
     }
     

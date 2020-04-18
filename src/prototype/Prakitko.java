@@ -14,6 +14,7 @@ public abstract class Prakitko extends Character{
     private int currentExp ;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private Item[] inventory = new Item[5];
+    private int count;
     
     
     protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
@@ -67,18 +68,24 @@ public abstract class Prakitko extends Character{
         return false;
     }
     public void receiveItem(Item item){
-        inventory[0] = new Burger();
-        inventory[1] = new Taco();
+        if(inventory[count]==null)inventory[count++] = item;
         for (int i = 0; i < inventory.length; i++) {
-            if(inventory[i].equals(item)){
-            inventory[i].increaseAmount();
-        }
-            
+            if(inventory[i]!=null){
+                if(inventory[i].getClass().equals(item.getClass())){
+                        inventory[i].increaseAmount();
+                        System.out.println("Found");
+                    }
+            }
         }
     }
     public void showInventory(){
+        try{
         for (Item item1 : inventory) {
-            System.out.println(item1);
+            if(item1!=null)
+            System.out.println(item1 + " Amount " + item1.amountCheck());
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            
         }
     }
     

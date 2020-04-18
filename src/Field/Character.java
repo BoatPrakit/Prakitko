@@ -85,7 +85,7 @@ public abstract class Character{
     public STATUS getStatus() {
         return status;
     }
-    private void setStatus(STATUS status){
+    void setStatus(STATUS status){
         this.status = status;
     }
     private int recieveDamage(int atk){
