@@ -2,13 +2,17 @@ package prakitkomodel;
 
 import prototype.Prakitko;
 
-/**
- *
- * @author User
- */
 public class Fish extends Prakitko{
+    private static final int baseHp = 90;
+    private static final int baseAtk = 32;
+    private static final int baseSpd = 21;
+    private static final int baseSta = 150;
+    private static final int hpPerlvl = 5;
+    private static final int atkPerlvl = 3;
+    private static final int spdPerlvl = 2;
+    private static final int staPerlvl = 20;
     public Fish(String name){
-        super(name,90,32,21,150,5,3,20,2);
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
     }
     @Override
     public String toString(){

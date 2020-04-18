@@ -2,17 +2,20 @@ package prakitkomodel;
 
 import prototype.Prakitko;
 
-/**
- *
- * @author User
- */
 public class Cat extends Prakitko{
+    private static final int baseHp = 100;
+    private static final int baseAtk = 30;
+    private static final int baseSpd = 24;
+    private static final int baseSta = 100;
+    private static final int hpPerlvl = 8;
+    private static final int atkPerlvl = 3;
+    private static final int spdPerlvl = 3;
+    private static final int staPerlvl = 10;
     public Cat(String name){
-        super(name,100,30,24,100,8,3,10,3);
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
     }
     @Override
     public String toString(){
         return "Hp : " + super.getMaxHp() + " Stamina : "+super.getMaxStamina() + " Atk : "+super.getAtk() + " AtkSpeed : "+super.getAtkSpeed();
-    }
-   
+    }   
 }

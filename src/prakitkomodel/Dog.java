@@ -2,15 +2,19 @@ package prakitkomodel;
 
 import prototype.Prakitko;
 
-/**
- *
- * @author User
- */
 public class Dog extends Prakitko{
+    private static final int baseHp = 120;
+    private static final int baseAtk = 30;
+    private static final int baseSpd = 20;
+    private static final int baseSta = 100;
+    private static final int hpPerlvl = 10;
+    private static final int atkPerlvl = 3;
+    private static final int spdPerlvl = 2;
+    private static final int staPerlvl = 8;
     public Dog(String name){
-        super(name,120,30,20,100,10,3,8,2);  
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
     }
-   @Override
+    @Override
     public String toString(){
         return "Hp : " + super.getMaxHp() + " Stamina : "+super.getMaxStamina() + " Atk : "+super.getAtk() + " AtkSpeed : "+super.getAtkSpeed();
     }

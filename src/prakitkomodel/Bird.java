@@ -2,14 +2,17 @@ package prakitkomodel;
 
 import prototype.Prakitko;
 
-/**
- *
- * @author User
- */
 public class Bird extends Prakitko{
+    private static final int baseHp = 120;
+    private static final int baseAtk = 30;
+    private static final int baseSpd = 20;
+    private static final int baseSta = 100;
+    private static final int hpPerlvl = 10;
+    private static final int atkPerlvl = 3;
+    private static final int spdPerlvl = 2;
+    private static final int staPerlvl = 8;
     public Bird(String name){
-        //(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl)
-        super(name,90,35,22,100,5,4,8,2);
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
     }
     @Override
     public String toString(){
