@@ -27,7 +27,7 @@ public abstract class Character{
         this.name = name;
         
     }
-    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl,int level){
+    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,int level){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;
@@ -40,7 +40,7 @@ public abstract class Character{
         this.maxStamina = maxStamina;
         this.level = level;
     }
-    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl){
+    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;

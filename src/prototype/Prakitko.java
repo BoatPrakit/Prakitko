@@ -16,8 +16,8 @@ public abstract class Prakitko extends Character{
     private Item[] inventory = new Item[5];
     
     
-    protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int staminaPerLvl,int atkSpeedPerLvl){
-        super(name,maxHp,atk,atkSpeed,maxStamina,hpPerLvl,atkPerLvl,staminaPerLvl,atkSpeedPerLvl);
+    protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
+        super(name,maxHp,atk,atkSpeed,maxStamina,hpPerLvl,atkPerLvl,atkSpeedPerLvl,staminaPerLvl);
     }
     public void receiveExp(int exp){
         currentExp += exp;
