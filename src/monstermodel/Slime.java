@@ -12,7 +12,9 @@ public class Slime extends Monster{
     private static final int atkPerlvl = 2;
     private static final int spdPerlvl = 1;
     private static final int staPerlvl = 5;
+    private static final int lvlRange = 5;
+    private static final int baseExpGive = 50;
     public Slime(){       
-        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl,lvlRange,baseExpGive);
     }
 }
