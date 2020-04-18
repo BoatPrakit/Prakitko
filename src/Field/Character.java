@@ -27,17 +27,14 @@ public abstract class Character{
         this.name = name;
         
     }
-    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,int level){
+    protected Character(String name,int level,int maxHp,int atk,int atkSpeed,int maxStamina){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;
         this.atk = atk;
         this.atkSpeed = atkSpeed;
-        this.hpPerLvl = hpPerLvl;
-        this.atkPerLvl = atkPerLvl;
-        this.staminaPerLvl = staminaPerLvl;
-        this.atkSpeedPerLvl = atkSpeedPerLvl;
         this.maxStamina = maxStamina;
+        this.currentStamina = maxStamina;
         this.level = level;
     }
     protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
@@ -51,6 +48,7 @@ public abstract class Character{
         this.staminaPerLvl = staminaPerLvl;
         this.atkSpeedPerLvl = atkSpeedPerLvl;
         this.maxStamina = maxStamina;
+        this.currentStamina = maxStamina;
     }
     protected void plusAtk(){
         this.atk += atkPerLvl;
