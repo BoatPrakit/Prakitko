@@ -86,7 +86,7 @@ public abstract class Prakitko extends Character{
             System.out.println(item1 + " Amount " + item1.amountCheck());
             }       
     }
-    public int checkDuplicateItem(Item item){
+    private int checkDuplicateItem(Item item){
         if(item == null) return -1;
         for (int i = 0;i < inventory.length ; i++) {
             if(inventory[i]!=null&&inventory[i].getClass().equals(item.getClass())){
