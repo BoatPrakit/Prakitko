@@ -76,6 +76,7 @@ public abstract class Prakitko extends Character{
         if(result==-2){
             inventory[count++] = item;
             inventory[count-1].increaseAmount();
+            if(count>5) count = 4;
             return true;
         }
         else if(result>=0){
@@ -99,6 +100,9 @@ public abstract class Prakitko extends Character{
         }
             return -2; 
     
+    }
+    public int getCount(){
+        return count;
     }
 }
     
