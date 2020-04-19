@@ -26,7 +26,7 @@ public abstract class Item {
     }
     
     public void increaseAmount(){ //เพิ่มค่า amount
-        amount++;
+        amount+=1;
     }
     
     public int amountCheck(){
