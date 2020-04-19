@@ -59,7 +59,7 @@ public abstract class Prakitko extends Character{
     }
     public boolean useItem(Item item){
         if(item == null)return false;
-        int index = checkDuplicateItem(item);
+        int index = sameItemAtIndex(item);
         if(index>=0){
             if(inventory[index].amountCheck()>0){
                 inventory[index].decreaseAmount();
@@ -72,7 +72,7 @@ public abstract class Prakitko extends Character{
         return false;
     }
     public boolean receiveItem(Item item){
-        int result = checkDuplicateItem(item);
+        int result = sameItemAtIndex(item);
         if(result==-2){
             inventory[count++] = item;
             inventory[count-1].increaseAmount();
@@ -90,7 +90,7 @@ public abstract class Prakitko extends Character{
             System.out.println(item1 + " Amount " + item1.amountCheck());
             }       
     }
-    private int checkDuplicateItem(Item item){
+    private int sameItemAtIndex(Item item){
         if(item == null) return -1;
         for (int i = 0;i < inventory.length ; i++) {
             if(inventory[i]!=null&&inventory[i].getClass().equals(item.getClass())){
