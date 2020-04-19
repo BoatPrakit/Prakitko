@@ -29,6 +29,10 @@ public abstract class Item {
         amount+=1;
     }
     
+    public void devreaseAmount(){
+        amount-=1;
+    }
+    
     public int amountCheck(){
         return amount;
     }
