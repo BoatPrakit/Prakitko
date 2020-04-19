@@ -29,8 +29,9 @@ public abstract class Item {
         amount+=1;
     }
     
-    public void devreaseAmount(){
+    public void decreaseAmount(){
         amount-=1;
+        if(amount<=0) amount = 0;
     }
     
     public int amountCheck(){

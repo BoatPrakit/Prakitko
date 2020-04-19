@@ -57,11 +57,15 @@ public abstract class Prakitko extends Character{
         super.plusMaxHp();
         super.plusMaxStamina();
     }
-    protected boolean useItem(Item item){
+    public boolean useItem(Item item){
         if(item == null)return false;
-        for (int i = 0; i < inventory.length; i++) {
-            if(inventory[i]==item){
-                inventory[i]=null;
+        int index = checkDuplicateItem(item);
+        if(index>=0){
+            if(inventory[index].amountCheck()>0){
+                inventory[index].decreaseAmount();
+                    if(inventory[index].amountCheck()<=0){
+                        inventory[index] = null;
+                    }
                 return true;
             }
         }
