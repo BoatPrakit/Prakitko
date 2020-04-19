@@ -67,27 +67,34 @@ public abstract class Prakitko extends Character{
         }
         return false;
     }
-    public void receiveItem(Item item){
-        if(inventory[count]==null)inventory[count++] = item;
-        for (int i = 0; i < inventory.length; i++) {
-            if(inventory[i]!=null){
-                if(inventory[i].getClass().equals(item.getClass())){
-                        inventory[i].increaseAmount();
-                        System.out.println("Found");
-                    }
-            }
+    public boolean receiveItem(Item item){
+        int result = checkDuplicateItem(item);
+        if(result==-2){
+            inventory[count++] = item;
+            inventory[count-1].increaseAmount();
+            return true;
         }
+        else if(result>=0){
+            inventory[result].increaseAmount();
+            return true;
+        } 
+        return false;
     }
     public void showInventory(){
-        try{
         for (Item item1 : inventory) {
             if(item1!=null)
             System.out.println(item1 + " Amount " + item1.amountCheck());
-            }
-        }catch(ArrayIndexOutOfBoundsException e){
-            
-        }
+            }       
     }
+    public int checkDuplicateItem(Item item){
+        if(item == null) return -1;
+        for (int i = 0;i < inventory.length ; i++) {
+            if(inventory[i]!=null&&inventory[i].getClass().equals(item.getClass())){
+                return i;
+                 }       
+        }
+            return -2; 
     
+    }
 }
     
