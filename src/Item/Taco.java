@@ -1,7 +1,6 @@
 
 package Item;
 
-
 public class Taco extends Food{
     
     private static int regenHp = 20;
@@ -10,9 +9,6 @@ public class Taco extends Food{
     public Taco() {
         super(regenHp, Id);
     }
-    
-   
-
     
     @Override
     public String toString() {
