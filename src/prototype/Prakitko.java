@@ -2,10 +2,8 @@
 package prototype;
 import Field.Character;
 import Field.Item;
-import Item.Burger;
-import Item.Taco;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 /**
  *
  * @author User
@@ -15,7 +13,6 @@ public abstract class Prakitko extends Character{
     private int currentExp ;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private Item[] inventory = new Item[5];
-    private int count;
     
     
     protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
@@ -39,7 +36,7 @@ public abstract class Prakitko extends Character{
         }
     }
     private boolean isLevelUp(){
-        return (currentExp>=currentMaxExp)?true:false;
+        return currentExp>=currentMaxExp;
     }
     public int getCurrentExp() {
         return currentExp;
@@ -65,41 +62,32 @@ public abstract class Prakitko extends Character{
             if(inventory[index].amountCheck()>0){
                 inventory[index].decreaseAmount();
                     if(inventory[index].amountCheck()<=0){
-                        for (int i = index; i < count-1; i++) {
-                            System.out.println(index);
-                            System.out.println(count);
-                            inventory[index] = inventory[index+1];
-                            index++;
-                        }
-                        inventory[count-1] = null;
-                        count--;
+                       inventory[index] = null;
                     }
                 return true;
             }
         }
+        System.out.println("No more Item!");
         return false;
     }
     
-    public void showArray(){
-        for (int i = 0; i < inventory.length; i++) {
-            System.out.println(inventory[i]);
-        }
-    }
+    
     public boolean receiveItem(Item item){
         int result = sameItemAtIndex(item);
+        int nullslot = findEmptySlot();
         if(result==-2){
-            inventory[count++] = item;
-            inventory[count-1].increaseAmount();
-            if(count>5) count = 4;
+            inventory[nullslot] = item;
+            inventory[nullslot].increaseAmount();
             return true;
         }
         else if(result>=0){
             inventory[result].increaseAmount();
             return true;
-        } 
+        }
         return false;
     }
     public void showInventory(){
+        sortInventory();
         for (Item item1 : inventory) {
             if(item1!=null)
             System.out.println(item1 + " Amount " + item1.amountCheck());
@@ -115,10 +103,21 @@ public abstract class Prakitko extends Character{
             return -2; 
     
     }
-    public int getCount(){
-        return count;
+    private int findEmptySlot(){
+        for (int i = 0; i < inventory.length; i++) {
+            if(inventory[i]==null)return i;
+        }
+        return -1;
     }
-   
-    
+    private void sortInventory(){
+        Arrays.sort(inventory,new Comparator<Item>(){
+            @Override
+            public int compare(Item o1, Item o2) {
+                if(o1==null||o2==null)return -100;
+                
+                return o1.getId() - o2.getId();
+            }
+         });
+    }
 }
     

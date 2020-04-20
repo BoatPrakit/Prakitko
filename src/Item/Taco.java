@@ -4,7 +4,7 @@ package Item;
 public class Taco extends Food{
     
     private static int regenHp = 20;
-    private static String Id = "001";
+    private static int Id = 001;
 
     public Taco() {
         super(regenHp, Id);

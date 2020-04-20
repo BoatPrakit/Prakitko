@@ -89,7 +89,12 @@ public abstract class Character{
         this.status = status;
     }
     private int recieveDamage(int atk){
-        return currentHp - atk;
+        if(atk >= currentHp){
+            setStatus(STATUS.DEAD);
+            currentHp = 0;
+        }
+        this.currentHp -= atk;
+        return atk;
     }
     protected void plusLevel(){
         this.level++;
