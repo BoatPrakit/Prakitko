@@ -5,6 +5,7 @@ import Field.Item;
 import Item.Burger;
 import Item.Taco;
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author User
@@ -64,12 +65,25 @@ public abstract class Prakitko extends Character{
             if(inventory[index].amountCheck()>0){
                 inventory[index].decreaseAmount();
                     if(inventory[index].amountCheck()<=0){
-                        inventory[index] = null;
+                        for (int i = index; i < count-1; i++) {
+                            System.out.println(index);
+                            System.out.println(count);
+                            inventory[index] = inventory[index+1];
+                            index++;
+                        }
+                        inventory[count-1] = null;
+                        count--;
                     }
                 return true;
             }
         }
         return false;
+    }
+    
+    public void showArray(){
+        for (int i = 0; i < inventory.length; i++) {
+            System.out.println(inventory[i]);
+        }
     }
     public boolean receiveItem(Item item){
         int result = sameItemAtIndex(item);
@@ -104,5 +118,7 @@ public abstract class Prakitko extends Character{
     public int getCount(){
         return count;
     }
+   
+    
 }
     
