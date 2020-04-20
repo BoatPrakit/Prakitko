@@ -1,18 +1,14 @@
 
 package Item;
 
-
 public class Taco extends Food{
     
     private static int regenHp = 20;
-    private static String Id = "Id : Item001";
+    private static String Id = "001";
 
     public Taco() {
         super(regenHp, Id);
     }
-    
-   
-
     
     @Override
     public String toString() {
