@@ -31,6 +31,10 @@ public abstract class Item {
         amount+=1;
     }
     
+    public void setAmount(int amount){
+        this.amount = amount;
+    }
+
     public void decreaseAmount(){
         amount-=1;
         if(amount<=0) amount = 0;
