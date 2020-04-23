@@ -2,6 +2,7 @@
 package prototype;
 import Field.Character;
 import Field.Item;
+import static databaseManagement.DatabaseSystem.insertItem;
 import java.util.Arrays;
 import java.util.Comparator;
 /**
@@ -61,7 +62,9 @@ public abstract class Prakitko extends Character{
         if(index>=0){
             if(inventory[index].amountCheck()>0){
                 inventory[index].decreaseAmount();
+                      insertItem(inventory[index]);
                     if(inventory[index].amountCheck()<=0){
+                       insertItem(inventory[index]);
                        inventory[index] = null;
                     }
                 return true;
@@ -78,10 +81,12 @@ public abstract class Prakitko extends Character{
         if(result==-2){
             inventory[nullslot] = item;
             inventory[nullslot].increaseAmount();
+            insertItem(inventory[nullslot]);
             return true;
         }
         else if(result>=0){
             inventory[result].increaseAmount();
+            insertItem(inventory[result]);
             return true;
         }
         return false;
