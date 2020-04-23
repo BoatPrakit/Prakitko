@@ -10,9 +10,10 @@ public abstract class Item {
     private int amount;
     private int id;
     
-    public Item (int regen, int id){
+    public Item (int regen, int id,String name){
         this.regen = regen;
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {

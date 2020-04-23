@@ -5,9 +5,10 @@ public class Cake extends Food{
     
     private static int regenHp = 10;
     private static int Id = 002;
+        private static String name = "Cake";
     
     public Cake() {
-        super(regenHp, Id);
+        super(regenHp, Id, name);
     }
 
 

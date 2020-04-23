@@ -4,9 +4,10 @@ package Item;
 public class HealingPotion extends Potions{
     private static int regenHp = 50;
     private static int Id = 004;
+    private static String name = "HealingPotion";
 
     public HealingPotion() {
-        super(regenHp, Id);
+        super(regenHp, Id, name);
     }
     
    
