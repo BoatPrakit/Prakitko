@@ -4,9 +4,12 @@ import Field.Item;
 import Item.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
+import prakitkomodel.Dog;
+import prototype.Prakitko;
 import status.LOGINSTATUS;
 
 public class DatabaseSystem {
@@ -16,7 +19,10 @@ public class DatabaseSystem {
     private static LOGINSTATUS status = LOGINSTATUS.LOGOUT;
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        
+        Prakitko d = new Dog("Test");
+        login();
+        loadLevelTo(d);
+        System.out.println(d.getLevel()+", exp = "+d.getCurrentExp());
     }
     private static Connection connectDB(){
         String hostname=  "localhost";
@@ -54,13 +60,14 @@ public class DatabaseSystem {
     private static void insertUsername(String name,String password){
         if(checkDuplicateUsername(name)){
             int id = getCountId();
-            ++id;
-            String sql = "INSERT INTO account VALUES ('"+id+"','"+name.toLowerCase()+"','"+password+"')";
             try( Connection c = connectDB();){
                 Statement sm = c.createStatement();
+            String sql = "INSERT INTO account VALUES ('"+id+"','"+name.toLowerCase()+"','"+password+"')";
                 sm.executeUpdate(sql);
-            String item = "INSERT INTO item VALUES ('"+getUserId(name,password)+"','0','0','0','0','0')";
+            String item = "INSERT INTO item VALUES ('"+id+"','0','0','0','0','0')";
                 sm.executeUpdate(item);
+            String prakitko = "INSERT INTO prakitko VALUES ('"+id+"','none','1','0')";
+                sm.executeUpdate(prakitko);
             }catch(Exception ex){
                 System.out.println(ex);
             }
@@ -128,12 +135,13 @@ public class DatabaseSystem {
         System.out.println("---------------------------------------");
     }
     private static int getCountId(){
-        String sql = "SELECT COUNT(username) FROM account";
+        String sql = "SELECT MAX(userid) FROM account";
      try(Connection c = connectDB();
          Statement stm = c.createStatement();){
          ResultSet rs = stm.executeQuery(sql);
          if(rs.next()){
-             int temp = Integer.parseInt(rs.getString(1));
+             int temp = rs.getInt(1);
+             temp++;
              return temp;
          }
      }catch(Exception ex){
@@ -178,5 +186,84 @@ public class DatabaseSystem {
               System.out.println(ex);
           }
           return -1;
+    }
+    private static void loadItemTo(Prakitko prakitko){
+        String sql = "SELECT * FROM item WHERE userid LIKE '"+getUserId(currentUser,currentPassword)+"'";
+        try(Connection c = connectDB();){
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            if(rs.next()){
+                int countTaco = rs.getInt("taco");
+                int countCake = rs.getInt("cake");
+                int countBurger  = rs.getInt("burger");
+                int countHealing = rs.getInt("healingpotion");
+                int countStamina = rs.getInt("staminapotion");
+                
+                Item taco = new Taco();
+                taco.setAmount(countTaco);
+                Item cake = new Cake();
+                cake.setAmount(countCake);
+                Item burger = new Burger();
+                burger.setAmount(countBurger);
+                Item healingpotion = new HealingPotion();
+                healingpotion.setAmount(countHealing);
+                Item staminapotion = new StaminaPotion();
+                staminapotion.setAmount(countStamina);
+                
+                Item[] inventory = {taco,cake,burger,healingpotion,staminapotion};
+                for (int i = 0; i < inventory.length; i++) {
+                    if(inventory[i].amountCheck()>0){  
+                    prakitko.receiveItem(inventory[i]);
+                    }
+                }
+            }
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+        
+    }
+    public static void insertTypePrakitko(Prakitko prakitko){
+        try(Connection c = connectDB();){
+            PreparedStatement psm = c.prepareStatement("UPDATE prakitko SET typeprakitko = ? , prakitkoname = ? WHERE userid = ?");
+            psm.setString(1, prakitko.getType());
+            psm.setString(2, prakitko.getName());
+            psm.setInt(3, getUserId(currentUser,currentPassword));
+            psm.executeUpdate();
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+    public static void insertLevel(int lvl,int exp){
+        if(currentUser != null && currentPassword != null){
+        updateLevel(currentUser,currentPassword,lvl,exp);
+        }
+    }
+    private static void updateLevel(String name,String password,int lvl,int exp){
+        try(Connection c = connectDB()){
+            PreparedStatement psm = c.prepareStatement("UPDATE prakitko SET level = ?, exp = ? WHERE userid = "+getUserId(name,password));
+            psm.setInt(1, lvl);
+            psm.setInt(2, exp);
+            psm.executeUpdate();
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+    private static void loadLevelTo(Prakitko prakitko){
+        try(Connection c = connectDB()){
+            String sql = "SELECT * FROM prakitko WHERE userId = "+getUserId(currentUser,currentPassword);
+            int levelToExp = 0;
+            Statement stm = c.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                if(rs.getString("typeprakitko").equals(prakitko.getType())){
+                    prakitko.changeName(rs.getString("prakitkoname"));
+                    levelToExp = prakitko.levelToExp(rs.getInt("level"), rs.getInt("exp"));
+                    prakitko.receiveExp(levelToExp);
+                }
+            }
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 }

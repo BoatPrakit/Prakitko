@@ -3,6 +3,7 @@ package prakitkomodel;
 import prototype.Prakitko;
 
 public class Dog extends Prakitko{
+    private static final String type = "Dog";
     private static final int baseHp = 120;
     private static final int baseAtk = 30;
     private static final int baseSpd = 20;
@@ -12,8 +13,9 @@ public class Dog extends Prakitko{
     private static final int spdPerlvl = 2;
     private static final int staPerlvl = 8;
     public Dog(String name){
-        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl,type);
     }
+    
     @Override
     public String toString(){
         return "Name : "+ super.getName() + " Hp : " + super.getMaxHp() + " Stamina : "+super.getMaxStamina() + " Atk : "+super.getAtk() + " AtkSpeed : "+super.getAtkSpeed();

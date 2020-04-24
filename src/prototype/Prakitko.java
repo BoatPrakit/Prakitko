@@ -2,7 +2,7 @@
 package prototype;
 import Field.Character;
 import Field.Item;
-import static databaseManagement.DatabaseSystem.insertItem;
+import static databaseManagement.DatabaseSystem.*;
 import java.util.Arrays;
 import java.util.Comparator;
 /**
@@ -15,9 +15,8 @@ public abstract class Prakitko extends Character{
     private int currentMaxExp = EXPTOLEVELUP[0];
     private Item[] inventory = new Item[5];
     
-    
-    protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
-        super(name,maxHp,atk,atkSpeed,maxStamina,hpPerLvl,atkPerLvl,atkSpeedPerLvl,staminaPerLvl);
+    protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,String type){
+        super(name,maxHp,atk,atkSpeed,maxStamina,hpPerLvl,atkPerLvl,atkSpeedPerLvl,staminaPerLvl,type);
     }
     public void receiveExp(int exp){
         currentExp += exp;
@@ -26,6 +25,7 @@ public abstract class Prakitko extends Character{
             levelUp();
             calculateStat();
         }
+        insertLevel(super.getLevel(),currentExp);
     }
     private void levelUp(){
      currentExp -= currentMaxExp;
@@ -123,6 +123,16 @@ public abstract class Prakitko extends Character{
                 return o1.getId() - o2.getId();
             }
          });
+    }
+    public int levelToExp(int lvl,int exp){
+        int[] newarray = new int[lvl-1];
+        int temp = 0;
+        System.arraycopy(EXPTOLEVELUP, 0, newarray,0, lvl-1);
+        for (int i = 0; i < newarray.length; i++) {
+           temp += newarray[i];
+        }
+        temp += exp;
+        return temp;
     }
 }
     

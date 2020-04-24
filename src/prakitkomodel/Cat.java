@@ -3,6 +3,7 @@ package prakitkomodel;
 import prototype.Prakitko;
 
 public class Cat extends Prakitko{
+    private static final String type = "Cat";
     private static final int baseHp = 100;
     private static final int baseAtk = 30;
     private static final int baseSpd = 24;
@@ -12,7 +13,7 @@ public class Cat extends Prakitko{
     private static final int spdPerlvl = 3;
     private static final int staPerlvl = 10;
     public Cat(String name){
-        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl);
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl,type);
     }
     @Override
     public String toString(){

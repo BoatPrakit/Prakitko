@@ -22,6 +22,7 @@ public abstract class Character{
     private int atkPerLvl;
     private int staminaPerLvl;
     private int atkSpeedPerLvl;
+    private String type;
     
     protected Character(String name){
         this.name = name;
@@ -37,7 +38,7 @@ public abstract class Character{
         this.currentStamina = maxStamina;
         this.level = level;
     }
-    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl){
+    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,String type){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;
@@ -49,6 +50,7 @@ public abstract class Character{
         this.atkSpeedPerLvl = atkSpeedPerLvl;
         this.maxStamina = maxStamina;
         this.currentStamina = maxStamina;
+        this.type = type;
     }
     protected void plusAtk(){
         this.atk += atkPerLvl;
@@ -113,5 +115,8 @@ public abstract class Character{
 
     public int getCurrentStamina() {
         return currentStamina;
+    }
+    public String getType(){
+        return type;
     }
 }
