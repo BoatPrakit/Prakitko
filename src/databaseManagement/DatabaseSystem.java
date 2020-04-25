@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
-import prakitkomodel.Dog;
+import prakitkomodel.*;
 import prototype.Prakitko;
 import status.LOGINSTATUS;
 
@@ -17,12 +17,17 @@ public class DatabaseSystem {
     private static String currentUser;
     private static String currentPassword;
     private static LOGINSTATUS status = LOGINSTATUS.LOGOUT;
+    private static Prakitko prakitko;
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        Prakitko d = new Dog("Test");
+        
+        
         login();
-        loadLevelTo(d);
-        System.out.println(d.getLevel()+", exp = "+d.getCurrentExp());
+        Prakitko newprakitko = choosePrakitko();     
+        System.out.println(newprakitko);
+        System.out.println(newprakitko.getLevel());
+        newprakitko.receiveItem(new Taco());
+        newprakitko.showInventory();
     }
     private static Connection connectDB(){
         String hostname=  "localhost";
@@ -41,7 +46,7 @@ public class DatabaseSystem {
         }
         return null;
     }
-    private static boolean checkDuplicateUsername(String name){
+    private static boolean checkDuplicateUsername(String name){ 
         String sql = "SELECT username FROM account WHERE username LIKE '"+name.toLowerCase()+"'";
         
         try (Connection c = connectDB();
@@ -66,7 +71,7 @@ public class DatabaseSystem {
                 sm.executeUpdate(sql);
             String item = "INSERT INTO item VALUES ('"+id+"','0','0','0','0','0')";
                 sm.executeUpdate(item);
-            String prakitko = "INSERT INTO prakitko VALUES ('"+id+"','none','1','0')";
+            String prakitko = "INSERT INTO prakitko VALUES ('"+id+"','none','none','1','0')";
                 sm.executeUpdate(prakitko);
             }catch(Exception ex){
                 System.out.println(ex);
@@ -114,6 +119,7 @@ public class DatabaseSystem {
         insertUsername(name,password);
         currentUser = name;
         currentPassword = password;
+        currentId = getUserId(name,password);
         status = LOGINSTATUS.LOGIN;
         System.out.println("---------------------------------------");
     }
@@ -128,6 +134,7 @@ public class DatabaseSystem {
         password = sc.nextLine();
             if(!isLoginSuccess(name,password))System.out.println("Your Username or Password is wrong");
         } while(!isLoginSuccess(name,password));
+        currentId = getUserId(name,password);
         currentUser = name;
         currentPassword = password;
         status = LOGINSTATUS.LOGIN;
@@ -223,7 +230,7 @@ public class DatabaseSystem {
         
         
     }
-    public static void insertTypePrakitko(Prakitko prakitko){
+    public static void updateTypePrakitko(Prakitko prakitko){
         try(Connection c = connectDB();){
             PreparedStatement psm = c.prepareStatement("UPDATE prakitko SET typeprakitko = ? , prakitkoname = ? WHERE userid = ?");
             psm.setString(1, prakitko.getType());
@@ -235,7 +242,7 @@ public class DatabaseSystem {
         }
     }
     public static void insertLevel(int lvl,int exp){
-        if(currentUser != null && currentPassword != null){
+        if(currentId > 0 && currentUser != null && currentPassword != null && status == LOGINSTATUS.LOGIN){
         updateLevel(currentUser,currentPassword,lvl,exp);
         }
     }
@@ -265,5 +272,71 @@ public class DatabaseSystem {
         }catch(Exception ex){
             System.out.println(ex);
         }
+    }
+    public static void showPrakitkoForSelect(){
+        try(Connection c = connectDB()){
+           Statement sm = c.createStatement();
+           ResultSet rs = sm.executeQuery("SELECT * FROM prakitko WHERE userid = "+getUserId(currentUser,currentPassword));
+           if(rs.next()){
+               if(rs.getString("typeprakitko").equals("none")) System.out.println("Empty");
+               else if(!rs.getString("prakitkoname").equals("none")){
+                   System.out.println("1. Type : " + rs.getString("typeprakitko") 
+                       +" \n   Prakitko Name : " + rs.getString("prakitkoname") +
+                       " \n   Level : " + rs.getString("level"));
+            }
+           }
+           else System.out.println("Empty");
+        }catch(Exception ex){
+            System.out.println(ex);
+        } 
+    }
+    public static void deletePrakitko(Prakitko prakitko){
+        try(Connection c = connectDB()){
+            String delete = "UPDATE prakitko SET typeprakitko = 'none', prakitkoname = 'none', level = '0', exp = '0' WHERE userid = "+currentId+" AND prakitkoname LIKE '"+prakitko.getName()+"'"+" AND level = "+prakitko.getLevel();
+            Statement sm = c.createStatement();
+            sm.executeUpdate(delete);
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+    public static void createPrakitko(Prakitko prakitko){
+        try(Connection c = connectDB()){
+            String delete = "UPDATE prakitko SET typeprakitko = ? , prakitkoname = ? , level = 1 , exp = 0 WHERE userid = "+currentId;
+            PreparedStatement sm = c.prepareStatement(delete);
+            sm.setString(1, prakitko.getType());
+            sm.setString(2, prakitko.getName());            
+            sm.executeUpdate();
+        }catch(Exception ex){
+            System.out.println(ex);
+            }
+    }
+    public static Prakitko choosePrakitko(){
+        try(Connection c = connectDB()){
+            Statement sm = c.createStatement();
+            ResultSet rs = sm.executeQuery("SELECT * FROM prakitko WHERE userid = "+currentId);
+            if(rs.next()){
+            
+                switch(rs.getString("typeprakitko")){
+                    case "Dog":
+                        prakitko = new Dog(rs.getString("prakitkoname"));
+                        break;
+                    case "Cat":
+                        prakitko = new Cat(rs.getString("prakitkoname"));
+                        break;
+                    case "Fish":
+                        prakitko = new Fish(rs.getString("prakitkoname"));
+                        break;
+                    case "Bird":
+                        prakitko = new Bird(rs.getString("prakitkoname"));
+                        break;
+                }
+                        loadLevelTo(prakitko);
+                        loadItemTo(prakitko);
+                return prakitko;
+            }
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }
