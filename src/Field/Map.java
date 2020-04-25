@@ -39,7 +39,9 @@ public abstract class Map {
     }
     
     public void arrayCheck(){
-    
+        for (int i = 0; i < monsterCollection.length; i++) {
+            System.out.println(monsterCollection[i]);
+        }
     }
     
 //    public abstract int spawnrate();
