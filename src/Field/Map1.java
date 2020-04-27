@@ -1,43 +1,28 @@
 package Field;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import monstermodel.*;
 import prototype.Monster;
 
 public class Map1 extends Map{
     private static Monster[] monster;  
-    private static Slime Slime;
-    private static Wolf Wolf;    
-    private static int noOfMonsterInThisMap;
+    private static ArrayList<Monster> listOfMonster = new ArrayList<>();
+    private static Slime slime;
+    private static Wolf wolf;    
     
     public Map1(){
         super(monsterInThisMap());
     }
     
-    private static Monster[] monsterInThisMap(){
-        addMonsterInMap(Slime);
-        addMonsterInMap(Wolf);
-        return monster;
+    private static ArrayList<Monster> monsterInThisMap(){
+        slime = new Slime();
+        addMonsterInMap(slime);
+        wolf = new Wolf();
+        addMonsterInMap(wolf);
+        return listOfMonster;
     }
-    
     public static void addMonsterInMap (Monster newMonster){
-        Monster[] newMonsterCollection = new Monster[noOfMonsterInThisMap+1];
-        if (noOfMonsterInThisMap>0) {
-          System.arraycopy(monster, 0, newMonsterCollection, 0, noOfMonsterInThisMap);  
-        }        
-        newMonsterCollection[noOfMonsterInThisMap] = newMonster;
-        monster = newMonsterCollection;
-        monster[0] = Slime;
-        noOfMonsterInThisMap++;        
-    }
-    @Override
-    public void arrayCheck(){
-        for (int i = 0; i < monster.length; i++) {
-            System.out.println(monster[i]);
-        }
-    }
-    
-    public void listNamearray(int x){
-        monster[x] = Slime;
-        System.out.println(monster[x].getClass());
-    }
+        listOfMonster.add(newMonster);
+    }     
 }
