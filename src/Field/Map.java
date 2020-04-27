@@ -1,47 +1,44 @@
 package Field;
 
+import java.util.ArrayList;
 import prototype.Monster;
 
 public abstract class Map {
     
-    private Monster monsterCollection[];
-    private int count;
+    private static ArrayList<Monster> listOfMonster = new ArrayList<>();
     
     public Map(){
     
     }
     
-    public Map(Monster[] monsterCollection){
-        this.monsterCollection = monsterCollection;
+    public Map(ArrayList<Monster> monsterCollection){
+        this.listOfMonster = monsterCollection;
     }
     
-    public void addMonster(Monster monster){
-        Monster[] newMonsterCollection = new Monster[count+1];
-        System.arraycopy(monsterCollection, 0, newMonsterCollection, 0, count);
-        newMonsterCollection[count] = monster;
-        count++;        
-    }
+    public static void addMonsterInMap (Monster newMonster){
+        listOfMonster.add(newMonster);
+    }     
     
     public void removeMonster(Monster monster){
-        for (int i = 0; i < count; i++) {
-            if (this.monsterCollection[i].getClass()==monster.getClass()) {
-                for (int j = i; j < count-1; j++) {
-                    monsterCollection[j] = monsterCollection[j+1];
-                }
-                monsterCollection[count] = null;
-                count--;
-            }
+        listOfMonster.remove(monster);
+    }
+    
+        public void arrayCheck(){
+        System.out.println("Start printing");
+        for (Monster currentMonster: listOfMonster){
+             System.out.println(currentMonster);
         }
     }
-
+        
+    public void reRandomLevelMonster(){
+        for (Monster currentMonster : listOfMonster){
+            currentMonster.randomLvl(currentMonster.getLevelRange());
+            currentMonster.calculateStatMonster();
+        }
+    }
+        
     public void fight(){
     
-    }
-    
-    public void arrayCheck(){
-        for (int i = 0; i < monsterCollection.length; i++) {
-            System.out.println(monsterCollection[i]);
-        }
     }
     
 //    public abstract int spawnrate();
