@@ -22,21 +22,30 @@ public abstract class Character{
     private int atkPerLvl;
     private int staminaPerLvl;
     private int atkSpeedPerLvl;
+    private int levelRange;
+    private int baseExpGive;
     private String type;
     
     protected Character(String name){
         this.name = name;
         
     }
-    protected Character(String name,int level,int maxHp,int atk,int atkSpeed,int maxStamina){
+    protected Character(String name,int lvlRange,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,int baseExpGive){
         this.name = name;
         this.maxHp=maxHp;
         this.currentHp=maxHp;
         this.atk = atk;
         this.atkSpeed = atkSpeed;
+        this.hpPerLvl = hpPerLvl;
+        this.atkPerLvl = atkPerLvl;
+        this.staminaPerLvl = staminaPerLvl;
+        this.atkSpeedPerLvl = atkSpeedPerLvl;
         this.maxStamina = maxStamina;
         this.currentStamina = maxStamina;
-        this.level = level;
+        this.levelRange = lvlRange;
+        this.baseExpGive = baseExpGive;
+        randomLvl(lvlRange);
+        calculateStatMonster();
     }
     protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,String type){
         this.name = name;
@@ -52,6 +61,37 @@ public abstract class Character{
         this.currentStamina = maxStamina;
         this.type = type;
     }
+    
+    protected int randomLvl(int lvlRange){
+        this.level = (int)Math.ceil(Math.random()*lvlRange);
+        return level;
+    }
+    protected void calculateStatMonster(){
+        calculateAtk(atk, atkPerLvl);
+        calculateAtkSpeed(atkSpeed, atkSpeedPerLvl);
+        calculateMaxHP(maxHp, hpPerLvl);
+        calculateMaxStamina(maxStamina, staminaPerLvl);
+    }
+    private int calculateMaxHP(int maxHp,int hpPerLvl){
+        int result = maxHp+(hpPerLvl*level);
+        this.maxHp = result;
+        return result;
+    }
+    private int calculateAtk(int atk,int atkPerLvl){
+        int result = atk+(atkPerLvl*level);
+        this.atk = result;
+        return result;
+    }
+    private int calculateAtkSpeed(int atkSpeed,int atkSpeedPerLvl){
+        int result = atkSpeed+(atkSpeedPerLvl*level);
+        this.atkSpeed = result;
+        return result;
+    }
+    private int calculateMaxStamina(int maxStamina,int staminaPerLvl){
+        int result = maxStamina+(staminaPerLvl*level);
+        this.maxStamina = result;
+        return result;
+    }
     protected void plusAtk(){
         this.atk += atkPerLvl;
     }
@@ -63,6 +103,9 @@ public abstract class Character{
     }
     protected void plusAtkSpeed(){
         this.atkSpeed += atkSpeedPerLvl;
+    }
+    public int getLevelRange(){
+        return levelRange;
     }
     public String getName() {
         return name;
@@ -118,5 +161,10 @@ public abstract class Character{
     }
     public String getType(){
         return type;
+    }
+    
+        private int dropExp(){
+        int result = (int)(baseExpGive+((Math.random()+1)*level));
+        return result;
     }
 }
