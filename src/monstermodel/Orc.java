@@ -4,7 +4,7 @@ package monstermodel;
 import prototype.Monster;
 
 public class Orc extends Monster{
-    private static final String name = "Orge";
+    private static final String name = "Orc";
     private static final int baseHp = 60;
     private static final int baseAtk = 20;
     private static final int baseSpd = 25;
