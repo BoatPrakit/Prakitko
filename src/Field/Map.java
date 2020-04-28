@@ -1,11 +1,13 @@
 package Field;
 
 import java.util.ArrayList;
+import java.util.Random;
 import prototype.Monster;
 
 public abstract class Map {
     
     private static ArrayList<Monster> listOfMonster = new ArrayList<>();
+    private Random randomGenerator = new Random();
     
     public Map(){
     
@@ -30,16 +32,21 @@ public abstract class Map {
         }
     }
         
-    public void reRandomLevelMonster(){
+    private  void reRandomLevelMonster(){
         for (Monster currentMonster : listOfMonster){
             currentMonster.randomLvl(currentMonster.getLevelRange());
             currentMonster.calculateStatMonster();
         }
     }
         
-    public void fight(){
+    public void fight(Prakitko ){
+        
+    
     
     }
     
-//    public abstract int spawnrate();
+    private Monster getRandomMonster(){
+        int index = randomGenerator.nextInt(listOfMonster.size());
+        return listOfMonster.get(index);
+};
 }

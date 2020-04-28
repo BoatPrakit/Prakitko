@@ -116,9 +116,6 @@ public class Launcher {
     
     public static void UserChooseMap1(){
         Map1 forest = new Map1();
-        Monster slime = new Slime();
-        forest.addMonster(slime);
-        forest.addMonsterInMap(slime);
         forest.arrayCheck();
         
     }
