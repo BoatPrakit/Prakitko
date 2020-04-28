@@ -4,7 +4,7 @@ package Item;
 public class Burger extends Food{
     
      private static int regenHp = 50;
-     private static int Id = 003;
+     private static int Id = 3;
      private static String name = "Burger";
     
    public Burger() {
