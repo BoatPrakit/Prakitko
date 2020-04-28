@@ -19,7 +19,16 @@ public class DatabaseSystem {
     private static LOGINSTATUS status = LOGINSTATUS.LOGOUT;
     private static Prakitko prakitko;
     private static Scanner sc = new Scanner(System.in);
-
+    public static void main(String[] args) {
+        
+        
+        login();
+        Prakitko newprakitko = choosePrakitko();     
+        System.out.println(newprakitko);
+        System.out.println(newprakitko.getLevel());
+        newprakitko.receiveItem(new Taco());
+        newprakitko.showInventory();
+    }
     private static Connection connectDB(){
         String hostname=  "localhost";
         String db_name = "testdb";
