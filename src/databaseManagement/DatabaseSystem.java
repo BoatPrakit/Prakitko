@@ -19,16 +19,7 @@ public class DatabaseSystem {
     private static LOGINSTATUS status = LOGINSTATUS.LOGOUT;
     private static Prakitko prakitko;
     private static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) {
-        
-        
-        login();
-        Prakitko newprakitko = choosePrakitko();     
-        System.out.println(newprakitko);
-        System.out.println(newprakitko.getLevel());
-        newprakitko.receiveItem(new Taco());
-        newprakitko.showInventory();
-    }
+    
     private static Connection connectDB(){
         String hostname=  "localhost";
         String db_name = "testdb";
@@ -114,7 +105,6 @@ public class DatabaseSystem {
          confirmpassword = sc.nextLine();
          if(!password.equals(confirmpassword) || "".equals(password))System.out.println("Your password is not match");
         } while(!password.equals(confirmpassword) || password == null || "".equals(password) );
-        sc.close();
         System.out.println("Your account has been created.");
         insertUsername(name,password);
         currentUser = name;
