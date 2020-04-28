@@ -85,7 +85,7 @@ public class DatabaseSystem {
         }
         return false;
     }
-    public static void register(){
+    public static void createId(){
         //username
         String name;
         String password;
@@ -328,8 +328,5 @@ public class DatabaseSystem {
             System.out.println(ex);
         }
         return null;
-    }
-    public static String getUserName(){
-        return currentUser;
     }
 }
