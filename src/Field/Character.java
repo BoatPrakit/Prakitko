@@ -44,7 +44,7 @@ public abstract class Character{
         this.currentStamina = maxStamina;
         this.levelRange = lvlRange;
         this.baseExpGive = baseExpGive;
-        randomLvl(lvlRange);
+        this.level = 1;
         calculateStatMonster();
     }
     protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,String type){
@@ -73,22 +73,22 @@ public abstract class Character{
         calculateMaxStamina(maxStamina, staminaPerLvl);
     }
     private int calculateMaxHP(int maxHp,int hpPerLvl){
-        int result = maxHp+(hpPerLvl*level);
+        int result = maxHp+(hpPerLvl*(level-1));
         this.maxHp = result;
         return result;
     }
     private int calculateAtk(int atk,int atkPerLvl){
-        int result = atk+(atkPerLvl*level);
+        int result = atk+(atkPerLvl*(level-1));
         this.atk = result;
         return result;
     }
     private int calculateAtkSpeed(int atkSpeed,int atkSpeedPerLvl){
-        int result = atkSpeed+(atkSpeedPerLvl*level);
+        int result = atkSpeed+(atkSpeedPerLvl*(level-1));
         this.atkSpeed = result;
         return result;
     }
     private int calculateMaxStamina(int maxStamina,int staminaPerLvl){
-        int result = maxStamina+(staminaPerLvl*level);
+        int result = maxStamina+(staminaPerLvl*(level-1));
         this.maxStamina = result;
         return result;
     }
