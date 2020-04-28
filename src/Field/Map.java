@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import prototype.Monster;
 import prototype.Prakitko;
+import Field.Field;
 
 public abstract class Map {
     
@@ -40,10 +41,10 @@ public abstract class Map {
         }
     }
         
-    public void fight(Prakitko User){
+    public Field fight(Prakitko User){
+        Field newField = new Field(User,getRandomMonster());
+        return newField;
         
-    
-    
     }
     
     public Monster getRandomMonster(){
