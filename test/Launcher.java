@@ -11,67 +11,71 @@ import Field.Map1;
 import prakitkomodel.Dog;
 import prototype.Prakitko;
 import Item.*;
+import static databaseManagement.DatabaseSystem.*;
 import java.util.Scanner;
 import monstermodel.Slime;
 import prototype.Monster;
 import status.STATUS;
 public class Launcher {
+    private static Prakitko prakitko;
+
     public static void main(String[] args) {
-        Menu();
-        CreatePrakitko();
-    
-        
-}
-    
-    public static void Menu(){
+        Scanner input = new Scanner(System.in);
+        Menu(input);
+        input.close();
+
+    }
+
+    public static void Menu(Scanner scanner){ // Menu เเบบ ปกติ
         System.out.println("--- Game Name ---");
         System.out.println("Play Game[press 1]");
         System.out.println("Credit[press 0]");
-        Scanner select = new Scanner(System.in);
-        int number = select.nextInt();
+        System.out.println("Choose ur number : ");
+        int number = scanner.nextInt();
         if(number == 1){
-            CreatePrakitko();
+            Apply(scanner);
         }if(number == 0){
             System.out.println("Prakit : Leader");
             System.out.println("Sapondanai : member");
             System.out.println("Pattarapol : member");
-            Menu();
-            
+        }
+    }
+   
+    
+    public static void Apply(Scanner scanner) {
+        System.out.println("--- Login & Register ---");
+        System.out.println("Register [press 1]");
+        System.out.println("Login [press 2]");
+        System.out.println("please choose ur number : ");
+        int number = scanner.nextInt();
+
+        if (number == 1) {
+            register();
+            CreatePrakitko(scanner);
+//          showPrakitkoForSelect();
+        }
+        if (number == 2) {
+            login();
+            showPrakitkoForSelect();
+            prakitko = choosePrakitko();
         }
         
         
     }
-    
-    public static void CreatePrakitko(){
+
+    public static void CreatePrakitko(Scanner scanner) { // สร้าง Prakitko
+
         System.out.println("--- Choose Prakitko ---");
         System.out.println("Dog[press 1]");
         System.out.println("Cat[press 2]");
         System.out.println("Bird[press 3]");
         System.out.println("Fish[press 4]");
-        Scanner choose = new Scanner(System.in);
-        int number = choose.nextInt();
-        Scanner input = new Scanner(System.in);
+        System.out.println("Choose ur number : ");
+        int number = scanner.nextInt();
+//            String name = scanner.nextLine();
         
-        if(number == 1){
-            String name = input.nextLine();
-            System.out.println(userEntryDogName(name));
-            chooseMap();
-        }if(number == 2){
-            String name = input.nextLine();
-            System.out.println(userEntryCatName(name));
-            chooseMap();
-        }if(number == 3){
-            String name = input.nextLine();
-            System.out.println(userEntryBirdName(name));
-            chooseMap();
-        }if(number == 4){
-            String name = input.nextLine();
-            System.out.println(userEntryFishName(name));
-            chooseMap();
-        }
         
     }
-    
     public static Character userEntryDogName(String name){
         Prakitko dog = new Dog(name);
         return dog;
@@ -107,9 +111,12 @@ public class Launcher {
             System.out.println("--- Map1 : Forest ---");
             UserChooseMap1();
         }if(number == 4){
-            CreatePrakitko();
+            
         }if(number == 5){
-            Menu();
+            
+        }
+        if (number == 4) {
+//            CreatePrakitko();
         }
   
     }

@@ -62,8 +62,8 @@ public class DatabaseSystem {
                 sm.executeUpdate(sql);
             String item = "INSERT INTO item VALUES ('"+id+"','0','0','0','0','0')";
                 sm.executeUpdate(item);
-            String prakitko = "INSERT INTO prakitko VALUES ('"+id+"','none','none','1','0')";
-                sm.executeUpdate(prakitko);
+            String insert = "INSERT INTO prakitko VALUES ('"+id+"','none','none','1','0')";
+                sm.executeUpdate(insert);
             }catch(Exception ex){
                 System.out.println(ex);
             }
@@ -85,7 +85,7 @@ public class DatabaseSystem {
         }
         return false;
     }
-    public static void createId(){
+    public static void register(){
         //username
         String name;
         String password;
