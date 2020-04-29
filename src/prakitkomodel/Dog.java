@@ -14,10 +14,5 @@ public class Dog extends Prakitko{
     private static final int staPerlvl = 8;
     public Dog(String name){
         super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl,type);
-    }
-    
-    @Override
-    public String toString(){
-        return "Name : "+ super.getName() + " Hp : " + super.getMaxHp() + " Stamina : "+super.getMaxStamina() + " Atk : "+super.getAtk() + " AtkSpeed : "+super.getAtkSpeed();
-    }
+    }   
 }
