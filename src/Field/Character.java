@@ -133,7 +133,7 @@ public abstract class Character{
     void setStatus(STATUS status){
         this.status = status;
     }
-    private int recieveDamage(int atk){
+    public int recieveDamage(int atk){
         if(atk >= currentHp){
             setStatus(STATUS.DEAD);
             currentHp = 0;
@@ -166,5 +166,16 @@ public abstract class Character{
         private int dropExp(){
         int result = (int)(baseExpGive+((Math.random()+1)*level));
         return result;
+    }
+    public boolean isDead(){
+        if (this.currentHp<=0) {
+            this.status = STATUS.DEAD;
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public String toString(){
+        return getName()+"\n Level : "+getLevel()+"\n HP : "+getCurrentHp()+"/"+getMaxHp()+ "\n ATK : "+getAtk();
     }
 }
