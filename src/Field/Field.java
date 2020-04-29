@@ -48,4 +48,9 @@ public class Field {
         
         return 0;
     }
+    
+    public void whoHere(){
+        System.out.println(prakitko.getName());
+        System.out.println(monster);
+    }
 }
