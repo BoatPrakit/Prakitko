@@ -20,10 +20,6 @@ public abstract class Monster extends Character{
     private void addItem(Item item){
         
     }
-    
-    @Override
-    public String toString(){
-        return getName()+"\n Level : "+getLevel()+"\n HP : "+getMaxHp()+ "\n ATK : "+getAtk();
-    }
+   
     
 }
