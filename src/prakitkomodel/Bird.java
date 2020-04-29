@@ -17,6 +17,6 @@ public class Bird extends Prakitko{
     }
     @Override
     public String toString(){
-        return "Name : "+ super.getName() +"Hp : " + super.getMaxHp() + " Stamina : "+super.getMaxStamina() + " Atk : "+super.getAtk() + " AtkSpeed : "+super.getAtkSpeed();
+        return "Name : "+ super.getName() +" Hp : " + super.getMaxHp() + " Stamina : "+super.getMaxStamina() + " Atk : "+super.getAtk() + " AtkSpeed : "+super.getAtkSpeed();
     }
 }

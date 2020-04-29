@@ -301,7 +301,7 @@ public class DatabaseSystem {
             System.out.println(ex);
             }
     }
-    public static Prakitko choosePrakitko(){
+    public static Prakitko choosePrakitko() throws NullPointerException{
         try(Connection c = connectDB()){
             Statement sm = c.createStatement();
             ResultSet rs = sm.executeQuery("SELECT * FROM prakitko WHERE userid = "+currentId);
