@@ -209,7 +209,8 @@ public class DatabaseSystem {
                 
                 Item[] inventory = {taco,cake,burger,healingpotion,staminapotion};
                 for (int i = 0; i < inventory.length; i++) {
-                    if(inventory[i].amountCheck()>0){  
+                    if(inventory[i].amountCheck()>0){
+                        inventory[i].decreaseAmount();
                     prakitko.receiveItem(inventory[i]);
                     }
                 }

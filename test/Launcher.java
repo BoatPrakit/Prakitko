@@ -25,27 +25,10 @@ public class Launcher {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         MenuSwCase(input);
-        input.close();
         
-        
-          
-
     }
 
-//    public static void Menu(Scanner scanner){ // Menu เเบบ ปกติ
-//        System.out.println("--- Game Name ---");
-//        System.out.println("Play Game[press 1]");
-//        System.out.println("Credit[press 0]");
-//        System.out.println("Choose ur number : ");
-//        int number = scanner.nextInt();
-//        if(number == 1){
-//            Apply(scanner);
-//        }if(number == 0){
-//            System.out.println("Prakit : Leader");
-//            System.out.println("Sapondanai : member");
-//            System.out.println("Pattarapol : member");
-//        }
-//    }
+
     
        public static void MenuSwCase(Scanner scanner){
          System.out.println("--- Game Name ---");
@@ -122,7 +105,8 @@ public class Launcher {
         if(number == 1){
             System.out.println("Prakitko name : ");
             String name = input.nextLine();
-            System.out.println(userEntryDogName(name));
+            userEntryDogName(name);
+            createPrakitko(prakitko);
             chooseMap(scanner);
             
         }if(number == 2){
