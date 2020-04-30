@@ -139,6 +139,9 @@ public abstract class Character{
             currentHp = 0;
         }
         this.currentHp -= atk;
+        if (currentHp <= 0) {
+            this.currentHp = 0;
+        }
         return atk;
     }
     protected void plusLevel(){
