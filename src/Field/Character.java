@@ -4,7 +4,7 @@ import status.STATUS;
 
 /**
  *
- * @author User
+ * @author Prakit & Sapondanai
  */
 public abstract class Character{
     private final int MAXLEVEL = 30;
@@ -176,6 +176,21 @@ public abstract class Character{
             return true;
         }
         return false;
+    }
+    protected void regenHp(int regenHp){
+        this.currentHp += regenHp;
+        if(currentHp > maxHp){
+            currentHp = maxHp;
+        }
+    }
+    protected void regenStamina(int regenStamina){
+        this.currentStamina += regenStamina;
+        if(currentStamina > maxStamina){
+            currentStamina = maxStamina;
+        }
+    }
+    protected void regenfullHp(){
+        this.currentHp = maxHp;
     }
     @Override
     public String toString(){

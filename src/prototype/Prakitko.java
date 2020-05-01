@@ -2,12 +2,13 @@
 package prototype;
 import Field.Character;
 import Field.Item;
+import Item.StaminaPotion;
 import static databaseManagement.DatabaseSystem.*;
 import java.util.Arrays;
 import java.util.Comparator;
 /**
  *
- * @author User
+ * @author Prakit
  */
 public abstract class Prakitko extends Character{
     private final int[] EXPTOLEVELUP = {100,120,1000,2000};
@@ -55,13 +56,20 @@ public abstract class Prakitko extends Character{
         super.plusAtkSpeed();
         super.plusMaxHp();
         super.plusMaxStamina();
+        super.regenfullHp(); //When player level up hp will full
     }
     public boolean useItem(Item item){
         if(item == null)return false;
-        int index = sameItemAtIndex(item);
+        int index = sameItemAtIndex(item);      //find index that equal item to use
         if(index>=0){
             if(inventory[index].amountCheck()>0){
-                
+                if(!item.getClass().equals(new StaminaPotion().getClass())){              //if this item isn't stamina potion
+                   int regenHp = inventory[index].getRegen();
+                   super.regenHp(regenHp);
+                }else if(item.getClass().equals(new StaminaPotion().getClass())){         //if this item isn't stamina potion
+                    int regenStamina = inventory[index].getRegenStamina();
+                    super.regenStamina(regenStamina);
+                }
                 inventory[index].decreaseAmount();
                       insertItem(inventory[index]);                 //database system
                     if(inventory[index].amountCheck()<=0){
@@ -78,9 +86,9 @@ public abstract class Prakitko extends Character{
     
     public boolean receiveItem(Item item){
         int result = sameItemAtIndex(item);
-        int nullslot = findEmptySlot();
+        int nullslot = findEmptySlot();                     //find null index
         if(result==-2){
-            inventory[nullslot] = item;
+            inventory[nullslot] = item; 
             inventory[nullslot].increaseAmount();
             insertItem(inventory[nullslot]);
             return true;
