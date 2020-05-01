@@ -40,7 +40,7 @@ public class Field {
             prakitko.isDead();
             monster.isDead();
             whoHere();
-            }
+            }else System.out.println("Fight already end");
     }
     
     public boolean isMonsterDie(){
