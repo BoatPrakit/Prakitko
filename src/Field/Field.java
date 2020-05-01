@@ -41,6 +41,9 @@ public class Field {
             monster.isDead();
             whoHere();
             }else System.out.println("Fight already end");
+         if (isMonsterDie()) {
+            monster.
+        }
     }
     
     public boolean isMonsterDie(){

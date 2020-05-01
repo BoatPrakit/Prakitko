@@ -179,6 +179,6 @@ public abstract class Character{
     }
     @Override
     public String toString(){
-        return getName()+"\n Level : "+getLevel()+"\n HP : "+getCurrentHp()+"/"+getMaxHp()+ "\n ATK : "+getAtk()+"\n AtkSpd : "+getAtkSpeed();
+        return getName()+"\n Level : "+getLevel()+"\n HP : "+getCurrentHp()+"/"+getMaxHp()+ "\n ATK : "+getAtk()+"\n AtkSpd : "+getAtkSpeed()+"\n Status : "+getStatus();
     }
 }
