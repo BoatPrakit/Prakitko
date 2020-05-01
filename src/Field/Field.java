@@ -19,6 +19,7 @@ public class Field {
     }
     
     public void attack(){
+        if (!isMonsterDie() && !isPrakitkoDie()) {
         if (prakitko.getAtkSpeed() >= monster.getAtkSpeed()) {
             monster.recieveDamage(prakitko.getAtk());
             System.out.println(prakitko.getName()+" Dealt "+monster.getName()+" "+prakitko.getAtk()+" Damage");
@@ -39,6 +40,7 @@ public class Field {
             prakitko.isDead();
             monster.isDead();
             whoHere();
+            }
     }
     
     public boolean isMonsterDie(){
