@@ -37,7 +37,7 @@ public class Launcher {
         System.out.println("    ◄ 𝐏𝐑𝐀𝐊𝐈𝐓𝐊𝐎 : 𝐎𝐅𝐅𝐋𝐈𝐍𝐄𝐒𝐎𝐋𝐎𝐀𝐃𝐕𝐄𝐍𝐓𝐔𝐑𝐄™ ►   ");
         System.out.println("▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤");
         System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
-        System.out.println("\u001b[32m   Login & Register  ");
+        System.out.println("\u001b[32m   Login & Register  \u001b[0m");
         System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
         System.out.println("[press 1] Login ");
         System.out.println("[press 2] Register ");
@@ -286,10 +286,14 @@ public class Launcher {
                     break;
                 case 3:
                     try {
-                        System.out.println("Run! \n");
-                        Thread.sleep(3000);
-                        System.out.println("Completed \n");
-                        chooseMap(scanner);
+//                        System.out.println("Run! \n");
+//                        Thread.sleep(3000);
+//                        System.out.println("Completed \n");
+//                        chooseMap(scanner);
+                        for (int i = 0; i < 100; i++) {
+                            Thread.sleep(100);
+                            System.out.println("\r\u001b[32b;1m"+i+"%");
+                        }
                     } catch (Exception T) {
                         System.out.println("Got Ex");
                     }

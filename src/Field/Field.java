@@ -42,7 +42,7 @@ public class Field {
             whoHere();
             }else System.out.println("Fight already end");
          if (isMonsterDie()) {
-            monster.
+//            monster.
         }
     }
     
