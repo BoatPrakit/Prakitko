@@ -1,5 +1,6 @@
 package Field;
 
+import java.util.ArrayList;
 import prototype.Monster;
 import prototype.Prakitko;
 import status.STATUS;
@@ -12,7 +13,8 @@ public class Field {
 
     private Prakitko prakitko;
     private Monster monster;
-    private int exp;
+    private int expHolding;
+    private static ArrayList<Item> itemHolding  = new ArrayList<>();
     
     public Field(Prakitko prakitko, Monster monster) {
         this.prakitko = prakitko;
@@ -31,6 +33,7 @@ public class Field {
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
+                isBattleEnd();
             } else if (prakitko.getAtkSpeed() < monster.getAtkSpeed()) {
                 prakitko.recieveDamage(monster.getAtk());
                 System.out.println(monster.getName() + " Dealt " + prakitko.getName() + " " + monster.getAtk() + " Damage");
@@ -41,14 +44,13 @@ public class Field {
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
+                isBattleEnd();
             }
             
         } else {
             System.out.println("Fight already end");
         }
-        if (isMonsterDie()) {
-//            monster.
-        }
+
     }
     
     public boolean isMonsterDie() {
@@ -75,10 +77,31 @@ public class Field {
         return currentExp * 5 / 100;
     }
     
-    public int expGiveTo(Character prakitko) {
+    private int expGiveTo(Character prakitko) {
 //        prakitko = this.prakitko;
         
         return 0;
+    }
+    public boolean isBattleEnd(){
+        if (isMonsterDie()) {
+            this.expHolding += monster.dropExp();
+//            this.itemHolding.add(monster.itemDrop());
+            battleReward();
+            return true;
+        }else if (isPrakitkoDie()) {
+           prakitko.receiveExp(loseExp(prakitko.getCurrentExp()));
+           return true;
+        }
+        return false;
+        
+    }
+    private void battleReward(){
+        this.prakitko.receiveExp(expHolding);
+//        for (Item currentItem : itemHolding) {
+//            this.prakitko.receiveItem(currentItem);
+//        }
+        System.out.println(prakitko.getName()+" receive : "+expHolding+" exp");
+        
     }
     
     public void whoHere() {

@@ -5,7 +5,6 @@ import Field.Character;
 
 public abstract class Monster extends Character{
     
-    private int giveExp;
     private Item item[];
     private static int lvl;
     
@@ -13,7 +12,7 @@ public abstract class Monster extends Character{
         super(name,lvlRange,maxHp,atk,atkSpeed,maxStamina,hpPerLvl,atkPerLvl,atkSpeedPerLvl,staminaPerLvl,baseExpGive);
     }
     
-    private Item itemDrop(){
+    public Item itemDrop(){
         return item[0];
     }
     
