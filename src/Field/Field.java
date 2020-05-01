@@ -21,13 +21,18 @@ public class Field {
     public void attack(){
         if (prakitko.getAtkSpeed() >= monster.getAtkSpeed()) {
             monster.recieveDamage(prakitko.getAtk());
-            System.out.println(prakitko.getName()+"Dealt "+monster.getName()+" "+prakitko.getAtk()+" Damage");
+            System.out.println(prakitko.getName()+" Dealt "+monster.getName()+" "+prakitko.getAtk()+" Damage");
             if (!monster.isDead()) {
                 prakitko.recieveDamage(monster.getAtk());
-                System.out.println(monster.getName()+"Dealt "+prakitko.getName()+" "+monster.getAtk()+" Damage");
+                System.out.println(monster.getName()+" Dealt "+prakitko.getName()+" "+monster.getAtk()+" Damage");
             }
-
         }
+        else  prakitko.recieveDamage(monster.getAtk());
+            System.out.println(monster.getName()+" Dealt "+prakitko.getName()+" "+monster.getAtk()+" Damage");
+            if (!prakitko.isDead()) {
+                monster.recieveDamage(prakitko.getAtk());
+                System.out.println(prakitko.getName()+" Dealt "+monster.getName()+" "+prakitko.getAtk()+" Damage");
+            }
     }
     
     public boolean isMonsterDie(){
