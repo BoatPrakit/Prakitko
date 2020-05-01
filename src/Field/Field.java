@@ -26,6 +26,8 @@ public class Field {
                 prakitko.recieveDamage(monster.getAtk());
                 System.out.println(monster.getName()+" Dealt "+prakitko.getName()+" "+monster.getAtk()+" Damage");
             }
+            prakitko.isDead();
+            monster.isDead();
             whoHere();
         }
         else  prakitko.recieveDamage(monster.getAtk());
@@ -34,6 +36,8 @@ public class Field {
                 monster.recieveDamage(prakitko.getAtk());
                 System.out.println(prakitko.getName()+" Dealt "+monster.getName()+" "+prakitko.getAtk()+" Damage");
             }
+            prakitko.isDead();
+            monster.isDead();
             whoHere();
     }
     
