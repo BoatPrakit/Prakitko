@@ -80,17 +80,17 @@ public class Field {
         
         return 0;
     }
-    public boolean isBattleEnd(){
+    public int isBattleEnd(){
         if (isMonsterDie()) {
             this.expHolding += monster.dropExp();
 //            this.itemHolding.add(monster.itemDrop());
             battleReward();
-            return true;
+            return 1;
         }else if (isPrakitkoDie()) {
            prakitko.receiveExp(loseExp(prakitko.getCurrentExp()));
-           return true;
+           return 2;
         }
-        return false;
+        return -1;
         
     }
     private void battleReward(){
