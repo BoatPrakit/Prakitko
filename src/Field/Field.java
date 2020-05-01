@@ -33,7 +33,6 @@ public class Field {
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
-                isBattleEnd();
             } else if (prakitko.getAtkSpeed() < monster.getAtkSpeed()) {
                 prakitko.recieveDamage(monster.getAtk());
                 System.out.println(monster.getName() + " Dealt " + prakitko.getName() + " " + monster.getAtk() + " Damage");
@@ -44,7 +43,6 @@ public class Field {
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
-                isBattleEnd();
             }
             
         } else {
