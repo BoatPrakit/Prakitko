@@ -40,6 +40,12 @@ public class Field {
         if(monster.getStatus() == STATUS.DEAD)return true;
         return false;
     }
+    
+    public boolean isPrakitkoDie(){
+        if(prakitko == null) return false;
+        if(prakitko.getStatus() == STATUS.DEAD) return true;
+        return false;
+    }
     private int loseExp(int currentExp){
         return currentExp*5/100;
     }
