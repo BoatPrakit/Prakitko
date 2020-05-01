@@ -180,7 +180,7 @@ public abstract class Character{
     @Override
     public String toString(){
         return "▓▓▓▓▓▓▓▓▓▓\n\u001b[0mName : "+"\u001B[31;1m"+getName()+"\n👑 ʟᴇᴠᴇʟ : "+getLevel()+"\n❤ ʜᴘ    : "+getCurrentHp()+
-                "/"+getMaxHp()+ "\n💀 ᴀᴛᴋ   : "+getAtk()+"\n🍃 ᴀᴛᴋsᴘᴅ : "+getAtkSpeed()+"\nsᴛᴀᴛᴜs : "+getStatus()+"\n▓▓▓▓▓▓▓▓▓▓"
+                "/"+getMaxHp()+ "\n⚔ ᴀᴛᴋ   : "+getAtk()+"\n🍃 ᴀᴛᴋsᴘᴅ : "+getAtkSpeed()+"\nsᴛᴀᴛᴜs : "+getStatus()+"\n▓▓▓▓▓▓▓▓▓▓"
                 ;
     }
 }
