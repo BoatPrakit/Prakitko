@@ -9,12 +9,13 @@ public class StaminaPotion extends Potions{
 
 
     public StaminaPotion() {
-        super(regenStamina, Id, name);
+        super(Id, name);
+        super.setRegenStamina(regenStamina);
     }
 
     @Override
     public String toString() {
-        return "StaminaPotion{" + "RegenStamina : " + super.getRegen() +'}';
+        return "StaminaPotion{" + "RegenStamina : " + super.getRegenStamina() +'}';
     }
     
     
