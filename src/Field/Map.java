@@ -42,6 +42,7 @@ public abstract class Map {
     }
         
     public Field fight(Prakitko User){
+        reRandomLevelMonster();
         Field newField = new Field(User,getRandomMonster());
         return newField;
         

@@ -61,10 +61,11 @@ public abstract class Prakitko extends Character{
         int index = sameItemAtIndex(item);
         if(index>=0){
             if(inventory[index].amountCheck()>0){
+                
                 inventory[index].decreaseAmount();
-                      insertItem(inventory[index]);
+                      insertItem(inventory[index]);                 //database system
                     if(inventory[index].amountCheck()<=0){
-                       insertItem(inventory[index]);
+                       insertItem(inventory[index]);                //database system
                        inventory[index] = null;
                     }
                 return true;
@@ -134,5 +135,6 @@ public abstract class Prakitko extends Character{
         temp += exp;
         return temp;
     }
+    
 }
     

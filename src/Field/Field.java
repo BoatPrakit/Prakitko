@@ -19,18 +19,14 @@ public class Field {
     }
     
     public void attack(){
-        if(this.monster.getCurrentHp()<=0){
-            Character mn = (Character)monster;
-            mn.setStatus(STATUS.DEAD);
-//            this.monster = (Monster)mn;
-        }
-        if(this.prakitko.getCurrentHp()<=0 ){
-            Character pk = (Character)prakitko;
-            pk.setStatus(STATUS.DEAD);
-            this.prakitko = (Prakitko)pk;
-            this.exp = loseExp(prakitko.getCurrentExp());
-           prakitko.receiveExp(exp);
-           
+        if (prakitko.getAtkSpeed() >= monster.getAtkSpeed()) {
+            monster.recieveDamage(prakitko.getAtk());
+            System.out.println(prakitko.getName()+"Dealt "+monster.getName()+" "+prakitko.getAtk()+" Damage");
+            if (!monster.isDead()) {
+                prakitko.recieveDamage(monster.getAtk());
+                System.out.println(monster.getName()+"Dealt "+prakitko.getName()+" "+monster.getAtk()+" Damage");
+            }
+
         }
     }
     
@@ -47,5 +43,10 @@ public class Field {
 //        prakitko = this.prakitko;
         
         return 0;
+    }
+    
+    public void whoHere(){
+        System.out.println(prakitko);
+        System.out.println(monster);
     }
 }

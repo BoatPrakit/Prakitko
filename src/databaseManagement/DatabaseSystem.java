@@ -55,7 +55,7 @@ public class DatabaseSystem {
     }
     private static void insertUsername(String name,String password){
         if(checkDuplicateUsername(name)){
-            int id = getCountId();
+            int id = calculateUserId();
             try( Connection c = connectDB();){
                 Statement sm = c.createStatement();
             String sql = "INSERT INTO account VALUES ('"+id+"','"+name.toLowerCase()+"','"+password+"')";
@@ -131,7 +131,7 @@ public class DatabaseSystem {
         System.out.println("Login success");
         System.out.println("---------------------------------------");
     }
-    private static int getCountId(){
+    private static int calculateUserId(){
         String sql = "SELECT MAX(userid) FROM account";
      try(Connection c = connectDB();
          Statement stm = c.createStatement();){
@@ -209,7 +209,8 @@ public class DatabaseSystem {
                 
                 Item[] inventory = {taco,cake,burger,healingpotion,staminapotion};
                 for (int i = 0; i < inventory.length; i++) {
-                    if(inventory[i].amountCheck()>0){  
+                    if(inventory[i].amountCheck()>0){
+                        inventory[i].decreaseAmount();
                     prakitko.receiveItem(inventory[i]);
                     }
                 }
@@ -219,17 +220,6 @@ public class DatabaseSystem {
         }
         
         
-    }
-    public static void updateTypePrakitko(Prakitko prakitko){
-        try(Connection c = connectDB();){
-            PreparedStatement psm = c.prepareStatement("UPDATE prakitko SET typeprakitko = ? , prakitkoname = ? WHERE userid = ?");
-            psm.setString(1, prakitko.getType());
-            psm.setString(2, prakitko.getName());
-            psm.setInt(3, getUserId(currentUser,currentPassword));
-            psm.executeUpdate();
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
     }
     public static void insertLevel(int lvl,int exp){
         if(currentId > 0 && currentUser != null && currentPassword != null && status == LOGINSTATUS.LOGIN){
@@ -300,7 +290,7 @@ public class DatabaseSystem {
             System.out.println(ex);
             }
     }
-    public static Prakitko choosePrakitko(){
+    public static Prakitko choosePrakitko() throws NullPointerException{
         try(Connection c = connectDB()){
             Statement sm = c.createStatement();
             ResultSet rs = sm.executeQuery("SELECT * FROM prakitko WHERE userid = "+currentId);
