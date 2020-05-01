@@ -166,7 +166,7 @@ public abstract class Character{
         return type;
     }
     
-        private int dropExp(){
+    public int dropExp(){
         int result = (int)(baseExpGive+((Math.random()+1)*level));
         return result;
     }
