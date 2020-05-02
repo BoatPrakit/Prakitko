@@ -1,18 +1,20 @@
 package Field;
 
 import Item.*;
+import Type.ITEMTYPE;
 
 
-public abstract class Item {
+public class Item {
 //    private int recieveHp;
     private String name;
-    private int regen;
+    private int regenHp;
     private int amount;
     private int id;
     private int regenStamina;
+    private ITEMTYPE itemtype;
     
-    public Item (int regen, int id,String name){
-        this.regen = regen;
+    public Item (){
+        this.regenHp = regenHp;
         this.id = id;
         this.name = name;
     }
@@ -29,7 +31,7 @@ public abstract class Item {
     }
 
     public int getRegen() { // 
-        return regen;
+        return regenHp;
     }
     protected void setRegenStamina(int regenstamina){
         this.regenStamina = regenstamina;
@@ -54,9 +56,33 @@ public abstract class Item {
     public int getRegenStamina(){
         return regenStamina;
     }
+    
+    public ITEMTYPE getType(){
+        return itemtype;
+    }
+    public void setType(ITEMTYPE itemtype){
+        this.itemtype = itemtype;
+    }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    
+    public void setRegenHp(int rengenHp){
+        this.regenHp = regenHp;
+    }
+    
+    public void setRegenSta(int regenStamina){
+        this.regenStamina = regenStamina;
+    }
+    
     @Override
     public String toString() {
-        return "Item{" + "name=" + name + ", regen=" + regen + '}';
+        return "Item{" + "name=" + name +", regenHp=" + regenHp + '}';
     }
 
 }
