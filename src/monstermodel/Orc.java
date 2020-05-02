@@ -1,7 +1,7 @@
 
 package monstermodel;
 
-import Model.Monster;
+import prototype.Monster;
 
 public class Orc extends Monster{
     private static final String name = "Orc";

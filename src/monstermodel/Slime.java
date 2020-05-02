@@ -4,7 +4,7 @@ import Field.Item;
 import Item.Burger;
 import Item.Taco;
 import java.util.ArrayList;
-import Model.Monster;
+import prototype.Monster;
 
 public class Slime extends Monster{
     private static final String name = "Slime";

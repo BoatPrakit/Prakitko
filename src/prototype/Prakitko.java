@@ -1,5 +1,5 @@
 
-package Model;
+package prototype;
 import Field.Character;
 import Field.Item;
 import Item.StaminaPotion;
@@ -10,14 +10,14 @@ import java.util.Comparator;
  *
  * @author Prakit
  */
-public class Prakitko extends Character{
+public abstract class Prakitko extends Character{
     private final int[] EXPTOLEVELUP = {100,120,1000,2000};
     private int currentExp ;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private Item[] inventory = new Item[5];
     
-    public Prakitko(String name){
-        super(name);
+    protected Prakitko(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,String type){
+        super(name,maxHp,atk,atkSpeed,maxStamina,hpPerLvl,atkPerLvl,atkSpeedPerLvl,staminaPerLvl,type);
     }
     public void receiveExp(int exp){
         currentExp += exp;
@@ -31,8 +31,8 @@ public class Prakitko extends Character{
     private void levelUp(){
      currentExp -= currentMaxExp;
      super.plusLevel();   
-        try{
-             this.nextCurrentMaxExp();
+     try{
+     this.nextCurrentMaxExp();
         }catch(ArrayIndexOutOfBoundsException e){
            currentMaxExp= EXPTOLEVELUP[EXPTOLEVELUP.length-1];
         }
@@ -44,16 +44,19 @@ public class Prakitko extends Character{
         return currentExp;
     }
 
+    public int getCurrentMaxExp() {
+        return currentMaxExp;
+    }
     private void nextCurrentMaxExp() throws ArrayIndexOutOfBoundsException{
         int next = super.getLevel()-1;
-        currentMaxExp = EXPTOLEVELUP[next];
+            currentMaxExp = EXPTOLEVELUP[next];
     }
     private void calculateStat(){
         super.plusAtk();
         super.plusAtkSpeed();
         super.plusMaxHp();
         super.plusMaxStamina();
-        super.setFullHp(); //When player level up hp will full
+        super.regenfullHp(); //When player level up hp will full
     }
     public boolean useItem(Item item){
         if(item == null)return false;

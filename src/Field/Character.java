@@ -1,6 +1,5 @@
 package Field;
 
-import Type.CHARACTERTYPE;
 import status.STATUS;
 
 /**
@@ -25,7 +24,7 @@ public abstract class Character{
     private int atkSpeedPerLvl;
     private int levelRange;
     private int baseExpGive;
-    private CHARACTERTYPE type;
+    private String type;
     
     protected Character(String name){
         this.name = name;
@@ -47,6 +46,20 @@ public abstract class Character{
         this.baseExpGive = baseExpGive;
         this.level = 1;
         calculateStatMonster();
+    }
+    protected Character(String name,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,String type){
+        this.name = name;
+        this.maxHp=maxHp;
+        this.currentHp=maxHp;
+        this.atk = atk;
+        this.atkSpeed = atkSpeed;
+        this.hpPerLvl = hpPerLvl;
+        this.atkPerLvl = atkPerLvl;
+        this.staminaPerLvl = staminaPerLvl;
+        this.atkSpeedPerLvl = atkSpeedPerLvl;
+        this.maxStamina = maxStamina;
+        this.currentStamina = maxStamina;
+        this.type = type;
     }
     
     protected int randomLvl(int lvlRange){
@@ -120,7 +133,7 @@ public abstract class Character{
     void setStatus(STATUS status){
         this.status = status;
     }
-    public int receiveDamage(int atk){
+    public int recieveDamage(int atk){
         if(atk >= currentHp){
             setStatus(STATUS.DEAD);
             currentHp = 0;
@@ -149,6 +162,9 @@ public abstract class Character{
     public int getCurrentStamina() {
         return currentStamina;
     }
+    public String getType(){
+        return type;
+    }
     
     public int dropExp(){
         int result = (int)(baseExpGive+((Math.random()+1)*level));
@@ -173,57 +189,9 @@ public abstract class Character{
             currentStamina = maxStamina;
         }
     }
-    public void setFullHp(){
+    protected void regenfullHp(){
         this.currentHp = maxHp;
     }
-
-    public void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
-    }
-
-    public void setCurrentHp(int currentHp) {
-        this.currentHp = currentHp;
-    }
-
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
-
-    public void setAtkSpeed(int atkSpeed) {
-        this.atkSpeed = atkSpeed;
-    }
-
-    public void setCurrentStamina(int currentStamina) {
-        this.currentStamina = currentStamina;
-    }
-
-    public void setMaxStamina(int maxStamina) {
-        this.maxStamina = maxStamina;
-    }
-
-    public void setHpPerLvl(int hpPerLvl) {
-        this.hpPerLvl = hpPerLvl;
-    }
-
-    public void setAtkPerLvl(int atkPerLvl) {
-        this.atkPerLvl = atkPerLvl;
-    }
-
-    public void setStaminaPerLvl(int staminaPerLvl) {
-        this.staminaPerLvl = staminaPerLvl;
-    }
-
-    public void setAtkSpeedPerLvl(int atkSpeedPerLvl) {
-        this.atkSpeedPerLvl = atkSpeedPerLvl;
-    }
-    public CHARACTERTYPE getType(){
-        return type;
-    }
-
-    public void setType(CHARACTERTYPE type) {
-        this.type = type;
-    }
-    
     @Override
     public String toString(){
         return "▓▓▓▓▓▓▓▓▓▓\n\u001b[0mName : "+"\u001B[31;1m"+getName()+"\n👑 ʟᴇᴠᴇʟ : "+getLevel()+"\n❤ ʜᴘ    : "+getCurrentHp()+

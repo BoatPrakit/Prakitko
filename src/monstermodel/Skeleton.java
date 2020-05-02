@@ -5,7 +5,7 @@
  */
 package monstermodel;
 
-import Model.Monster;
+import prototype.Monster;
 
 /**
  *

@@ -1,4 +1,4 @@
-package Model;
+package prototype;
 
 import Field.Item;
 import Field.Character;
