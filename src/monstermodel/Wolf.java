@@ -1,6 +1,10 @@
 
 package monstermodel;
 
+import Field.Item;
+import Item.Burger;
+import Item.Taco;
+import java.util.ArrayList;
 import prototype.Monster;
 
 public class Wolf extends Monster{
@@ -15,8 +19,16 @@ public class Wolf extends Monster{
     private static final int staPerlvl = 5;
     private static final int lvlRange = 5;
     private static final int baseExpGive = 50;
-    public Wolf(){
-        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl,lvlRange,baseExpGive);
-
+    private static final ArrayList<Item> item = new ArrayList();
+    public Wolf(){       
+        super(name,baseHp,baseAtk,baseSpd,baseSta,hpPerlvl,atkPerlvl,spdPerlvl,staPerlvl,lvlRange,baseExpGive,itemInThisMonster());
+    }
+    
+    private static ArrayList<Item> itemInThisMonster(){
+        Burger burger = new Burger();
+        Taco taco = new Taco();
+        item.add(burger);
+        item.add(taco);
+        return item;
     }
 }
