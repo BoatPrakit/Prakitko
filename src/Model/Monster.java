@@ -3,6 +3,7 @@ package Model;
 import Model.Item;
 import java.util.ArrayList;
 import java.util.Random;
+import static Service.ItemService.*;
 
 public class Monster extends Character{
     
@@ -17,5 +18,13 @@ public class Monster extends Character{
     public Item itemDrop(){
         int index = randomGenerator.nextInt(item.size());
         return item.get(index);
-    } 
+    }
+    
+    public void addItem(){
+        item.add(createBurger());
+        item.add(createCake());
+        item.add(createHealingPotion());
+        item.add(createStaminaPotion());
+        item.add(createTaco());
+    }
 }
