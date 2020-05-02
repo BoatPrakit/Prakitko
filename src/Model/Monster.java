@@ -12,7 +12,7 @@ public class Monster extends Character{
     
     public Monster(){
         super();
-        this.item = item;
+        addItem();
     }
     
     public Item itemDrop(){
