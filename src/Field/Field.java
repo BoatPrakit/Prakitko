@@ -19,6 +19,8 @@ public class Field {
     public Field(Prakitko prakitko, Monster monster) {
         this.prakitko = prakitko;
         this.monster = monster;
+        this.expHolding = 0;
+        this.itemHolding.clear();
     }
     
     public void attack() {
@@ -33,7 +35,6 @@ public class Field {
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
-                isBattleEnd();
             } else if (prakitko.getAtkSpeed() < monster.getAtkSpeed()) {
                 prakitko.recieveDamage(monster.getAtk());
                 System.out.println(monster.getName() + " Dealt " + prakitko.getName() + " " + monster.getAtk() + " Damage");
@@ -44,7 +45,6 @@ public class Field {
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
-                isBattleEnd();
             }
             
         } else {
@@ -73,8 +73,10 @@ public class Field {
         return false;
     }
 
-    private int loseExp(int currentExp) {
-        return currentExp * 5 / 100;
+    public int loseExp(int currentExp) {
+        int loseExp = -(currentExp*5/100);
+        prakitko.receiveExp(loseExp(prakitko.getCurrentExp()));
+        return loseExp;
     }
     
     private int expGiveTo(Character prakitko) {
@@ -82,25 +84,26 @@ public class Field {
         
         return 0;
     }
-    public boolean isBattleEnd(){
+    public int isBattleEnd(){
         if (isMonsterDie()) {
-            this.expHolding += monster.dropExp();
-//            this.itemHolding.add(monster.itemDrop());
-            battleReward();
-            return true;
+            return 1;
         }else if (isPrakitkoDie()) {
-           prakitko.receiveExp(loseExp(prakitko.getCurrentExp()));
-           return true;
+           return 2;
         }
-        return false;
+        return -1;
         
     }
-    private void battleReward(){
+    public void battleReward(){
+        this.expHolding += monster.dropExp();
+        this.itemHolding.add(monster.itemDrop());
         this.prakitko.receiveExp(expHolding);
-//        for (Item currentItem : itemHolding) {
-//            this.prakitko.receiveItem(currentItem);
-//        }
         System.out.println(prakitko.getName()+" receive : "+expHolding+" exp");
+        for (Item currentItem : itemHolding) {
+            this.prakitko.receiveItem(currentItem);
+            System.out.println(prakitko.getName()+" receive : "+currentItem);
+        }
+        this.expHolding = 0;
+        this.itemHolding.clear();
         
     }
     

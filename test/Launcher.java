@@ -19,6 +19,7 @@ import prakitkomodel.Bird;
 import prototype.Monster;
 import status.STATUS;
 import Item.*;
+import java.util.InputMismatchException;
 
 public class Launcher {
 
@@ -33,6 +34,8 @@ public class Launcher {
     }
 
     public static void Apply(Scanner scanner) {
+        int number = 0;
+        boolean checkString;
         System.out.println("▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤");
         System.out.println("    ◄ 𝐏𝐑𝐀𝐊𝐈𝐓𝐊𝐎 : 𝐎𝐅𝐅𝐋𝐈𝐍𝐄𝐒𝐎𝐋𝐎𝐀𝐃𝐕𝐄𝐍𝐓𝐔𝐑𝐄™ ►   ");
         System.out.println("▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤");
@@ -42,9 +45,16 @@ public class Launcher {
         System.out.println("[press 1] Login ");
         System.out.println("[press 2] Register ");
         System.out.println("[press 3] Credit ");
-        System.out.print("Please choose your number : ");
-        int number = scanner.nextInt();
-
+        do{
+            System.out.print("Please choose your number : ");
+                try{
+                    number= scanner.nextInt();
+                    checkString = false;
+                }catch(InputMismatchException ex){
+                   scanner.nextLine();
+                    checkString=true;
+                }
+        }while(checkString || number > 3 || number < 1);
         if (number == 2) { // หน้า register
             register(); // register
             loading(scanner);
@@ -55,33 +65,38 @@ public class Launcher {
 //            MenuSwCase(scanner); // Menu
             System.out.println("--- Your Prakitko ---"); // เด่วเเก้เป็น profile();
             showPrakitkoForSelect(); // show prakitko ของ user
+//            System.out.println("");
+//            profile(scanner);
 
-            int num;
+            int num = 0;
             do {
-                try {
-                    prakitko = choosePrakitko(); // prakitko ของ user
-                } catch (NullPointerException ex) {
-
-                }
-
+                if(choosePrakitko()!=null)prakitko = choosePrakitko(); // prakitko ของ user
                 System.out.println("[press 1] Select "); //เลือกเพื่อเล่น
                 System.out.println("[press 2] Delete "); //ลบเพื่อสร้างใหม่
-
-                num = scanner.nextInt();
-
+                System.out.print("Choose : ");
+                    try{
+                        num = scanner.nextInt();
+                        checkString = false;
+                    }catch(InputMismatchException ex){
+                        scanner.nextLine();
+                        checkString = true;
+                    }
                 if (num == 1) {
+                    if(prakitko == null){
+                        System.out.println("Please create prakitko first");
+                        CreatePrakitko(scanner);
+                    }else
                     chooseMap(scanner); // เข้าไปเลือก map
-                }
-                if (num == 2) {
+                } else if (num == 2) {
                     deletePrakitko(prakitko); // ลบ prakitko
                     System.out.println("--- Your Prakitko has been delete ---");
                     System.out.println("--- Please Create Your new Prakitko ---");
                     CreatePrakitko(scanner); // สร้าง prakitko ใหม่
                 }
-            } while (num != 5); // รับ input เข้ามาไม่เกิน 5
-        }
-        if (number == 3) {
-            Credit();
+                    
+            } while (checkString || num < 1 || num > 2); // รับ input เข้ามาไม่เกิน 5
+        } else if (number == 3) {
+            Credit(scanner);
             System.out.print("[press 1] Back To Menu ");
 
             int input = scanner.nextInt();
@@ -115,10 +130,11 @@ public class Launcher {
 //
 //        }
 //    }
-    public static void Credit() {
+    public static void Credit(Scanner scanner) {
         System.out.println("Boat : leader");
         System.out.println("Beng : member");
         System.out.println("Diz : member");
+        Apply(scanner);
     }
 
     public static void loading(Scanner scanner) {
@@ -135,24 +151,53 @@ public class Launcher {
         }
     }
 
-    public static void profile(Scanner scanner) {
-        System.out.println("Yourname : ");
+    public static void Menu(Scanner scanner) {
+        System.out.println("--- Menu ---");
+        System.out.println("[press 1] Profile ");
+        System.out.println("[press 2] Inventory ");
+        System.out.println("[press 3] Choose Maps");
+        System.out.println("[press 4] Logout");
+        int input = scanner.nextInt();
 
+        switch (input) {
+            case 1:
+                profile(scanner);
+                break;
+            case 2:
+                prakitko.showInventory();
+                break;
+            case 3:
+                chooseMap(scanner);
+                break;
+            case 4:
+               logout();
+            try{
+            System.out.println("Logging out...");
+                Thread.sleep(3000);
+            }catch(Exception e){
+                System.out.println("Got EX");
+            }
+            Apply(scanner);
+                break;
+        }
+    }
+
+    public static void profile(Scanner scanner) {
+        System.out.println("--- Profile ---");
+        System.out.println("Your Name : " + getUsername());
         System.out.println("Your Prakitko : ");
         showPrakitkoForSelect();
-        System.out.print("Inventory [press i] : ");
-        String input = scanner.next();
-
-        if (input == input) {
+        System.out.println("[press 1] Inventory");
+        System.out.println("-------------------");
+        System.out.println("[press 2]Choose Map");
+        int input = scanner.nextInt();
+        if (input == 1) {
             prakitko.showInventory();
         }
-
-        System.out.println("----------------");
-        System.out.println("Choose map [press 1]");
-        int number = scanner.nextInt();
-        if (number == 1) {
-            chooseMap(scanner);
+        if (input == 2) {
+            Menu(scanner);
         }
+
     }
 
     public static void CreatePrakitko(Scanner scanner) { // สร้าง Prakitko
@@ -176,8 +221,7 @@ public class Launcher {
             System.out.println("");
             chooseMap(scanner);
 
-        }
-        if (number == 2) {
+        } else if (number == 2) {
             System.out.print("Prakitko name : ");
             String name = input.nextLine();
             userEntryCatName(name);
@@ -186,8 +230,7 @@ public class Launcher {
             System.out.println("");
             chooseMap(scanner);
 
-        }
-        if (number == 3) {
+        } else if (number == 3) {
             System.out.print("Prakitko name : ");
             String name = input.nextLine();
             userEntryBirdName(name);
@@ -196,8 +239,7 @@ public class Launcher {
             System.out.println("");
             chooseMap(scanner);
 
-        }
-        if (number == 4) {
+        } else if (number == 4) {
             System.out.print("Prakitko name : ");
             String name = input.nextLine();
             userEntryFishName(name);
@@ -230,12 +272,12 @@ public class Launcher {
     }
 
     public static void chooseMap(Scanner scanner) {
-        System.out.println("Choose Map");
+        System.out.println("--- Choose Map ---");
         System.out.println("Map1 [press 1]");
         System.out.println("Map2 [coming soon]");
         System.out.println("Map3 [coming soon 3]");
-        System.out.println("Back to Profile [press 4]");
-        System.out.println("Back to menu [press 5]");
+        System.out.println("Back to Menu [press 4]");
+        System.out.println("Logout[press 5]");
         System.out.print("Choose : ");
 
         int number = scanner.nextInt();
@@ -245,11 +287,16 @@ public class Launcher {
             System.out.println("   ✿ Forest ✿   ");
             System.out.println("===================");
             UserChooseMap1(scanner);
-        }
-        if (number == 4) {
-            profile(scanner);
-        }
-        if (number == 5) {
+        } else if (number == 4) {
+            Menu(scanner);
+        } else if (number == 5) {
+            logout();
+            try{
+            System.out.println("Logging out...");
+                Thread.sleep(3000);
+            }catch(Exception e){
+                System.out.println("Got EX");
+            }
             Apply(scanner);
         }
 
@@ -262,7 +309,7 @@ public class Launcher {
     }
 
     private static Field fightMode(Map m) { // เเสดงชื่อ prakitko ใน map เเละ สร้าง field
-        System.out.println("Your Prakitko : " + prakitko);
+        System.out.println("\u001b[33;1m Your Prakitko ⬇ \n" + prakitko);
         Field x = m.fight(prakitko);
         return x;
     }
@@ -274,11 +321,14 @@ public class Launcher {
             System.out.println("Use item[press 2]");
             System.out.println("Run!![press 3]");
             int num = scanner.nextInt();
+            int turn = 1;
             switch (num) {
                 case 1:
                     System.out.println("============================");
                     System.out.println(" ▂▃▅▆█ BATTLE!!! █▆▅▃▂ ");
+                    System.out.println("           Turn " + turn);
                     System.out.println("============================");
+                    turn++;
                     field.attack();
                     break;
                 case 2:
@@ -286,42 +336,47 @@ public class Launcher {
                     break;
                 case 3:
                     try {
-//                        System.out.println("Run! \n");
-//                        Thread.sleep(3000);
-//                        System.out.println("Completed \n");
-//                        chooseMap(scanner);
-                        for (int i = 0; i < 100; i++) {
-                            Thread.sleep(100);
-                            System.out.println("\r\u001b[32b;1m"+i+"%");
+                        System.out.println("--- Start Escape!!! ---");
+                        for (int i = 0; i < 5; i++) {
+                            Thread.sleep(2000); // 2 sec
+                            System.out.print("\u001b[32b Run!!! \n");
                         }
+                        System.out.println("--- Escape Completed ---");
+                        chooseMap(scanner);
                     } catch (Exception T) {
                         System.out.println("Got Ex");
                     }
                     break;
-
             }
-
-        } while (!field.isMonsterDie() || !prakitko.isDead()); // ถ้ามอนตายไม่ต่อ ถ้ามอนไม่ตายจะทำต่อจนกว่ามอนจะตาย
+        } while (!field.isMonsterDie() && !prakitko.isDead()); // ถ้ามอนตายไม่ต่อ ถ้ามอนไม่ตายจะทำต่อจนกว่ามอนจะตาย
         FightisEnd(scanner, field);
     }
 
     public static void FightisEnd(Scanner scanner, Field field) {
-        if (prakitko.isDead()) {
-            System.out.println("--- You lose!!! ---");
-            System.out.println("Try again [press 1]");
-            System.out.println("Back to Profile [press 2]");
-            int number = scanner.nextInt();
-            switch (number) {
-                case 1:
-                    chooseMap(scanner);
-                    break;
-                case 2:
-                    profile(scanner);
-                    break;
-            }
-        } else if (field.isMonsterDie()) {
+        if (field.isBattleEnd() == 1) {
             System.out.println("--- You win!!! ---");
-            System.out.println("");
+            field.battleReward();
+            try {
+                Thread.sleep(2000);
+                Menu(scanner);
+            } catch (Exception e) {
+                System.out.println("Got EX");
+            }
+            if (field.isBattleEnd() == 2) {
+                System.out.println("--- You lose!!! ---");
+                field.loseExp(prakitko.getCurrentExp());
+                System.out.println("Try again [press 1]");
+                System.out.println("Back to Menu [press 2]");
+                int number = scanner.nextInt();
+                switch (number) {
+                    case 1:
+                        chooseMap(scanner);
+                        break;
+                    case 2:
+                        Menu(scanner);
+                        break;
+                }
+            }
         }
     }
 

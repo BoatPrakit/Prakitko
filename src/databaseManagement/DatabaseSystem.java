@@ -1,5 +1,7 @@
 package databaseManagement;
-
+/*
+    Create By Prakit
+*/
 import Field.Item;
 import Item.*;
 import java.sql.Connection;
@@ -90,7 +92,7 @@ public class DatabaseSystem {
         String name;
         String password;
         String confirmpassword;
-        System.out.println("---------------Create ID---------------");
+        System.out.println("---------------Register---------------");
         do{
         System.out.print("Please insert your username : ");
         name = sc.nextLine();
@@ -290,7 +292,7 @@ public class DatabaseSystem {
             System.out.println(ex);
             }
     }
-    public static Prakitko choosePrakitko() throws NullPointerException{
+    public static Prakitko choosePrakitko() {
         try(Connection c = connectDB()){
             Statement sm = c.createStatement();
             ResultSet rs = sm.executeQuery("SELECT * FROM prakitko WHERE userid = "+currentId);
@@ -310,13 +312,46 @@ public class DatabaseSystem {
                         prakitko = new Bird(rs.getString("prakitkoname"));
                         break;
                 }
+                    if(prakitko!=null){
                         loadLevelTo(prakitko);
                         loadItemTo(prakitko);
+                    }
                 return prakitko;
             }
         }catch(Exception ex){
             System.out.println(ex);
         }
-        return null;
+        return prakitko;
+    }
+    
+    public static String getUsername(){
+        return currentUser;
+    }
+    private static void createTable(){
+        try(Connection c = connectDB();){
+            String createAccountTable = "CREATE TABLE account("
+                    + "userid INT(5) PRIMARY KEY,"
+                    + "username VARCHAR(20) NOT NULL,"
+                    + "password VARCHAR(20) NOT NULL)";
+            String createItemTable = "CREATE TABLE item("
+                    + "userid INT(5) PRIMARY KEY,"
+                    + "taco INT(3) NOT NULL,"
+                    + "cake INT(3) NOT NULL,"
+                    + "burger INT(3) NOT NULL,"
+                    + "healingpotion INT(3) NOT NULL,"
+                    + "staminapotion INT(3) NOT NULL)";
+            String createPrakitkoTable = "CREATE TABLE prakitko("
+                    + "userid INT(5) PRIMARY KEY,"
+                    + "typeprakitko VARCHAR(10) DEFAULT 'none' NOT NULL,"
+                    + "prakitkoname VARCHAR(20) DEFAULT 'none' NOT NULL,"
+                    + "level INT(3) DEFAULT '1' NOT NULL,"
+                    + "exp INT(5) DEFAULT '0' NOT NULL)";
+            Statement sm = c.createStatement();
+            sm.executeUpdate(createAccountTable);
+            sm.executeUpdate(createItemTable);
+            sm.executeUpdate(createPrakitkoTable);
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 }
