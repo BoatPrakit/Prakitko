@@ -10,7 +10,7 @@ import Field.Field;
 
 public class Map {
 
-    private static ArrayList<Monster> listOfMonster = new ArrayList<>();
+    private static ArrayList<Monster> listOfMonster = new ArrayList<Monster>();
     private Random randomGenerator = new Random();
 
     public Map(){}
@@ -30,7 +30,7 @@ public class Map {
         }
     }
 
-    public void reRandomLevelMonster() {
+    private void reRandomLevelMonster() {
         for (Monster currentMonster : listOfMonster) {
             currentMonster.randomLvl(currentMonster.getLevelRange());
             currentMonster.calculateStatMonster();
