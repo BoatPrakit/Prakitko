@@ -297,20 +297,20 @@ public class Launcher {
     }
 
     public static void inBattle(Scanner scanner, Field field) {
+        int turn = 1;
         do {
             System.out.println("---------------------");
             System.out.println("Crash[press 1]");
             System.out.println("Use item[press 2]");
             System.out.println("Run!![press 3]");
-            int num = scanner.nextInt();
-            int turn = 1;
+            int num = scanner.nextInt();            
             switch (num) {
                 case 1:
                     System.out.println("============================");
                     System.out.println(" ▂▃▅▆█ BATTLE!!! █▆▅▃▂ ");
                     System.out.println("           Turn " + turn);
                     System.out.println("============================");
-                    turn++;
+                    turn += 1;
                     field.attack();
                     break;
                 case 2:
