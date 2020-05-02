@@ -31,22 +31,8 @@ public abstract class Character{
         this.name = name;
         
     }
-    protected Character(String name,int lvlRange,int maxHp,int atk,int atkSpeed,int maxStamina,int hpPerLvl,int atkPerLvl,int atkSpeedPerLvl,int staminaPerLvl,int baseExpGive){
-        this.name = name;
-        this.maxHp=maxHp;
-        this.currentHp=maxHp;
-        this.atk = atk;
-        this.atkSpeed = atkSpeed;
-        this.hpPerLvl = hpPerLvl;
-        this.atkPerLvl = atkPerLvl;
-        this.staminaPerLvl = staminaPerLvl;
-        this.atkSpeedPerLvl = atkSpeedPerLvl;
-        this.maxStamina = maxStamina;
-        this.currentStamina = maxStamina;
-        this.levelRange = lvlRange;
-        this.baseExpGive = baseExpGive;
+    protected Character(){
         this.level = 1;
-        calculateStatMonster();
     }
     
     protected int randomLvl(int lvlRange){
@@ -173,6 +159,9 @@ public abstract class Character{
             currentStamina = maxStamina;
         }
     }
+    public void setName(String name){
+        this.name = name;
+    }
     public void setFullHp(){
         this.currentHp = maxHp;
     }
@@ -222,6 +211,13 @@ public abstract class Character{
 
     public void setType(CHARACTERTYPE type) {
         this.type = type;
+    }
+    
+    public void setBaseExpGive(int exp){
+        this.baseExpGive = exp;
+    }
+    public void setLevelRange(int levelRange){
+        this.levelRange = levelRange;
     }
     
     @Override
