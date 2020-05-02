@@ -1,5 +1,6 @@
-package Field;
+package Model;
 
+import Field.Item;
 import Type.CHARACTERTYPE;
 import status.STATUS;
 
