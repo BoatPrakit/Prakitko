@@ -1,5 +1,6 @@
 package Field;
 
+import Model.Character;
 import java.util.ArrayList;
 import Model.Monster;
 import Model.Prakitko;

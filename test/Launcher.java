@@ -1,5 +1,6 @@
 
-import Field.Character;
+import Model.Map;
+import Model.Character;
 import Field.Field;
 import java.util.ArrayList;
 import java.util.Collections;

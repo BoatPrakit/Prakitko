@@ -1,6 +1,5 @@
 
 package Model;
-import Field.Character;
 import Field.Item;
 import Item.StaminaPotion;
 import static databaseManagement.DatabaseSystem.*;

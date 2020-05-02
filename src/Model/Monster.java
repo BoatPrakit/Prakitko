@@ -1,7 +1,6 @@
 package Model;
 
 import Field.Item;
-import Field.Character;
 import java.util.ArrayList;
 import java.util.Random;
 
