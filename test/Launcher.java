@@ -337,7 +337,7 @@ public class Launcher {
     public static void FightisEnd(Scanner scanner, Field field) {
         if (field.isBattleEnd() == 1) {
             System.out.println("--- You win!!! ---");
-
+            field.battleReward();
             try {
                 Thread.sleep(2000);
                 Menu(scanner);
@@ -346,6 +346,7 @@ public class Launcher {
             }
             if (field.isBattleEnd() == 2) {
                 System.out.println("--- You lose!!! ---");
+                field.loseExp(prakitko.getCurrentExp());
                 System.out.println("Try again [press 1]");
                 System.out.println("Back to Menu [press 2]");
                 int number = scanner.nextInt();
