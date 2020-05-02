@@ -1,6 +1,6 @@
-package Item;
+package Service;
 
-import Field.Item;
+import Model.Item;
 import Type.ITEMTYPE;
 
 public class ItemService {

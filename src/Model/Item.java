@@ -1,6 +1,5 @@
-package Field;
+package Model;
 
-import Item.*;
 import Type.ITEMTYPE;
 
 
