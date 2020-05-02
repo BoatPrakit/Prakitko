@@ -3,7 +3,7 @@ package Item;
 import Field.Item;
 import Type.ITEMTYPE;
 
-public class ItemSevice {
+public class ItemService {
 
     public static Item createTaco() {
         Item item = new Item();
