@@ -1,6 +1,6 @@
 package Model;
 
-import Field.Item;
+import Model.Item;
 import java.util.ArrayList;
 import java.util.Random;
 

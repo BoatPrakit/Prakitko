@@ -1,7 +1,6 @@
 
 package Model;
-import Field.Item;
-import Item.StaminaPotion;
+import Model.Item;
 import static databaseManagement.DatabaseSystem.*;
 import java.util.Arrays;
 import java.util.Comparator;
