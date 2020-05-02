@@ -9,49 +9,45 @@ import Field.Field;
 import Field.Field;
 
 public class Map {
-    
+
     private static ArrayList<Monster> listOfMonster = new ArrayList<>();
     private Random randomGenerator = new Random();
-    
-    public Map(){
-    
-    }
-    
-    public Map(ArrayList<Monster> monsterCollection){
-        this.listOfMonster = monsterCollection;
-    }
-    
-    public void addMonsterInMap (Monster newMonster){
+
+    public Map(){}
+
+    public void addMonsterInMap(Monster newMonster) {
         listOfMonster.add(newMonster);
-    }     
-    
-    public void removeMonster(Monster monster){
+    }
+
+    public void removeMonster(Monster monster) {
         listOfMonster.remove(monster);
     }
-    
-        public void arrayCheck(){
+
+    public void arrayCheck() {
         System.out.println("Start printing");
-        for (Monster currentMonster: listOfMonster){
-             System.out.println(currentMonster);
+        for (Monster currentMonster : listOfMonster) {
+            System.out.println(currentMonster);
         }
     }
-        
-    public  void reRandomLevelMonster(){
-        for (Monster currentMonster : listOfMonster){
+
+    public void reRandomLevelMonster() {
+        for (Monster currentMonster : listOfMonster) {
             currentMonster.randomLvl(currentMonster.getLevelRange());
             currentMonster.calculateStatMonster();
         }
     }
-        
-    public Field fight(Prakitko User){
-        reRandomLevelMonster();
-        Field newField = new Field(User,getRandomMonster());
-        return newField;
-        
-    }
     
-    public Monster getRandomMonster(){
+    public Monster getRandomMonster() {
         int index = randomGenerator.nextInt(listOfMonster.size());
         return listOfMonster.get(index);
-};
+    }
+
+    public Field fight(Prakitko User) {
+        reRandomLevelMonster();
+        Field newField = new Field(User, getRandomMonster());
+        return newField;
+
+    }
+
+;
 }
