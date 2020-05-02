@@ -8,7 +8,7 @@ public class Zombie extends Monster{
     private static final int baseAtk = 25;
     private static final int baseSpd = 23;
     private static final int baseSta = 80;
-    private static final int hpPerlvl = 20;
+    private static final int hpPerlvl = 15;
     private static final int atkPerlvl = 8;
     private static final int spdPerlvl = 2;
     private static final int staPerlvl = 10;
