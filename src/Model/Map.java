@@ -1,12 +1,14 @@
-package Field;
+package Model;
 
 import java.util.ArrayList;
 import java.util.Random;
 import Model.Monster;
 import Model.Prakitko;
 import Field.Field;
+import Field.Field;
+import Field.Field;
 
-public abstract class Map {
+public class Map {
     
     private static ArrayList<Monster> listOfMonster = new ArrayList<>();
     private Random randomGenerator = new Random();
@@ -19,7 +21,7 @@ public abstract class Map {
         this.listOfMonster = monsterCollection;
     }
     
-    public static void addMonsterInMap (Monster newMonster){
+    public void addMonsterInMap (Monster newMonster){
         listOfMonster.add(newMonster);
     }     
     
