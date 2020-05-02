@@ -1,8 +1,10 @@
 
 package Model;
 import Model.Item;
+import Model.Character;
+import static Service.ItemService.createStaminaPotion;
 import static databaseManagement.DatabaseSystem.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
 /**
  *
@@ -12,7 +14,7 @@ public class Prakitko extends Character{
     private final int[] EXPTOLEVELUP = {100,120,1000,2000};
     private int currentExp ;
     private int currentMaxExp = EXPTOLEVELUP[0];
-    private Item[] inventory = new Item[5];
+    private ArrayList<Item> inventory = new ArrayList<Item>();
     
     public Prakitko(String name){
         super(name);
@@ -56,21 +58,22 @@ public class Prakitko extends Character{
     public boolean useItem(Item item){
         if(item == null)return false;
         int index = sameItemAtIndex(item);      //find index that equal item to use
-        if(index>=0){
-            if(inventory[index].amountCheck()>0){
-                if(!item.getClass().equals(new StaminaPotion().getClass())){              //if this item isn't stamina potion
-                   int regenHp = inventory[index].getRegen();
+        if(inventory.contains(item)){
+            if(inventory.get(index).amountCheck()>0){
+                if(!item.getName().equals(createStaminaPotion().getName())){              //if this item isn't stamina potion
+                   int regenHp = inventory.get(index).getRegen();
                    super.regenHp(regenHp);
-                }else if(item.getClass().equals(new StaminaPotion().getClass())){         //if this item isn't stamina potion
-                    int regenStamina = inventory[index].getRegenStamina();
+                }else if(item.getName().equals(createStaminaPotion().getName())){         //if this item is stamina potion
+                    int regenStamina = inventory.get(index).getRegenStamina();
                     super.regenStamina(regenStamina);
                 }
-                inventory[index].decreaseAmount();
-                      insertItem(inventory[index]);                 //database system
-                    if(inventory[index].amountCheck()<=0){
-                       insertItem(inventory[index]);                //database system
-                       inventory[index] = null;
+                inventory.get(index).decreaseAmount();
+                      insertItem(inventory.get(index));                 //database system
+                    if(inventory.get(index).amountCheck()<=0){
+                       insertItem(inventory.get(index));                //database system
+                       inventory.remove(item);
                     }
+                    sortInventory();
                 return true;
             }
         }
@@ -80,46 +83,42 @@ public class Prakitko extends Character{
     
     
     public boolean receiveItem(Item item){
-        int result = sameItemAtIndex(item);
-        int nullslot = findEmptySlot();                     //find null index
-        if(result==-2){
-            inventory[nullslot] = item; 
-            inventory[nullslot].increaseAmount();
-            insertItem(inventory[nullslot]);
+        int index = sameItemAtIndex(item);
+        
+        if(index == -2){
+            inventory.add(item);
+            index = sameItemAtIndex(item);
+            inventory.get(index).increaseAmount();
+            sortInventory();
+            insertItem(inventory.get(index));                           //datebase system
             return true;
         }
-        else if(result>=0){
-            inventory[result].increaseAmount();
-            insertItem(inventory[result]);
+        else if(index >= 0){
+            inventory.get(index).increaseAmount();
+            insertItem(inventory.get(index));                           //datebase system
+            sortInventory();
             return true;
         }
+        sortInventory();
         return false;
     }
     public void showInventory(){
-        sortInventory();
         for (Item item1 : inventory) {
-            if(item1!=null)
             System.out.println(item1 + " Amount " + item1.amountCheck());
-            }       
+        }
     }
     private int sameItemAtIndex(Item item){
         if(item == null) return -1;
-        for (int i = 0;i < inventory.length ; i++) {
-            if(inventory[i]!=null&&inventory[i].getClass().equals(item.getClass())){
-                return i;
-                 }       
+          for (int i = 0; i < inventory.size(); i++) {
+            if(inventory.get(i).getName().equals(item.getName()))
+            return i;
         }
             return -2; 
     
     }
-    private int findEmptySlot(){
-        for (int i = 0; i < inventory.length; i++) {
-            if(inventory[i]==null)return i;
-        }
-        return -1;
-    }
+
     private void sortInventory(){
-        Arrays.sort(inventory,new Comparator<Item>(){
+        inventory.sort(new Comparator<Item>(){
             @Override
             public int compare(Item o1, Item o2) {
                 if(o1==null||o2==null)return -100;
