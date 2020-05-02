@@ -3,7 +3,7 @@ package Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import monstermodel.*;
-import prototype.Monster;
+import Model.Monster;
 
 public class Map1 extends Map{
     private static Monster[] monster;  

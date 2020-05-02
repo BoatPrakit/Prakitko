@@ -2,8 +2,8 @@ package Field;
 
 import java.util.ArrayList;
 import java.util.Random;
-import prototype.Monster;
-import prototype.Prakitko;
+import Model.Monster;
+import Model.Prakitko;
 import Field.Field;
 
 public abstract class Map {

@@ -354,10 +354,10 @@ public class Launcher {
         Field x = m.fight(prakitko);
         return x;
     }
-
     public static void inBattle(Scanner scanner, Field field) { // อยู่ใน Battle
         boolean checkString;
         int num = 0;
+    public static void inBattle(Scanner scanner, Field field) {
         int turn = 1;
         do {
             System.out.println("---------------------");
