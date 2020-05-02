@@ -81,7 +81,7 @@ public abstract class Character{
     }
     protected void plusLevel(){
         this.level++;
-        if(level == MAXLEVEL) level = MAXLEVEL;
+        if(level >= MAXLEVEL) level = MAXLEVEL;
     }
     //=======================================================
     public int getLevelRange(){

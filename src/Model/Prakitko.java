@@ -14,7 +14,7 @@ import java.util.Comparator;
 
 public class Prakitko extends Character {
 
-    private final int[] EXPTOLEVELUP = {100, 120, 1000, 2000};
+    private final int[] EXPTOLEVELUP = {100, 120, 1000, 2000,5000};
     private int currentExp;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private ArrayList<Item> inventory = new ArrayList<Item>();
@@ -32,9 +32,13 @@ public class Prakitko extends Character {
         if (currentExp < 0) {
             currentExp = 0;
         }
-        while (isLevelUp() == true) {
+        int countLvlup = 0;
+        while (isLevelUp()) {
+            countLvlup+=1;
+            if(countLvlup > EXPTOLEVELUP.length) break;
             levelUp();
             calculateStat();
+            
         }
         insertLevel(super.getLevel(), currentExp);
     }
@@ -52,7 +56,7 @@ public class Prakitko extends Character {
     private boolean isLevelUp() {
         return currentExp >= currentMaxExp;
     }
-
+    
     private void nextCurrentMaxExp() throws ArrayIndexOutOfBoundsException {
         int next = super.getLevel() - 1;
         currentMaxExp = EXPTOLEVELUP[next];

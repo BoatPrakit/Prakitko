@@ -2,8 +2,7 @@ package databaseManagement;
 /*
     Create By Prakit
 */
-import Field.Item;
-import Item.*;
+import Model.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,9 +10,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 import Model.Prakitko;
+import static Service.ItemService.*;
+import static Service.PrakitkoService.*;
+import Type.CHARACTERTYPE;
 import status.LOGINSTATUS;
 
 public class DatabaseSystem {
+    
     private static int currentId;
     private static String currentUser;
     private static String currentPassword;
@@ -152,11 +155,11 @@ public class DatabaseSystem {
             updateItemTo(currentUser,currentPassword,item.getName(),item.amountCheck());
             }
     }
-    private static boolean updateItemTo(String name,String password,String itemname,int amount){
+    private static boolean updateItemTo(String name,String password,String itemName,int amount){
         if(name == null || password == null) return false;
         if(status == LOGINSTATUS.LOGOUT || currentId < 0) return false;
         if(getUserId(name,password)<0)return false;
-        String update = "UPDATE item SET "+itemname+" = '"+amount+"' WHERE userid = '"+getUserId(name,password)+"'";
+        String update = "UPDATE item SET "+itemName+" = '"+amount+"' WHERE userid = '"+getUserId(name,password)+"'";
         try(Connection c = connectDB();){
             Statement stm = c.createStatement();
              stm.executeUpdate(update);
@@ -197,15 +200,15 @@ public class DatabaseSystem {
                 int countHealing = rs.getInt("healingpotion");
                 int countStamina = rs.getInt("staminapotion");
                 
-                Item taco = new Taco();
+                Item taco = createTaco();
                 taco.setAmount(countTaco);
-                Item cake = new Cake();
+                Item cake = createCake();
                 cake.setAmount(countCake);
-                Item burger = new Burger();
+                Item burger = createBurger();
                 burger.setAmount(countBurger);
-                Item healingpotion = new HealingPotion();
+                Item healingpotion = createHealingPotion();
                 healingpotion.setAmount(countHealing);
-                Item staminapotion = new StaminaPotion();
+                Item staminapotion = createStaminaPotion();
                 staminapotion.setAmount(countStamina);
                 
                 Item[] inventory = {taco,cake,burger,healingpotion,staminapotion};
@@ -284,9 +287,27 @@ public class DatabaseSystem {
         try(Connection c = connectDB()){
             String delete = "UPDATE prakitko SET typeprakitko = ? , prakitkoname = ? , level = 1 , exp = 0 WHERE userid = "+currentId;
             PreparedStatement sm = c.prepareStatement(delete);
-            sm.setString(1, prakitko.getType());
+            String type = null;
+            if(null != prakitko.getType())
+                switch (prakitko.getType()) {
+                case DOG:
+                    type = "Dog";
+                    break;
+                case CAT:
+                    type = "Cat";
+                    break;
+                case BIRD:
+                    type = "Bird";
+                    break;
+                case FISH:
+                    type = "Fish";
+                    break;
+            }
+            if(type != null){
+            sm.setString(1, type);
             sm.setString(2, prakitko.getName());            
             sm.executeUpdate();
+            }
         }catch(Exception ex){
             System.out.println(ex);
             }
@@ -299,16 +320,16 @@ public class DatabaseSystem {
             
                 switch(rs.getString("typeprakitko")){
                     case "Dog":
-                        prakitko = new Dog(rs.getString("prakitkoname"));
+                        prakitko = createDog(rs.getString("prakitkoname"));
                         break;
                     case "Cat":
-                        prakitko = new Cat(rs.getString("prakitkoname"));
+                        prakitko = createCat(rs.getString("prakitkoname"));
                         break;
                     case "Fish":
-                        prakitko = new Fish(rs.getString("prakitkoname"));
+                        prakitko = createFish(rs.getString("prakitkoname"));
                         break;
                     case "Bird":
-                        prakitko = new Bird(rs.getString("prakitkoname"));
+                        prakitko = createBird(rs.getString("prakitkoname"));
                         break;
                 }
                     if(prakitko!=null){
