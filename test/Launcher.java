@@ -19,6 +19,7 @@ import prakitkomodel.Bird;
 import prototype.Monster;
 import status.STATUS;
 import Item.*;
+import java.util.InputMismatchException;
 
 public class Launcher {
 
@@ -33,6 +34,8 @@ public class Launcher {
     }
 
     public static void Apply(Scanner scanner) {
+        int number = 0;
+        boolean checkString;
         System.out.println("▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤");
         System.out.println("    ◄ 𝐏𝐑𝐀𝐊𝐈𝐓𝐊𝐎 : 𝐎𝐅𝐅𝐋𝐈𝐍𝐄𝐒𝐎𝐋𝐎𝐀𝐃𝐕𝐄𝐍𝐓𝐔𝐑𝐄™ ►   ");
         System.out.println("▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤");
@@ -42,9 +45,16 @@ public class Launcher {
         System.out.println("[press 1] Login ");
         System.out.println("[press 2] Register ");
         System.out.println("[press 3] Credit ");
-        System.out.print("Please choose your number : ");
-        int number = scanner.nextInt();
-
+        do{
+            System.out.print("Please choose your number : ");
+                try{
+                    number= scanner.nextInt();
+                    checkString = false;
+                }catch(InputMismatchException ex){
+                   scanner.nextLine();
+                    checkString=true;
+                }
+        }while(checkString || number > 3 || number < 1);
         if (number == 2) { // หน้า register
             register(); // register
             loading(scanner);
@@ -58,17 +68,24 @@ public class Launcher {
 //            System.out.println("");
 //            profile(scanner);
 
-            int num;
+            int num = 0;
             do {
-                prakitko = choosePrakitko(); // prakitko ของ user
-//                    System.out.println(prakitko);
+                if(choosePrakitko()!=null)prakitko = choosePrakitko(); // prakitko ของ user
                 System.out.println("[press 1] Select "); //เลือกเพื่อเล่น
                 System.out.println("[press 2] Delete "); //ลบเพื่อสร้างใหม่
                 System.out.print("Choose : ");
-
-                num = scanner.nextInt();
-
+                    try{
+                        num = scanner.nextInt();
+                        checkString = false;
+                    }catch(InputMismatchException ex){
+                        scanner.nextLine();
+                        checkString = true;
+                    }
                 if (num == 1) {
+                    if(prakitko == null){
+                        System.out.println("Please create prakitko first");
+                        CreatePrakitko(scanner);
+                    }else
                     chooseMap(scanner); // เข้าไปเลือก map
                 } else if (num == 2) {
                     deletePrakitko(prakitko); // ลบ prakitko
@@ -76,7 +93,8 @@ public class Launcher {
                     System.out.println("--- Please Create Your new Prakitko ---");
                     CreatePrakitko(scanner); // สร้าง prakitko ใหม่
                 }
-            } while (num != 5); // รับ input เข้ามาไม่เกิน 5
+                    
+            } while (checkString || num < 1 || num > 2); // รับ input เข้ามาไม่เกิน 5
         } else if (number == 3) {
             Credit(scanner);
             System.out.print("[press 1] Back To Menu ");
