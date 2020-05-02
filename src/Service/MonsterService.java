@@ -14,7 +14,7 @@ import Model.Monster;
 
 public class MonsterService {
     
-    public Monster createSlime(){
+    public static Monster createSlime(){
         Monster monster = new Monster();
         monster.setName("Slime");
         monster.setMaxHp(50);
@@ -29,7 +29,7 @@ public class MonsterService {
         monster.setLevelRange(5);
         return monster;
     }
-    public Monster createWolf(){
+    public static Monster createWolf(){
         Monster monster = new Monster();
         monster.setName("Wolf");
         monster.setMaxHp(40);
@@ -44,7 +44,7 @@ public class MonsterService {
         monster.setLevelRange(5);
         return monster;
     }
-    public Monster createOrc(){
+    public static Monster createOrc(){
         Monster monster = new Monster();
         monster.setName("Orc");
         monster.setMaxHp(60);
@@ -59,7 +59,7 @@ public class MonsterService {
         monster.setLevelRange(15);
         return monster;
     }
-    public Monster createOrge(){
+    public static Monster createOrge(){
         Monster monster = new Monster();
         monster.setName("Orge");
         monster.setMaxHp(80);
@@ -74,7 +74,7 @@ public class MonsterService {
         monster.setLevelRange(15);
         return monster;
     }
-    public Monster createZombie(){
+    public static Monster createZombie(){
         Monster monster = new Monster();
         monster.setName("Zombie");
         monster.setMaxHp(100);
