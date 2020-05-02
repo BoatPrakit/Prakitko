@@ -13,20 +13,25 @@ import static Service.MonsterService.*;
  * @author Klitb
  */
 public class MapService {
-    
-    public static void createForest(){
+
+    public static Map createForest() {
         Map newMap = new Map();
         newMap.addMonsterInMap(createSlime());
         newMap.addMonsterInMap(createWolf());
+        return newMap;
     }
-    public static void createHideOut(){
+
+    public static Map createHideOut() {
         Map newMap = new Map();
         newMap.addMonsterInMap(createOrc());
         newMap.addMonsterInMap(createOrge());
+        return newMap;
     }
-    public static void createGraveYard(){
+
+    public static Map createGraveYard() {
         Map newMap = new Map();
         newMap.addMonsterInMap(createZombie());
         newMap.addMonsterInMap(createSkeletion());
+        return newMap;
     }
 }
