@@ -35,7 +35,7 @@ public abstract class Character{
     protected Character(){
         this.level = 1;
     }
-    
+    //=====================================================
     protected int randomLvl(int lvlRange){
         this.level = (int)Math.ceil(Math.random()*lvlRange);
         return level;
@@ -66,6 +66,7 @@ public abstract class Character{
         this.maxStamina = result;
         return result;
     }
+    //========================================================
     protected void plusAtk(){
         this.atk += atkPerLvl;
     }
@@ -78,6 +79,11 @@ public abstract class Character{
     protected void plusAtkSpeed(){
         this.atkSpeed += atkSpeedPerLvl;
     }
+    protected void plusLevel(){
+        this.level++;
+        if(level == MAXLEVEL) level = MAXLEVEL;
+    }
+    //=======================================================
     public int getLevelRange(){
         return levelRange;
     }
@@ -104,9 +110,17 @@ public abstract class Character{
     public STATUS getStatus() {
         return status;
     }
-    void setStatus(STATUS status){
-        this.status = status;
+    public int getLevel(){
+        return level;
     }
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    public int getCurrentStamina() {
+        return currentStamina;
+    }
+    //=============================================
     public int receiveDamage(int atk){
         if(atk >= currentHp){
             setStatus(STATUS.DEAD);
@@ -118,25 +132,9 @@ public abstract class Character{
         }
         return atk;
     }
-    protected void plusLevel(){
-        this.level++;
-        if(level == MAXLEVEL) level = MAXLEVEL;
-    }
-    public int getLevel(){
-        return level;
-    }
     public void changeName(String name){
         this.name = name;
     } 
-
-    public int getCurrentHp() {
-        return currentHp;
-    }
-
-    public int getCurrentStamina() {
-        return currentStamina;
-    }
-    
     public int dropExp(){
         int result = (int)(baseExpGive+((Math.random()+1)*level));
         return result;
@@ -159,6 +157,13 @@ public abstract class Character{
         if(currentStamina > maxStamina){
             currentStamina = maxStamina;
         }
+    }
+    public CHARACTERTYPE getType(){
+        return type;
+    }
+    //==============================================
+    void setStatus(STATUS status){
+        this.status = status;
     }
     public void setName(String name){
         this.name = name;
@@ -206,9 +211,6 @@ public abstract class Character{
     public void setAtkSpeedPerLvl(int atkSpeedPerLvl) {
         this.atkSpeedPerLvl = atkSpeedPerLvl;
     }
-    public CHARACTERTYPE getType(){
-        return type;
-    }
 
     public void setType(CHARACTERTYPE type) {
         this.type = type;
@@ -220,7 +222,7 @@ public abstract class Character{
     public void setLevelRange(int levelRange){
         this.levelRange = levelRange;
     }
-    
+    //==================================================
     @Override
     public String toString(){
         return "▓▓▓▓▓▓▓▓▓▓\n\u001b[0mName : "+"\u001B[31;1m"+getName()+"\n👑 ʟᴇᴠᴇʟ : "+getLevel()+"\n❤ ʜᴘ    : "+getCurrentHp()+

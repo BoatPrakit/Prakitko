@@ -46,7 +46,7 @@ public class ItemService {
         item.setName("StaminaPotion");
         item.setId(5);
         item.setType(ITEMTYPE.POTIONS);
-        item.setRegenSta(70);
+        item.setRegenStamina(70);
         return item;
     }
 }
