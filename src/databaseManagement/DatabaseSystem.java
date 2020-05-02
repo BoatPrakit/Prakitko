@@ -10,8 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
-import prakitkomodel.*;
-import prototype.Prakitko;
+import Model.Prakitko;
 import status.LOGINSTATUS;
 
 public class DatabaseSystem {

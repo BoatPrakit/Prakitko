@@ -5,7 +5,7 @@ import Field.Item;
 import Item.Burger;
 import Item.Taco;
 import java.util.ArrayList;
-import prototype.Monster;
+import Model.Monster;
 
 public class Wolf extends Monster{
     private static final String name = "Wolf";

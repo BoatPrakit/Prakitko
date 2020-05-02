@@ -1,8 +1,8 @@
 package Field;
 
 import java.util.ArrayList;
-import prototype.Monster;
-import prototype.Prakitko;
+import Model.Monster;
+import Model.Prakitko;
 import status.STATUS;
 
 /**
@@ -26,20 +26,20 @@ public class Field {
     public void attack() {
         if (!isMonsterDie() && !isPrakitkoDie()) {
             if (prakitko.getAtkSpeed() >= monster.getAtkSpeed()) {
-                monster.recieveDamage(prakitko.getAtk());
+                monster.receiveDamage(prakitko.getAtk());
                 System.out.println(prakitko.getName() + " Dealt " + monster.getName() + " " + prakitko.getAtk() + " Damage");
                 if (!monster.isDead()) {
-                    prakitko.recieveDamage(monster.getAtk());
+                    prakitko.receiveDamage(monster.getAtk());
                     System.out.println(monster.getName() + " Dealt " + prakitko.getName() + " " + monster.getAtk() + " Damage");
                 }
                 prakitko.isDead();
                 monster.isDead();
                 whoHere();
             } else if (prakitko.getAtkSpeed() < monster.getAtkSpeed()) {
-                prakitko.recieveDamage(monster.getAtk());
+                prakitko.receiveDamage(monster.getAtk());
                 System.out.println(monster.getName() + " Dealt " + prakitko.getName() + " " + monster.getAtk() + " Damage");
                 if (!prakitko.isDead()) {
-                    monster.recieveDamage(prakitko.getAtk());
+                    monster.receiveDamage(prakitko.getAtk());
                     System.out.println(prakitko.getName() + " Dealt " + monster.getName() + " " + prakitko.getAtk() + " Damage");
                 }
                 prakitko.isDead();

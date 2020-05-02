@@ -1,6 +1,6 @@
 package monstermodel;
 
-import prototype.Monster;
+import Model.Monster;
 
 public class Zombie extends Monster{
      private static final String name = "Zombie";
