@@ -27,6 +27,7 @@ public class MonsterService {
         monster.setStaminaPerLvl(5);
         monster.setBaseExpGive(50);
         monster.setLevelRange(5);
+        monster.setFullHp();
         return monster;
     }
     public static Monster createWolf(){
@@ -42,6 +43,7 @@ public class MonsterService {
         monster.setStaminaPerLvl(5);
         monster.setBaseExpGive(50);
         monster.setLevelRange(5);
+        monster.setFullHp();
         return monster;
     }
     public static Monster createOrc(){
@@ -57,6 +59,7 @@ public class MonsterService {
         monster.setStaminaPerLvl(5);
         monster.setBaseExpGive(500);
         monster.setLevelRange(15);
+        monster.setFullHp();
         return monster;
     }
     public static Monster createOrge(){
@@ -72,6 +75,7 @@ public class MonsterService {
         monster.setStaminaPerLvl(5);
         monster.setBaseExpGive(500);
         monster.setLevelRange(15);
+        monster.setFullHp();
         return monster;
     }
     public static Monster createZombie(){
@@ -87,6 +91,7 @@ public class MonsterService {
         monster.setStaminaPerLvl(10);
         monster.setBaseExpGive(1000);
         monster.setLevelRange(50);
+        monster.setFullHp();
         return monster;
     }
     public static Monster createSkeletion(){
@@ -102,6 +107,7 @@ public class MonsterService {
         monster.setStaminaPerLvl(10);
         monster.setBaseExpGive(1000);
         monster.setLevelRange(50);
+        monster.setFullHp();
         return monster;
     }
 }

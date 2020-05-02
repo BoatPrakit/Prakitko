@@ -45,6 +45,7 @@ public abstract class Character{
         calculateAtkSpeed(atkSpeed, atkSpeedPerLvl);
         calculateMaxHP(maxHp, hpPerLvl);
         calculateMaxStamina(maxStamina, staminaPerLvl);
+        setFullHp();
     }
     private int calculateMaxHP(int maxHp,int hpPerLvl){
         int result = maxHp+(hpPerLvl*(level-1));
