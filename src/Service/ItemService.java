@@ -1,9 +1,9 @@
-package Item;
+package Service;
 
-import Field.Item;
+import Model.Item;
 import Type.ITEMTYPE;
 
-public class ItemSevice {
+public class ItemService {
 
     public static Item createTaco() {
         Item item = new Item();

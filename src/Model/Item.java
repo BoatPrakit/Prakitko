@@ -1,6 +1,5 @@
-package Field;
+package Model;
 
-import Item.*;
 import Type.ITEMTYPE;
 
 
@@ -13,15 +12,6 @@ public class Item {
     private int regenStamina;
     private ITEMTYPE itemtype;
     
-    public Item (){
-        this.regenHp = regenHp;
-        this.id = id;
-        this.name = name;
-    }
-    public Item(int id,String name){
-        this.id = id;
-        this.name = name;
-    }
     public int getId() {
         return id;
     }
@@ -72,7 +62,7 @@ public class Item {
         this.id = id;
     }
     
-    public void setRegenHp(int rengenHp){
+    public void setRegenHp(int regenHp){
         this.regenHp = regenHp;
     }
     
