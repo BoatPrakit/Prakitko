@@ -312,14 +312,16 @@ public class DatabaseSystem {
                         prakitko = new Bird(rs.getString("prakitkoname"));
                         break;
                 }
+                    if(prakitko!=null){
                         loadLevelTo(prakitko);
                         loadItemTo(prakitko);
+                    }
                 return prakitko;
             }
         }catch(Exception ex){
             System.out.println(ex);
         }
-        return null;
+        return prakitko;
     }
     
     public static String getUsername(){
