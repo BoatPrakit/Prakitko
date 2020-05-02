@@ -1,6 +1,7 @@
 package Service;
 
 import Model.Prakitko;
+import Type.CHARACTERTYPE;
 
 /**
  *
@@ -21,6 +22,8 @@ public class PrakitkoService {
         dog.setStaminaPerLvl(8);
         //full hp
         dog.setFullHp();
+        //set Type
+        dog.setType(CHARACTERTYPE.DOG);
         return dog;
     }
     public static Prakitko createCat(String name){
@@ -37,6 +40,8 @@ public class PrakitkoService {
         cat.setStaminaPerLvl(10);
         //full hp
         cat.setFullHp();
+        //set Type
+        cat.setType(CHARACTERTYPE.CAT);
         return cat;
     }
     public static Prakitko createBird(String name){
@@ -53,6 +58,8 @@ public class PrakitkoService {
         bird.setStaminaPerLvl(8);
         //full hp
         bird.setFullHp();
+        //set Type
+        bird.setType(CHARACTERTYPE.BIRD);
         return bird;
     }
     public static Prakitko createFish(String name){
@@ -69,6 +76,8 @@ public class PrakitkoService {
         fish.setStaminaPerLvl(20);
         //full hp
         fish.setFullHp();
+        //set Type
+        fish.setType(CHARACTERTYPE.FISH);
         return fish;
     }
 }
