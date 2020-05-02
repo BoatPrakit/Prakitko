@@ -1,6 +1,7 @@
 package Model;
 
 import Type.ITEMTYPE;
+import java.util.ArrayList;
 
 
 public class Item {
@@ -11,6 +12,7 @@ public class Item {
     private int id;
     private int regenStamina;
     private ITEMTYPE itemtype;
+    private ArrayList<Item> item = new ArrayList<Item>();
     
     public int getId() {
         return id;

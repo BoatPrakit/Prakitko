@@ -4,28 +4,22 @@ import Model.Character;
 import Field.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-import prakitkomodel.Cat;
-import prakitkomodel.Dog;
-import prakitkomodel.Fish;
-import prototype.Prakitko;
-import Field.Item;
 import Field.*;
-import prakitkomodel.Dog;
-import prototype.Prakitko;
-import Item.*;
+import Model.Prakitko;
+import Model.Item;
 import static databaseManagement.DatabaseSystem.*;
 import java.util.Scanner;
-import monstermodel.Slime;
-import prakitkomodel.Bird;
-import prototype.Monster;
+//import Model.Monster;
 import status.STATUS;
-import Item.*;
+import static Service.ItemService.*;
+import static Service.MapService.*;
+import static Service.PrakitkoService.*;
 import java.util.InputMismatchException;
 
 public class Launcher {
 
     private static Prakitko prakitko;
-    private static Item item;
+    private static ArrayList<Item> item = new ArrayList<Item>();
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -124,8 +118,8 @@ public class Launcher {
         boolean checkString; // ตัวเเปรที่ มารับค่า condition
         do {
             System.out.println("--- Do you want create your Prakitko?? ---");
-            System.out.println("Create Prakitko[press 1]");
-            System.out.println("Back to Login[press 2]");
+            System.out.println("[press 1] Create Prakitko");
+            System.out.println("[press 2] Back to Login");
             System.out.print("Choose : ");
             try {
                 input = scanner.nextInt(); //รับค่า int เพื่อทำ statement ต่อไป
@@ -193,7 +187,7 @@ public class Launcher {
         int input = 0;
         boolean checkString;
         do {
-            System.out.println("---------------------");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
             System.out.println("--- Profile ---");
             System.out.println("Your Name : " + getUsername()); // โชว์ชื่อ user
             System.out.println("Your Prakitko : ");
@@ -243,7 +237,7 @@ public class Launcher {
             }
             if (number == 1) {
                 System.out.print("Prakitko name : ");
-                String name = input.nextLine(); 
+                String name = input.nextLine();
                 userEntryDogName(name); // ใส่ชื่อให้ prakitko
                 createPrakitko(prakitko); // สร้าง prakitko ที่ user เลือก เเละนำเก็บในระบบ
                 showPrakitkoForSelect(); // show prakitko ของ user 
@@ -282,22 +276,22 @@ public class Launcher {
     }
 
     public static Character userEntryDogName(String name) { // สร้าง Dog
-        prakitko = new Dog(name);
+        prakitko = createDog(name);
         return prakitko;
     }
 
     public static Character userEntryCatName(String name) { // สร้าง Cat
-        prakitko = new Cat(name);
+        prakitko = createCat(name);
         return prakitko;
     }
 
     public static Character userEntryBirdName(String name) {// สร้าง Bird
-        prakitko = new Bird(name);
+        prakitko = createBird(name);
         return prakitko;
     }
 
     public static Character userEntryFishName(String name) {// สร้าง Fish
-        prakitko = new Fish(name);
+        prakitko = createFish(name);
         return prakitko;
     }
 
@@ -331,7 +325,7 @@ public class Launcher {
                 logout();
                 prakitko = null; // ทำให้ prakitko ในระบบหลัง logout
                 try {
-                    System.out.println("Logging out..."); 
+                    System.out.println("Logging out...");
                     Thread.sleep(3000);// ใช้ เวลา 3 วิ 
                     System.out.println("Logout Completed");
                 } catch (Exception e) {
@@ -345,7 +339,7 @@ public class Launcher {
     }
 
     public static void UserChooseMap1(Scanner scanner) { // prepare to battle
-        Map1 forest = new Map1();
+        Map forest = createForest();
         forest.arrayCheck(); //เช็คว่าในอยู่ใน map 
         inBattle(scanner, fightMode(forest));
     }
@@ -355,35 +349,47 @@ public class Launcher {
         Field x = m.fight(prakitko);
         return x;
     }
+
     public static void inBattle(Scanner scanner, Field field) { // อยู่ใน Battle
         boolean checkString;
         int num = 0;
-    public static void inBattle(Scanner scanner, Field field) {
-        int turn = 1;
         do {
-            System.out.println("---------------------");
-            System.out.println("Crash[press 1]");
-            System.out.println("Use item[press 2]");
-            System.out.println("Run!![press 3]");
-            int num = scanner.nextInt();            
-            switch (num) {
-                case 1:
-                    System.out.println("============================");
-                    System.out.println(" ▂▃▅▆█ BATTLE!!! █▆▅▃▂ ");
-                    System.out.println("           Turn " + turn);
-                    System.out.println("============================");
-                    turn += 1;
-                    field.attack();
-                    break;
-                case 2:
-                    useItemInInventory();
-                    break;
-                case 3:
-                    try {
-                        System.out.println("--- Start Escape!!! ---");
-                        for (int i = 0; i < 5; i++) {
-                            Thread.sleep(2000); // 2 sec
-                            System.out.print("\u001b[32b Run!!! \n");
+            do {
+                int turn = 1;
+                System.out.println("---------------------");
+                System.out.println("Crash[press 1]");
+                System.out.println("Use item[press 2]");
+                System.out.println("Run!![press 3]");
+                try {
+                    num = scanner.nextInt();
+                    checkString = false;
+                } catch (InputMismatchException ex) {
+                    scanner.nextLine();
+                    checkString = true;
+                }
+                switch (num) {
+                    case 1:
+                        System.out.println("============================");
+                        System.out.println(" ▂▃▅▆█ BATTLE!!! █▆▅▃▂ ");
+                        System.out.println("           Turn " + turn);
+                        System.out.println("============================");
+                        turn += 1;
+                        field.attack();
+                        break;
+                    case 2:
+                        useItemInInventory();
+                        break;
+                    case 3:
+                        try {
+                            System.out.println("--- Start Escape!!! ---");
+                            for (int i = 0; i < 3; i++) {
+                                Thread.sleep(1000); // ใช้เวลาหนี 1 sec ต่อ Run!!! 1 ที
+                                System.out.print("\u001b[32b Run!!! \n");
+                            }
+                            System.out.println("--- Escape Completed ---");
+                            chooseMap(scanner);
+                        } catch (Exception T) {
+                            System.out.println("Got Ex");
                         }
                         break;
                 }
@@ -419,37 +425,12 @@ public class Launcher {
             }
         }
     }
-
-    public static Item useTaco() {
-        item = new Taco();
-        return item;
-    }
-
-    public static Item useCake() {
-        item = new Cake();
-        return item;
-    }
-
-    public static Item useBurger() {
-        item = new Burger();
-        return item;
-    }
-
-    public static Item useHelingPotion() {
-        item = new HealingPotion();
-        return item;
-    }
-
-    public static Item useStaminaPotion() {
-        item = new StaminaPotion();
-        return item;
-    }
-
+    
     public static void useItemInInventory() {
         System.out.println("--- Inventory ---");
-        int currentNum = 1; 
+        int currentNum = 1;
         for (Item currentItem : item) { // นำของใน item มาทำทีละชิ้นตาม array เเต่ละช่อง Ex Bur ช่องเเรก ก็จะเรียก Burger เเละทำต่อ
-            System.out.println("[Press "+currentNum + "] " + currentItem);
+            System.out.println("[Press " + currentNum + "] " + currentItem);
             currentNum += 1;
         }
     }
