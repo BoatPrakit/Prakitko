@@ -25,18 +25,19 @@ public class Item {
     public int getRegen() { // 
         return regenHp;
     }
-    protected void setRegenStamina(int regenstamina){
-        this.regenStamina = regenstamina;
+    
+    public int getRegenStamina(){
+        return regenStamina;
+    }
+    
+    public ITEMTYPE getType(){
+        return itemtype;
     }
     
     public void increaseAmount(){ //เพิ่มค่า amount ของ item 
         amount+=1;
     }
     
-    public void setAmount(int amount){
-        this.amount = amount;
-    }
-
     public void decreaseAmount(){
         amount-=1;
         if(amount<=0) amount = 0;
@@ -45,13 +46,11 @@ public class Item {
     public int amountCheck(){
         return amount;
     }
-    public int getRegenStamina(){
-        return regenStamina;
+    
+    public void setAmount(int amount){
+        this.amount = amount;
     }
     
-    public ITEMTYPE getType(){
-        return itemtype;
-    }
     public void setType(ITEMTYPE itemtype){
         this.itemtype = itemtype;
     }
@@ -68,8 +67,8 @@ public class Item {
         this.regenHp = regenHp;
     }
     
-    public void setRegenSta(int regenStamina){
-        this.regenStamina = regenStamina;
+    public void setRegenStamina(int regenstamina){
+        this.regenStamina = regenstamina;
     }
     
     @Override
