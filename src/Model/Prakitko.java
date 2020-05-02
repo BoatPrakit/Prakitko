@@ -118,9 +118,18 @@ public class Prakitko extends Character {
         return false;
     }
 
-    public void showInventory() {
-        for (Item item1 : inventory) {
-            System.out.println(item1 + " Amount " + item1.amountCheck());
+    public int showInventory() {
+        if(inventory.isEmpty()){
+            System.out.println("Your inventory is Empty!") ;
+            return 0;
+        }
+        else{
+            int i = 1;
+            for (Item item1 : inventory) {
+                System.out.println(i+"" +item1 + " Amount " + item1.amountCheck());
+                i++;
+            }
+            return i;
         }
     }
 
