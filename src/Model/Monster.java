@@ -7,7 +7,6 @@ import java.util.Random;
 public class Monster extends Character{
     
     private ArrayList<Item> item = new ArrayList();
-    private static int lvl;
     private Random randomGenerator = new Random();
     
     public Monster(){
