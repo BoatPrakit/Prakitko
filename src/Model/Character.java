@@ -40,7 +40,7 @@ public abstract class Character{
         this.level = (int)Math.ceil(Math.random()*lvlRange);
         return level;
     }
-    protected void calculateStatMonster(){
+    public void calculateStat(){
         calculateAtk(atk, atkPerLvl);
         calculateAtkSpeed(atkSpeed, atkSpeedPerLvl);
         calculateMaxHP(maxHp, hpPerLvl);
@@ -224,6 +224,11 @@ public abstract class Character{
     public void setLevelRange(int levelRange){
         this.levelRange = levelRange;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    
     //==================================================
     @Override
     public String toString(){
