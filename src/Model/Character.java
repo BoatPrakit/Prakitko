@@ -26,6 +26,10 @@ public abstract class Character{
     private int atkSpeedPerLvl;
     private int levelRange;
     private int baseExpGive;
+    private int baseHp;
+    private int baseAtk;
+    private int baseAtkSpeed;
+    private int baseStamina;
     private CHARACTERTYPE type;
     
     protected Character(String name){
@@ -48,22 +52,22 @@ public abstract class Character{
         setFullHp();
     }
     private int calculateMaxHP(int maxHp,int hpPerLvl){
-        int result = maxHp+(hpPerLvl*(level-1));
+        int result = baseHp+(hpPerLvl*(level-1));
         this.maxHp = result;
         return result;
     }
     private int calculateAtk(int atk,int atkPerLvl){
-        int result = atk+(atkPerLvl*(level-1));
+        int result = baseAtk+(atkPerLvl*(level-1));
         this.atk = result;
         return result;
     }
     private int calculateAtkSpeed(int atkSpeed,int atkSpeedPerLvl){
-        int result = atkSpeed+(atkSpeedPerLvl*(level-1));
+        int result = baseAtkSpeed+(atkSpeedPerLvl*(level-1));
         this.atkSpeed = result;
         return result;
     }
     private int calculateMaxStamina(int maxStamina,int staminaPerLvl){
-        int result = maxStamina+(staminaPerLvl*(level-1));
+        int result = baseStamina+(staminaPerLvl*(level-1));
         this.maxStamina = result;
         return result;
     }
@@ -176,6 +180,7 @@ public abstract class Character{
 
     public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
+        this.baseHp = maxHp;
     }
 
     public void setCurrentHp(int currentHp) {
@@ -184,14 +189,17 @@ public abstract class Character{
 
     public void setAtk(int atk) {
         this.atk = atk;
+        this.baseAtk = atk;
     }
 
     public void setAtkSpeed(int atkSpeed) {
         this.atkSpeed = atkSpeed;
+        this.baseAtkSpeed = atkSpeed;
     }
 
     public void setCurrentStamina(int currentStamina) {
         this.currentStamina = currentStamina;
+        this.baseStamina = currentStamina;
     }
 
     public void setMaxStamina(int maxStamina) {
