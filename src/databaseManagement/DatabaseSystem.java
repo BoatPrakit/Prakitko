@@ -27,9 +27,10 @@ public class DatabaseSystem {
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
        login();
-       createPrakitko(createDog("tt"));
+//       createPrakitko(createDog("tt"));
        prakitko = choosePrakitko();
         prakitko.receiveExp(50000);
+        prakitko.useItem(createTaco());
         System.out.println(prakitko);
         System.out.println(prakitko.getLevel());
     }
@@ -161,16 +162,12 @@ public class DatabaseSystem {
      }
      return 0;
     } 
-    public static void insertItem(Item item){
-        if(status == LOGINSTATUS.LOGIN && item != null && item.getName() != null){
-            updateItemTo(currentUser,currentPassword,item.getName(),item.amountCheck());
-            }
-    }
-    private static boolean updateItemTo(String name,String password,String itemName,int amount){
-        if(name == null || password == null) return false;
+    
+    public static boolean updateItem(Item item){
+        if(currentUser == null || currentPassword == null) return false;
         if(status == LOGINSTATUS.LOGOUT || currentId < 0) return false;
-        if(getUserId(name,password)<0)return false;
-        String update = "UPDATE item SET "+itemName+" = '"+amount+"' WHERE userid = '"+getUserId(name,password)+"'";
+        if(getUserId(currentUser,currentPassword)<0)return false;
+        String update = "UPDATE item SET "+item.getName()+" = '"+item.amountCheck()+"' WHERE userid = '"+getUserId(currentUser,currentPassword)+"'";
         try(Connection c = connectDB();){
             Statement stm = c.createStatement();
              stm.executeUpdate(update);
@@ -233,17 +230,11 @@ public class DatabaseSystem {
         }catch(Exception ex){
             System.out.println(ex);
         }
-        
-        
     }
-    public static void insertLevel(int lvl,int exp){
-        if(currentId > 0 && currentUser != null && currentPassword != null && status == LOGINSTATUS.LOGIN){
-        updateLevel(currentUser,currentPassword,lvl,exp);
-        }
-    }
-    private static void updateLevel(String name,String password,int lvl,int exp){
+    
+    public static void updateLevel(int lvl,int exp){
         try(Connection c = connectDB()){
-            PreparedStatement psm = c.prepareStatement("UPDATE prakitko SET level = ?, exp = ? WHERE userid = "+getUserId(name,password));
+            PreparedStatement psm = c.prepareStatement("UPDATE prakitko SET level = ?, exp = ? WHERE userid = "+getUserId(currentUser,currentPassword));
             psm.setInt(1, lvl);
             psm.setInt(2, exp);
             psm.executeUpdate();
