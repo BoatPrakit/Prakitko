@@ -14,6 +14,10 @@ public class Map {
     private Random randomGenerator = new Random();
 
     public Map(){}
+    
+    public void clearMonster(){
+        listOfMonster.clear();
+    }
 
     public void addMonsterInMap(Monster newMonster) {
         listOfMonster.add(newMonster);
