@@ -112,18 +112,14 @@ public class Field {
     }
 
     public void whoHere() {
-        System.out.print("\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m");
-        System.out.print("  \u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m");
-        System.out.println("  \u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\n");
-        System.out.println(" \u001b[33;1mYour Prakitko                          \u001b[31;1mMonster\u001b[0m     ");
+        System.out.println("\u001b[33m▓▓▓▓▓\u001b[0m▓▓▓▓▓  ▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓\u001b[33m▓▓▓▓▓\u001b[0m\n");
+        System.out.println(" \u001b[33;1mYour Prakitko                          \u001b[31;1mMonster\u001b[0m     \n");
         System.out.format("\u001b[33;1m%-10s\u001b[0m: %-23s \u001b[33;1m%-10s\u001b[0m: %s\n","Name",prakitko.getName(),"Name",monster.getName());
         System.out.format("\u001b[33;1m%-10s\u001b[0m: %-23s \u001b[33;1m%-10s\u001b[0m: %s\n","ʟᴇᴠᴇʟ",prakitko.getLevel(),"ʟᴇᴠᴇʟ",monster.getLevel());
-        System.out.format("\u001b[31;1m%-10s\u001b[0m: %-12s \u001b[31;1m%s\u001b[33;1m%-10s\u001b[31;1m%-10s\u001b[0m: %s\n","ʜᴘ",prakitko.getMaxHp(),"V","S","ʜᴘ",monster.getMaxHp());
+        System.out.format("\u001b[31;1m%-10s\u001b[0m: %s/%-8s \u001b[31;1m%s\u001b[33;1m%-10s\u001b[31;1m%-10s\u001b[0m: %s/%s\n","ʜᴘ",prakitko.getCurrentHp(),prakitko.getMaxHp(),"V","S","ʜᴘ",monster.getCurrentHp(),monster.getMaxHp());
         System.out.format("\u001b[34;1m%-10s\u001b[0m: %-23s \u001b[34;1m%-10s\u001b[0m: %s\n","ᴀᴛᴋ",prakitko.getAtk(),"ᴀᴛᴋ",monster.getAtk());
         System.out.format("\u001b[32;1m%-10s\u001b[0m: %-23s \u001b[32;1m%-10s\u001b[0m: %s\n","ᴀᴛᴋsᴘᴅ",prakitko.getAtkSpeed(),"ᴀᴛᴋsᴘᴅ",monster.getAtkSpeed());
         System.out.format("\u001b[33;1m%-10s\u001b[0m: %-23s \u001b[33;1m%-10s\u001b[0m: %s\n","sᴛᴀᴛᴜs",prakitko.getStatus(),"sᴛᴀᴛᴜs",monster.getStatus());
-        System.out.print("\n\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m");
-        System.out.print("  \u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m");
-        System.out.println("  \u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m\u001b[31;1m▓\u001b[33;1m▓\u001b[32;1m▓\u001b[36;1m▓\u001b[34;1m▓\u001b[35;1m"); 
+        System.out.println("\n\u001b[33m▓▓▓▓▓\u001b[0m▓▓▓▓▓  ▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓\u001b[33m▓▓▓▓▓\u001b[0m");
     }
 }
