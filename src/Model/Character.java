@@ -45,28 +45,28 @@ public abstract class Character{
         return level;
     }
     public void calculateStat(){
-        calculateAtk(atk, atkPerLvl);
-        calculateAtkSpeed(atkSpeed, atkSpeedPerLvl);
-        calculateMaxHP(maxHp, hpPerLvl);
-        calculateMaxStamina(maxStamina, staminaPerLvl);
+        calculateAtk();
+        calculateAtkSpeed();
+        calculateMaxHP();
+        calculateMaxStamina();
         setFullHp();
     }
-    private int calculateMaxHP(int maxHp,int hpPerLvl){
+    private int calculateMaxHP(){
         int result = baseHp+(hpPerLvl*(level-1));
         this.maxHp = result;
         return result;
     }
-    private int calculateAtk(int atk,int atkPerLvl){
+    private int calculateAtk(){
         int result = baseAtk+(atkPerLvl*(level-1));
         this.atk = result;
         return result;
     }
-    private int calculateAtkSpeed(int atkSpeed,int atkSpeedPerLvl){
+    private int calculateAtkSpeed(){
         int result = baseAtkSpeed+(atkSpeedPerLvl*(level-1));
         this.atkSpeed = result;
         return result;
     }
-    private int calculateMaxStamina(int maxStamina,int staminaPerLvl){
+    private int calculateMaxStamina(){
         int result = baseStamina+(staminaPerLvl*(level-1));
         this.maxStamina = result;
         return result;
