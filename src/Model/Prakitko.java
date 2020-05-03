@@ -47,6 +47,7 @@ public class Prakitko extends Character {
     private void levelUp() {
         currentExp -= currentMaxExp;
         super.plusLevel();
+        System.out.println("Congratulation! Your level is "+super.getLevel()+" now...");
         try {
             this.nextCurrentMaxExp();
         } catch (ArrayIndexOutOfBoundsException e) {
