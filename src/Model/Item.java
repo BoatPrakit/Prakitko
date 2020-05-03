@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Pattapol
+ * @author Pattarapol
  */
 public class Item {
     private String name;
