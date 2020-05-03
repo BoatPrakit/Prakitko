@@ -76,7 +76,7 @@ public class Field {
 
     public int loseExp(int currentExp) {
         int loseExp = -(currentExp * 5 / 100);
-        prakitko.receiveExp(loseExp(prakitko.getCurrentExp()));
+        prakitko.receiveExp(loseExp);
         return loseExp;
     }
 
@@ -91,7 +91,8 @@ public class Field {
     }
 
     public void battleReward() {
-        this.expHolding += monster.dropExp();
+        if (isMonsterDie()) {
+            this.expHolding += monster.dropExp();
         this.itemHolding.add(monster.itemDrop());
         this.prakitko.receiveExp(expHolding);
         System.out.println(prakitko.getName() + " receive : " + expHolding + " exp");
@@ -101,6 +102,12 @@ public class Field {
         }
         this.expHolding = 0;
         this.itemHolding.clear();
+        }
+        else if (isPrakitkoDie()) {
+            System.out.println("You get no Reward");
+        System.out.println("You lose "+loseExp(prakitko.getCurrentExp())+" exp");
+        }
+        
 
     }
 

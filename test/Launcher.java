@@ -339,7 +339,10 @@ public class Launcher {
     }
 
     public static void UserChooseMap1(Scanner scanner) { // prepare to battle
-        Map forest = createForest();
+        Map forest;
+        forest = createForest();
+        forest.clearMonster();
+        forest = createForest();
         forest.arrayCheck(); //เช็คว่าในอยู่ใน map 
         inBattle(scanner, fightMode(forest));
     }
