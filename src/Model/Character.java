@@ -44,7 +44,7 @@ public abstract class Character{
         this.level = (int)Math.ceil(Math.random()*lvlRange);
         return level;
     }
-    public void calculateStat(){
+    public void calculateStatMonster(){
         calculateAtk();
         calculateAtkSpeed();
         calculateMaxHP();
@@ -72,18 +72,6 @@ public abstract class Character{
         return result;
     }
     //========================================================
-    protected void plusAtk(){
-        this.atk += atkPerLvl;
-    }
-    protected void plusMaxHp(){
-        this.maxHp += hpPerLvl;
-    }
-    protected void plusMaxStamina(){
-        this.maxStamina += staminaPerLvl;
-    }
-    protected void plusAtkSpeed(){
-        this.atkSpeed += atkSpeedPerLvl;
-    }
     protected void plusLevel(){
         this.level++;
         if(level >= MAXLEVEL) level = MAXLEVEL;

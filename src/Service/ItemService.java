@@ -11,6 +11,7 @@ public class ItemService {
         item.setId(1);
         item.setType(ITEMTYPE.FOOD);
         item.setRegenHp(20);
+        item.setCanRegenHp(true);
         return item;
     }
 
@@ -20,6 +21,7 @@ public class ItemService {
         item.setId(2);
         item.setType(ITEMTYPE.FOOD);
         item.setRegenHp(10);
+        item.setCanRegenHp(true);
         return item;
     }
 
@@ -29,6 +31,7 @@ public class ItemService {
         item.setId(3);
         item.setType(ITEMTYPE.FOOD);
         item.setRegenHp(50);
+        item.setCanRegenHp(true);
         return item;
     }
 
@@ -38,6 +41,7 @@ public class ItemService {
         item.setId(4);
         item.setType(ITEMTYPE.POTIONS);
         item.setRegenHp(50);
+        item.setCanRegenHp(true);
         return item;
     }
 
@@ -47,6 +51,7 @@ public class ItemService {
         item.setId(5);
         item.setType(ITEMTYPE.POTIONS);
         item.setRegenStamina(70);
+        item.setCanRegenStamina(true);
         return item;
     }
 }

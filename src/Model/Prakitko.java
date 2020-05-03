@@ -15,7 +15,7 @@ import status.STATUS;
 
 public class Prakitko extends Character {
 
-    private final int[] EXPTOLEVELUP = {100, 120, 1000, 2000,5000};
+    private final int[] EXPTOLEVELUP = {100, 120, 1000, 2000,5000,8000};
     private int currentExp;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private ArrayList<Item> inventory = new ArrayList<Item>();
@@ -45,24 +45,25 @@ public class Prakitko extends Character {
             countLvlup+=1;
             if(countLvlup > EXPTOLEVELUP.length) break;
             levelUp();
-            calculateStat();
+            calculateStatMonster();
             
         }
-        insertLevel(super.getLevel(), currentExp);
+        updateLevel(super.getLevel(), currentExp);
     }
 
     private void levelUp() {
+        if(super.getLevel()<=EXPTOLEVELUP.length){
         currentExp -= currentMaxExp;
         super.plusLevel();
-        System.out.println("Congratulation! Your level is "+super.getLevel()+" now...");
         try {
             this.nextCurrentMaxExp();
         } catch (ArrayIndexOutOfBoundsException e) {
             currentMaxExp = EXPTOLEVELUP[EXPTOLEVELUP.length - 1];
         }
+        }
     }
 
-    private boolean isLevelUp() {
+    public boolean isLevelUp() {
         return currentExp >= currentMaxExp;
     }
     
@@ -71,33 +72,37 @@ public class Prakitko extends Character {
         currentMaxExp = EXPTOLEVELUP[next];
     }
 
-    private void calculateStat() {
-        super.plusAtk();
-        super.plusAtkSpeed();
-        super.plusMaxHp();
-        super.plusMaxStamina();
-        super.setFullHp(); //When player level up hp will full
-    }
-
     public boolean useItem(Item item) {
         if (item == null) {
             return false;
         }
         int index = sameItemAtIndex(item);      //find index that equal item to use
-        if (inventory.contains(item)) {
+        if (index>=0) {
             if (inventory.get(index).amountCheck() > 0) {
-                if (!item.getName().equals(createStaminaPotion().getName())) {              //if this item isn't stamina potion
                     int regenHp = inventory.get(index).getRegen();
-                    super.regenHp(regenHp);
-                } else if (item.getName().equals(createStaminaPotion().getName())) {         //if this item is stamina potion
                     int regenStamina = inventory.get(index).getRegenStamina();
+                if (item.isCanRegenHp()&&!item.isCanRegenStamina()) {                //if this item can only regenHp
+                    super.regenHp(regenHp);
+                    System.out.println(""+item.getName()+" has been used.");
+                    System.out.println("Heal "+super.getName()+" for "+regenHp+" Hp");
+                    
+                } else if (item.isCanRegenStamina()&&!item.isCanRegenHp()) {         //if this item can only regenStamina 
                     super.regenStamina(regenStamina);
+                    System.out.println(""+item.getName()+" has been used.");
+                    System.out.println("Regen "+super.getName()+" for "+regenStamina+" stamina");
+                    
+                } else if (item.isCanRegenHp()&&item.isCanRegenStamina()){           //if this item can regenStamina & regenHp 
+                    super.regenHp(regenHp);
+                    super.regenStamina(regenStamina);
+                    System.out.println(""+item.getName()+" has been used.");
+                    System.out.println("Regen "+super.getName()+""+regenHp+" Hp"+" & stamina "+regenStamina+" stamina");
+                    
                 }
-                inventory.get(index).decreaseAmount();
-                insertItem(inventory.get(index));                 //database system
+                    inventory.get(index).decreaseAmount();
+                    updateItem(inventory.get(index));                 //database system
                 if (inventory.get(index).amountCheck() <= 0) {
-                    insertItem(inventory.get(index));                //database system
-                    inventory.remove(item);
+                    updateItem(inventory.get(index));                //database system
+                    inventory.remove(inventory.get(index));
                 }
                 sortInventory();
                 return true;
@@ -115,11 +120,11 @@ public class Prakitko extends Character {
             index = sameItemAtIndex(item);
             inventory.get(index).increaseAmount();
             sortInventory();
-            insertItem(inventory.get(index));                           //datebase system
+            updateItem(inventory.get(index));                           //datebase system
             return true;
         } else if (index >= 0) {
             inventory.get(index).increaseAmount();
-            insertItem(inventory.get(index));                           //datebase system
+            updateItem(inventory.get(index));                           //datebase system
             sortInventory();
             return true;
         }
@@ -178,5 +183,5 @@ public class Prakitko extends Character {
         super.setFullHp();
         super.setStatus(STATUS.ALIVE);
     }
-
+    
 }
