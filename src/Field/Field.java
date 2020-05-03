@@ -103,8 +103,11 @@ public class Field {
         this.expHolding = 0;
         this.itemHolding.clear();
         }
-        System.out.println("You get no Reward");
+        else if (isPrakitkoDie()) {
+            System.out.println("You get no Reward");
         System.out.println("You lose "+loseExp(prakitko.getCurrentExp())+" exp");
+        }
+        
 
     }
 
