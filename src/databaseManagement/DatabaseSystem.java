@@ -25,15 +25,7 @@ public class DatabaseSystem {
     private static LOGINSTATUS status = LOGINSTATUS.LOGOUT;
     private static Prakitko prakitko;
     private static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) {
-       login();
-//       createPrakitko(createDog("tt"));
-       prakitko = choosePrakitko();
-        prakitko.receiveExp(50000);
-        prakitko.useItem(createTaco());
-        System.out.println(prakitko);
-        System.out.println(prakitko.getLevel());
-    }
+    
     private static Connection connectDB(){
         String hostname=  "localhost";
         String db_name = "testdb";
