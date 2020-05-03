@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import static Service.ItemService.*;
 
+/**
+ *
+ * @author Sapondanai
+ */
+
 public class Monster extends Character{
     
     private ArrayList<Item> item = new ArrayList();

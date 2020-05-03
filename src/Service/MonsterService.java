@@ -9,7 +9,7 @@ import Model.Monster;
 
 /**
  *
- * @author Klitb
+ * @author Sapondanai
  */
 
 public class MonsterService {

@@ -10,8 +10,9 @@ import static Service.MonsterService.*;
 
 /**
  *
- * @author Klitb
+ * @author Sapondanai
  */
+
 public class MapService {
 
     public static Map createForest() {

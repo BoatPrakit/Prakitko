@@ -16,6 +16,11 @@ import static Service.MapService.*;
 import static Service.PrakitkoService.*;
 import java.util.InputMismatchException;
 
+/**
+ *
+ * @author Pattarapol coding , Sapondanai & Prakit debug
+ */
+
 public class Launcher {
 
     private static Prakitko prakitko;

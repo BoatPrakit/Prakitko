@@ -3,7 +3,10 @@ package Model;
 import Type.ITEMTYPE;
 import java.util.ArrayList;
 
-
+/**
+ *
+ * @author Pattapol
+ */
 public class Item {
     private String name;
     private int regenHp;

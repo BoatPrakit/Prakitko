@@ -8,6 +8,11 @@ import Field.Field;
 import Field.Field;
 import Field.Field;
 
+/**
+ *
+ * @author Sapondanai
+ */
+
 public class Map {
 
     private static ArrayList<Monster> listOfMonster = new ArrayList<Monster>();
