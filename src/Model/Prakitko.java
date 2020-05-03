@@ -6,6 +6,7 @@ import static Service.ItemService.createStaminaPotion;
 import static databaseManagement.DatabaseSystem.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import status.STATUS;
 
 /**
  *
@@ -53,6 +54,7 @@ public class Prakitko extends Character {
     private void levelUp() {
         currentExp -= currentMaxExp;
         super.plusLevel();
+        System.out.println("Congratulation! Your level is "+super.getLevel()+" now...");
         try {
             this.nextCurrentMaxExp();
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -162,7 +164,6 @@ public class Prakitko extends Character {
             }
         });
     }
-
     public int levelToExp(int lvl, int exp) {
         int[] newarray = new int[lvl - 1];
         int temp = 0;
@@ -172,6 +173,10 @@ public class Prakitko extends Character {
         }
         temp += exp;
         return temp;
+    }
+    public void respawn(){
+        super.setFullHp();
+        super.setStatus(STATUS.ALIVE);
     }
 
 }
