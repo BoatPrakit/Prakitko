@@ -105,7 +105,7 @@ public class Field {
         }
         else if (isPrakitkoDie()) {
             System.out.println("You get no Reward");
-        System.out.println("You lose "+loseExp(prakitko.getCurrentExp())+" exp");
+        System.out.println("You lose "+loseExp(prakitko.getCurrentMaxExp())+" exp");
         }
         
 

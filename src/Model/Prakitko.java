@@ -27,6 +27,13 @@ public class Prakitko extends Character {
         return currentExp;
     }
     
+    public int getCurrentMaxExp(){
+        return currentMaxExp;
+    }
+    public ArrayList<Item> getInventory(){
+        return inventory;
+    }
+    
     public void receiveExp(int exp) {
         currentExp += exp;
         if (currentExp < 0) {

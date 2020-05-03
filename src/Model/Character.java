@@ -121,6 +121,7 @@ public abstract class Character{
     public int getCurrentStamina() {
         return currentStamina;
     }
+    
     //=============================================
     public int receiveDamage(int atk){
         if(atk >= currentHp){
