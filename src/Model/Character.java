@@ -19,7 +19,7 @@ public abstract class Character{
     private int maxStamina;
     private int level = 1;
     private STATUS status = STATUS.ALIVE;
-    protected Item item;
+    private Item item;
     private int hpPerLvl;
     private int atkPerLvl;
     private int staminaPerLvl;
