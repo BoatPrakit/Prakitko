@@ -13,6 +13,8 @@ import Model.Prakitko;
 import static Service.ItemService.*;
 import static Service.PrakitkoService.*;
 import Type.CHARACTERTYPE;
+import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import status.LOGINSTATUS;
 
 public class DatabaseSystem {
@@ -23,7 +25,12 @@ public class DatabaseSystem {
     private static LOGINSTATUS status = LOGINSTATUS.LOGOUT;
     private static Prakitko prakitko;
     private static Scanner sc = new Scanner(System.in);
-    
+    public static void main(String[] args) {
+       login();
+//       createPrakitko(createDog("test"));
+        prakitko = choosePrakitko();
+        System.out.println(prakitko.getLevel());
+    }
     private static Connection connectDB(){
         String hostname=  "localhost";
         String db_name = "testdb";
@@ -68,9 +75,11 @@ public class DatabaseSystem {
                 sm.executeUpdate(item);
             String insert = "INSERT INTO prakitko VALUES ('"+id+"','none','none','1','0')";
                 sm.executeUpdate(insert);
-            }catch(Exception ex){
+            }
+            catch(SQLException ex){
                 System.out.println(ex);
             }
+            
         }
     }
     private static boolean isLoginSuccess(String name,String password){
@@ -244,10 +253,26 @@ public class DatabaseSystem {
         try(Connection c = connectDB()){
             String sql = "SELECT * FROM prakitko WHERE userId = "+getUserId(currentUser,currentPassword);
             int levelToExp = 0;
+            String type = null;
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while(rs.next()){
-                if(rs.getString("typeprakitko").equals(prakitko.getType())){
+                    if(prakitko != null)
+                        switch(prakitko.getType()){
+                        case DOG:
+                        type = "Dog";
+                            break;
+                        case CAT:
+                        type = "Cat";
+                            break;
+                        case BIRD:
+                        type = "Bird";
+                        break;
+                        case FISH:
+                        type = "Fish";
+                        break;
+                    }
+                if(rs.getString("typeprakitko").equals(type)){
                     prakitko.changeName(rs.getString("prakitkoname"));
                     levelToExp = prakitko.levelToExp(rs.getInt("level"), rs.getInt("exp"));
                     prakitko.receiveExp(levelToExp);
