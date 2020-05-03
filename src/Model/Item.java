@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 
 public class Item {
-//    private int recieveHp;
     private String name;
     private int regenHp;
     private int amount;
     private int id;
     private int regenStamina;
     private ITEMTYPE itemtype;
-    private ArrayList<Item> item = new ArrayList<Item>();
-    
+    private boolean canRegenHp;
+    private boolean canRegenStamina;
+
     public int getId() {
         return id;
     }
@@ -70,6 +70,23 @@ public class Item {
     public void setRegenStamina(int regenstamina){
         this.regenStamina = regenstamina;
     }
+
+    public boolean isCanRegenHp() {
+        return canRegenHp;
+    }
+
+    public boolean isCanRegenStamina() {
+        return canRegenStamina;
+    }
+
+    public void setCanRegenHp(boolean canRegenHp) {
+        this.canRegenHp = canRegenHp;
+    }
+
+    public void setCanRegenStamina(boolean canRegenStamina) {
+        this.canRegenStamina = canRegenStamina;
+    }
+    
     
     @Override
     public String toString() {

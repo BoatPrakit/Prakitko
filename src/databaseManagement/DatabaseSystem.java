@@ -27,8 +27,10 @@ public class DatabaseSystem {
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
        login();
-//       createPrakitko(createDog("test"));
-        prakitko = choosePrakitko();
+       createPrakitko(createDog("tt"));
+       prakitko = choosePrakitko();
+        prakitko.receiveExp(50000);
+        System.out.println(prakitko);
         System.out.println(prakitko.getLevel());
     }
     private static Connection connectDB(){
@@ -252,7 +254,7 @@ public class DatabaseSystem {
     private static void loadLevelTo(Prakitko prakitko){
         try(Connection c = connectDB()){
             String sql = "SELECT * FROM prakitko WHERE userId = "+getUserId(currentUser,currentPassword);
-            int levelToExp = 0;
+            
             String type = null;
             Statement stm = c.createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -274,8 +276,7 @@ public class DatabaseSystem {
                     }
                 if(rs.getString("typeprakitko").equals(type)){
                     prakitko.changeName(rs.getString("prakitkoname"));
-                    levelToExp = prakitko.levelToExp(rs.getInt("level"), rs.getInt("exp"));
-                    prakitko.receiveExp(levelToExp);
+                    prakitko.receiveExp(prakitko.levelToExp(rs.getInt("level"), rs.getInt("exp")));
                 }
             }
         }catch(Exception ex){
