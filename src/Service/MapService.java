@@ -16,6 +16,7 @@ public class MapService {
 
     public static Map createForest() {
         Map newMap = new Map();
+        newMap.clearMonster();
         newMap.addMonsterInMap(createSlime());
         newMap.addMonsterInMap(createWolf());
         return newMap;
@@ -23,6 +24,7 @@ public class MapService {
 
     public static Map createHideOut() {
         Map newMap = new Map();
+        newMap.clearMonster();
         newMap.addMonsterInMap(createOrc());
         newMap.addMonsterInMap(createOrge());
         return newMap;
@@ -30,6 +32,7 @@ public class MapService {
 
     public static Map createGraveYard() {
         Map newMap = new Map();
+        newMap.clearMonster();
         newMap.addMonsterInMap(createZombie());
         newMap.addMonsterInMap(createSkeletion());
         return newMap;
