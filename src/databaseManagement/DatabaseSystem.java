@@ -258,7 +258,7 @@ public class DatabaseSystem {
                         break;
                     }
                 if(rs.getString("typeprakitko").equals(type)){
-                    prakitko.changeName(rs.getString("prakitkoname"));
+                    prakitko.setName(rs.getString("prakitkoname"));
                     prakitko.receiveExp(prakitko.levelToExp(rs.getInt("level"), rs.getInt("exp")));
                 }
             }

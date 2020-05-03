@@ -126,9 +126,6 @@ public abstract class Character{
         }
         return atk;
     }
-    public void changeName(String name){
-        this.name = name;
-    } 
     public int dropExp(){
         int result = (int)(baseExpGive+((Math.random()+1)*level));
         return result;
