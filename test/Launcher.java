@@ -409,21 +409,21 @@ public class Launcher {
         Map forest;
         forest = createForest();
         forest.arrayCheck(); //เช็คว่าในอยู่ใน map 
-        inBattle(scanner, fightMode(forest),1);
+        inBattle(scanner, fightMode(forest),1, true);
     }    
 
     public static void UserChooseMap2(Scanner scanner) {
         Map hideout;
         hideout = createHideOut();
         hideout.arrayCheck();
-        inBattle(scanner, fightMode(hideout), 1);
+        inBattle(scanner, fightMode(hideout), 1, true);
     }
 
     public static void UserChooseMap3(Scanner scanner) {
         Map graveyard;
         graveyard = createGraveYard();
         graveyard.arrayCheck();
-        inBattle(scanner, fightMode(graveyard), 1);
+        inBattle(scanner, fightMode(graveyard), 1, true);
     }
 
     private static Field fightMode(Map m) { // เเสดงชื่อ prakitko ใน map เเละ สร้าง field
@@ -434,13 +434,20 @@ public class Launcher {
     }
     //============================================================================= // ต่อสู้
 
-    public static void inBattle(Scanner scanner, Field field, int oldTurn) { // อยู่ใน Battle
+    public static void inBattle(Scanner scanner, Field field, int oldTurn, boolean oldIsFirstTurn) { // อยู่ใน Battle
         boolean checkString;
         int num = 0;
         int turn = oldTurn;
+        boolean isFirstTurn = oldIsFirstTurn;
+        if(isFirstTurn){
+             
+            field.whoHere();
+            
+        }
         do { //คุมเงื่อนไขตัวเลขเลือก choice
+            
             do { //คุมเงื่อนไข การตายของ prakitko เเละ monster
-                field.whoHere();
+               
                 System.out.println("---------------------");
                 System.out.println("\u001b[32;1m[press 1]\u001b[0m Crash");
                 System.out.println("\u001b[32;1m[press 2]\u001b[0m Use item");
@@ -456,6 +463,7 @@ public class Launcher {
                 }
                 switch (num) {
                     case 1: // เลือกสู้
+                        
                         System.out.println("============================");
                         System.out.println(" ▂▃▅▆█ BATTLE!!! █▆▅▃▂ ");
                         System.out.println("           Turn " + turn); // เลขบอกรอบในการต่อสู้
@@ -463,9 +471,10 @@ public class Launcher {
                         turn += 1; // บวกเพิ่มครั้งของ turn 
                         System.out.println("");
                         field.attack(); // ต่อสู้
+                        field.whoHere();
                         break;
                     case 2: //ใช้ Item ในการต่อสู้
-                        useItemInBattle(scanner, field);
+                        useItemInBattle(scanner, field, turn, isFirstTurn);
                         break;
                     case 3: //หนี
                         try {
@@ -483,6 +492,7 @@ public class Launcher {
                 }
             } while (!field.isMonsterDie() && !prakitko.isDead()); // ถ้ามอนตายหลุดออกจาก loop  เเละ ถ้ามอนไม่ตายจะทำต่อจนกว่ามอนจะตาย
             FightisEnd(scanner, field); // หลุดออกจากการต่อสู้
+            isFirstTurn = false;
         } while (checkString || num > 3 || num < 1);
     }
 
@@ -521,7 +531,7 @@ public class Launcher {
                 System.out.println("\u001b[32;1m[press 1]\u001b[0m Try again ");
                 System.out.println("\u001b[32;1m[press 2]\u001b[0m Back to Menu ");
                 System.out.println("");
-                System.out.println("Choose : ");
+                System.out.print("Choose : ");
 
                 try {
                     number = scanner.nextInt();
@@ -574,7 +584,7 @@ public class Launcher {
 
     }
 
-    public static void useItemInBattle(Scanner scanner, Field field) {
+    public static void useItemInBattle(Scanner scanner, Field field, int turn, boolean isFirstTurn) {
         System.out.println("--- Inventory ---");
         ArrayList<Item> inventory = prakitko.getInventory();
 
@@ -598,7 +608,7 @@ public class Launcher {
                 prakitko.useItem(inventory.get(input - 1));
                 prakitko.showInventory();
             } else if (input == 6) {
-                inBattle(scanner, field, 1);
+                inBattle(scanner, field, turn, isFirstTurn);
             }
         } while (checkString || input > 1 || input <= 6);
         
