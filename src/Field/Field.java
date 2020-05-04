@@ -36,7 +36,7 @@ public class Field {
                 }
                 prakitko.isDead();
                 monster.isDead();
-                whoHere();
+                
             } else if (prakitko.getAtkSpeed() < monster.getAtkSpeed()) {
                 prakitko.receiveDamage(monster.getAtk());
                 System.out.println(monster.getName() + " Dealt " + prakitko.getName() + " " + monster.getAtk() + " Damage");
@@ -46,7 +46,7 @@ public class Field {
                 }
                 prakitko.isDead();
                 monster.isDead();
-                whoHere();
+                
             }
         } else {
             System.out.println("Fight already end");
