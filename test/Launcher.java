@@ -112,6 +112,7 @@ public class Launcher {
             Apply(scanner);
         }
     }
+    
 
     public static void loading(Scanner scanner) { // loading
         int input = 0; //เพื่อรับ int ได้ตั้งเเต่ 0
@@ -345,12 +346,13 @@ public class Launcher {
         forest = createForest();
         forest.arrayCheck(); //เช็คว่าในอยู่ใน map 
         inBattle(scanner, fightMode(forest));
-    }
+    }    
 
     private static Field fightMode(Map m) { // เเสดงชื่อ prakitko ใน map เเละ สร้าง field
         System.out.println("\u001b[33;1m Your Prakitko ⬇ \n" + prakitko);
-        Field x = m.fight(prakitko);
-        return x;
+        m.reRandomLevelMonster();
+        Field newField = new Field(prakitko, m.getRandomMonster());
+        return newField;
     }
 
     public static void inBattle(Scanner scanner, Field field) { // อยู่ใน Battle
