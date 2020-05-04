@@ -1,6 +1,5 @@
 package Field;
 
-import Model.Character;
 import Model.Item;
 import java.util.ArrayList;
 import Model.Monster;
