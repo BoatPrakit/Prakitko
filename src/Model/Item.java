@@ -93,7 +93,7 @@ public class Item {
     
     @Override
     public String toString() {
-        return "Item{" + "name=" + name +", regenHp=" + regenHp + '}';
+        return "Item{" + "name=" + name +", regenHp=" + regenHp + ", regenStamina="+ regenStamina +'}';
     }
 
 }
