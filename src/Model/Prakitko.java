@@ -44,7 +44,7 @@ public class Prakitko extends Character {
             countLvlup+=1;
             if(countLvlup > EXPTOLEVELUP.length) break;
             levelUp();
-            calculateStatMonster();
+            calculateStat();
             
         }
         updateLevel(super.getLevel(), currentExp);
@@ -78,7 +78,7 @@ public class Prakitko extends Character {
         int index = sameItemAtIndex(item);      //find index that equal item to use
         if (index>=0) {
             if (inventory.get(index).amountCheck() > 0) {
-                    int regenHp = inventory.get(index).getRegen();
+                    int regenHp = inventory.get(index).getRegenHp();
                     int regenStamina = inventory.get(index).getRegenStamina();
                 if (item.isCanRegenHp()&&!item.isCanRegenStamina()) {                //if this item can only regenHp
                     super.regenHp(regenHp);

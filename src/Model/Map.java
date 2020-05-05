@@ -36,7 +36,7 @@ public class Map {
     public void reRandomLevelMonster() {
         for (Monster currentMonster : listOfMonster) {
             currentMonster.randomLvl(currentMonster.getLevelRange());
-            currentMonster.calculateStatMonster();
+            currentMonster.calculateStat();
         }
     }
     

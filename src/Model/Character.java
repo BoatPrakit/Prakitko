@@ -43,7 +43,7 @@ public abstract class Character{
         this.level = (int)Math.ceil(Math.random()*lvlRange);
         return level;
     }
-    public void calculateStatMonster(){
+    public void calculateStat(){
         calculateAtk();
         calculateAtkSpeed();
         calculateMaxHP();
