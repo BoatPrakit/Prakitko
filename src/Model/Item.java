@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class Item {
     private String name;
-    private int regenHp;
     private int amount;
     private int id;
+    private int regenHp;
     private int regenStamina;
     private ITEMTYPE itemtype;
     private boolean canRegenHp;
@@ -25,7 +25,7 @@ public class Item {
         return name;
     }
 
-    public int getRegen() { // 
+    public int getRegenHp() { // 
         return regenHp;
     }
     
