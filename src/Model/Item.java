@@ -93,7 +93,8 @@ public class Item {
     
     @Override
     public String toString() {
-        return "Item{" + "name=" + name +", regenHp=" + regenHp + ", regenStamina="+ regenStamina +'}';
+        return String.format("%-15s regen\u001b[31;1m ❤\u001b[0m : %-5s regenStamina\u001b[36;1m ♨\u001b[0m : %-5s", name,regenHp,regenStamina);
+//        return "Item{" + "name=" + name +", regenHp=" + regenHp + ", regenStamina="+ regenStamina +'}';
     }
 
 }

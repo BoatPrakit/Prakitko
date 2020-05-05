@@ -44,8 +44,7 @@ public class Prakitko extends Character {
             countLvlup+=1;
             if(countLvlup > EXPTOLEVELUP.length) break;
             levelUp();
-            calculateStat();
-            
+            calculateStat();            
         }
         updateLevel(super.getLevel(), currentExp);
     }
@@ -137,8 +136,8 @@ public class Prakitko extends Character {
         }
         else{
             int i = 1;
-            for (Item item1 : inventory) {
-                System.out.println(i+". " +item1 + " Amount " + item1.amountCheck());
+            for (Item item : inventory) {
+                System.out.println("\u001b[32;1m[Press "+i+"]\u001b[0m " +item + " Amount : " + item.amountCheck());
                 i++;
             }
         }

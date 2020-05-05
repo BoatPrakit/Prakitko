@@ -98,7 +98,9 @@ public class DatabaseSystem {
         String name;
         String password;
         String confirmpassword;
-        System.out.println("---------------Register---------------");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+        System.out.println("                \u001b[33;1mRegister");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
         do{
         System.out.print("Please insert your username : ");
         name = sc.nextLine();
@@ -124,7 +126,9 @@ public class DatabaseSystem {
     public static void login(){
         String name;
         String password;
-        System.out.println("-----------------Login-----------------");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+        System.out.println("                \u001b[33;1m  Login");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
         do{
         System.out.print("Username : ");
         name = sc.nextLine();
