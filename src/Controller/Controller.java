@@ -1,3 +1,5 @@
+package Controller;
+
 
 import Model.Map;
 import Model.Character;
@@ -17,18 +19,11 @@ import java.util.InputMismatchException;
  *
  * @author Pattarapol coding , Sapondanai & Prakit debug
  */
-
-public class Launcher {
+public class Controller {
 
     private static Prakitko prakitko;
 
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        Apply(input);
-
-        input.close();
-
-    }
+    
 
     //=============================================================================== All menu
     public static void Apply(Scanner scanner) { //หน้า Login
@@ -112,8 +107,14 @@ public class Launcher {
                 } else if (num == 2) {
                     if (prakitko != null) {
                         deletePrakitko(prakitko); // ลบ prakitko
-                        System.out.println("--- Your Prakitko has been delete ---");
-                        System.out.println("--- Please Create Your new Prakitko ---");
+                        try {
+                            System.out.println("Deleting...");
+                            Thread.sleep(3000); // set delay เวลา 3 วินาที เพื่อ logout
+                            System.out.println("--- Your Prakitko has been delete ---");
+                            System.out.println("--- Please Create Your new Prakitko ---");
+                        } catch (Exception e) { // ถ้า error โชว์ใน catch 
+                            System.out.println("Got EX");
+                        }
                         CreatePrakitko(scanner); // สร้าง prakitko ใหม่
                     } else {
                         System.out.println("-----------------------");
@@ -357,7 +358,7 @@ public class Launcher {
             System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
             System.out.println("\u001b[32;1m[press 1]\u001b[0m Forest");
             System.out.println("\u001b[32;1m[press 2]\u001b[0m HideOut ");
-            System.out.println("\u001b[32;1m[press 3]\u001b[0m GraveTard ");
+            System.out.println("\u001b[32;1m[press 3]\u001b[0m GraveYard ");
             System.out.println("\u001b[32;1m[press 4]\u001b[0m Back to Menu ");
             System.out.println("\u001b[32;1m[press 5]\u001b[0m Logout");
             System.out.println("");
@@ -409,8 +410,8 @@ public class Launcher {
         Map forest;
         forest = createForest();
         forest.arrayCheck(); //เช็คว่าในอยู่ใน map 
-        inBattle(scanner, fightMode(forest),1, true);
-    }    
+        inBattle(scanner, fightMode(forest), 1, true);
+    }
 
     public static void UserChooseMap2(Scanner scanner) {
         Map hideout;
@@ -437,17 +438,17 @@ public class Launcher {
     public static void inBattle(Scanner scanner, Field field, int oldTurn, boolean oldIsFirstTurn) { // อยู่ใน Battle
         boolean checkString;
         int num = 0;
-        int turn = oldTurn;
-        boolean isFirstTurn = oldIsFirstTurn;
-        if(isFirstTurn){
-             
+        int turn = oldTurn; // รอบเก่าที่ส่งไปที่ use item เพื่อมาเรียกใช้ต่อในตอน use item เสร็จ
+        boolean isFirstTurn = oldIsFirstTurn; // เรียก turn ที่ต่อจาก turn ที่เเล้ว เพื่อมาทำต่อ
+        if (isFirstTurn) { //เป็น turn เเรกมั้ย ถ้าเป็นทำต่อ ถ้าไม่เป็นก็เป็น false
+
             field.whoHere();
-            
+
         }
         do { //คุมเงื่อนไขตัวเลขเลือก choice
-            
+
             do { //คุมเงื่อนไข การตายของ prakitko เเละ monster
-               
+
                 System.out.println("---------------------");
                 System.out.println("\u001b[32;1m[press 1]\u001b[0m Crash");
                 System.out.println("\u001b[32;1m[press 2]\u001b[0m Use item");
@@ -463,7 +464,7 @@ public class Launcher {
                 }
                 switch (num) {
                     case 1: // เลือกสู้
-                        
+
                         System.out.println("============================");
                         System.out.println(" ▂▃▅▆█ BATTLE!!! █▆▅▃▂ ");
                         System.out.println("           Turn " + turn); // เลขบอกรอบในการต่อสู้
@@ -552,9 +553,8 @@ public class Launcher {
         }
     }
 
-
     //====================================================================================== Item
-    public static void useItemInInventory(Scanner scanner) { // Inventory
+    public static void useItemInInventory(Scanner scanner) { // Inventory ใช้ใน Menu
         System.out.println("--- Inventory ---");
         ArrayList<Item> inventory = prakitko.getInventory();
 
@@ -584,13 +584,13 @@ public class Launcher {
 
     }
 
-    public static void useItemInBattle(Scanner scanner, Field field, int turn, boolean isFirstTurn) {
+    public static void useItemInBattle(Scanner scanner, Field field, int turn, boolean isFirstTurn) { // Inventory ใช้ใน Battle
         System.out.println("--- Inventory ---");
-        ArrayList<Item> inventory = prakitko.getInventory();
+        ArrayList<Item> inventory = prakitko.getInventory(); // เอา ของใน Inventory โยนลงไปใน ArrayList
 
-        prakitko.showInventory();
+        prakitko.showInventory(); // โชว์ item ใน inventory
 
-        int input = 0;
+        int input = 0; //เอาไว้เลือก item
         boolean checkString;
 
         do {
@@ -598,20 +598,21 @@ public class Launcher {
             try {
                 System.out.println("[press 6] Back to Battle");
                 System.out.print("Choose your item number : ");
+
                 input = scanner.nextInt();
                 checkString = false;
             } catch (InputMismatchException ex) {
                 scanner.nextLine();
                 checkString = true;
             }
-            if (input > 0 && input <= inventory.size()) {
-                prakitko.useItem(inventory.get(input - 1));
+            if (input > 0 && input <= inventory.size()) { // สามารถกรอก input ได้ตามลำดับเลขของ item เเต่ละชิ้น 
+                prakitko.useItem(inventory.get(input - 1)); //เรียกใช้ item ใน ArrayList ทำไมต้อง input-1 เพราะว่า ค่าที่กรอกเข้ามาเป็นค่าเเรกจะไปเลือก item ช่อง ที่ 0 ถ้าผู้เล่นกรอกมา input ของผู้เล่นจะ -1 เพื่อให้ตัวเลขที่ input เข้ามาตรงกับช่องใน array
                 prakitko.showInventory();
-            } else if (input == 6) {
+            } else if (input == 6) { // จะย้อนกลับไปการต่อสู้ต่อ
                 inBattle(scanner, field, turn, isFirstTurn);
             }
         } while (checkString || input > 1 || input <= 6);
-        
+
     }
 
 }
