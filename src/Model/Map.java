@@ -28,7 +28,6 @@ public class Map {
     }
 
     public void arrayCheck() {
-        System.out.println("Start printing");
         for (Monster currentMonster : listOfMonster) {
             System.out.println(currentMonster);
         }

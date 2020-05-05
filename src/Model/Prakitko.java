@@ -2,7 +2,6 @@ package Model;
 
 import Model.Item;
 import Model.Character;
-import static Service.ItemService.createStaminaPotion;
 import static databaseManagement.DatabaseSystem.*;
 import java.util.ArrayList;
 import java.util.Comparator;
