@@ -68,14 +68,13 @@ public class Controller {
                 System.exit(0);
 
             } catch (Exception T) {
-                System.out.println("Got Ex");
             }
 
         } else if (number == 1) { //---------------------------------------------------------------login
             login(); // login
             
             System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
-            System.out.println("\u001b[33;1m         Your Prakitko \u001b[330m");
+            System.out.println("\u001b[33;1m    Your Prakitko \u001b[0m");
             System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒"); 
             showPrakitkoForSelect(); // show prakitko ของ user
 
@@ -112,7 +111,6 @@ public class Controller {
                             System.out.println("--- Your Prakitko has been delete ---");
                             System.out.println("--- Please Create Your new Prakitko ---");
                         } catch (Exception e) { // ถ้า error โชว์ใน catch 
-                            System.out.println("Got EX");
                         }
                         CreatePrakitko(scanner); // สร้าง prakitko ใหม่
                     } else {
@@ -153,7 +151,6 @@ public class Controller {
                     Thread.sleep(3000); // set delay เวลา 3 วินาที เพื่อ logout
                     System.out.println("Logout Completed");
                 } catch (Exception e) { // ถ้า error โชว์ใน catch 
-                    System.out.println("Got EX");
                 }
                 Apply(scanner); // logout เสร็จ กลับไปหน้า Menu
             }
@@ -201,7 +198,6 @@ public class Controller {
                         Thread.sleep(3000); // set delay เวลา 3 วินาที
                         System.out.println("Logout Completed");
                     } catch (Exception e) { // ถ้า error โชว์ใน catch 
-                        System.out.println("Got EX");
                     }
                     Apply(scanner);
                     break;
@@ -219,7 +215,6 @@ public class Controller {
                         }
                         System.exit(0);
                     } catch (Exception T) {
-                        System.out.println("Got Ex");
                     }
 
             }
@@ -234,9 +229,39 @@ public class Controller {
             System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
             System.out.println("        \u001b[33;1mProfile\u001b[330m ");
             System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-            System.out.println("Your Name : " + getUsername()); // โชว์ชื่อ user
-            System.out.println("Your Prakitko : ");
+            System.out.format("%-10s : %s\n","Username",getUsername());
             showPrakitkoForSelect(); // โชว์ prakitko ของ user
+            try{
+                   int x = prakitko.getCurrentExp()/prakitko.getCurrentMaxExp()*10;
+                   if (x > 8) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m█████████\u001b[0m█┫");
+                   }
+                   else if (x < 7) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m████████\u001b[0m██┫");
+                   }
+                   else if (x < 6) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m███████\u001b[0m███┫");
+                   }
+                   else if (x < 5) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m██████\u001b[0m████┫");
+                   }
+                   else if (x < 4) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m█████\u001b[0m█████┫");
+                   }
+                   else if (x < 3) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m████\u001b[0m██████┫");
+                   }
+                   else if (x < 2) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m███\u001b[0m███████┫");
+                   }
+                   else if (x < 1) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m██\u001b[0m████████┫");
+                   }
+                   else if (x < 0) {
+                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m█\u001b[0m█████████┫");
+                   }else
+                       System.out.println("\u001b[0mExp : ┣             ┫");
+            }catch(NullPointerException nullex){}
             System.out.println("\u001b[32;1m[press 1]\u001b[0m Inventory");
 
             System.out.println("\u001b[32;1m[press 2]\u001b[0m Back to Menu");
@@ -401,7 +426,6 @@ public class Controller {
                     System.out.println("Logout Completed");
                     System.out.println("");
                 } catch (Exception e) {
-                    System.out.println("Got EX");
                 }// logout เสร็จ เด้งหน้า login
                 Apply(scanner);
             }
@@ -491,7 +515,6 @@ public class Controller {
                             System.out.println("--- Escape Completed ---");
                             chooseMap(scanner);
                         } catch (Exception T) {
-                            System.out.println("Got Ex");
                         }
                         break;
                 }
@@ -509,7 +532,6 @@ public class Controller {
                 Thread.sleep(2000); //รอ 2 วิ ในการหลุดออกจาก หน้าให้ reward
                 Menu(scanner); // ไป Menu
             } catch (Exception e) {
-                System.out.println("Got EX");
             }
 
         } else if (field.isBattleEnd() == 2) { // ถ้าเเพ้ จะทำเมื่อ Prakitko ตาย
@@ -527,7 +549,6 @@ public class Controller {
                 System.out.println("--- Your Prakitko has been respawned ---");
                 prakitko.respawn(); //respawn prakitko เเล้ว
             } catch (Exception ex) {
-                System.out.println("Got EX");
             }
 
             int number = 0;

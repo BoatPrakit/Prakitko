@@ -277,10 +277,9 @@ public class DatabaseSystem {
            if(rs.next()){
                if(rs.getString("typeprakitko").equals("none")) System.out.println("Empty");
                else if(!rs.getString("prakitkoname").equals("none")){
-                   System.out.println("1. Type : " + rs.getString("typeprakitko") 
-                       +" \n   Prakitko Name : " + rs.getString("prakitkoname") +
-                       " \n   Level : " + rs.getString("level"));
-            }
+                   System.out.format("%-10s : %s\n%-10s : %s\n%-10s : %s\n","Type",rs.getString("typeprakitko"),"Name",rs.getString("prakitkoname"),"Level",rs.getString("level")); 
+               }
+
            }
            else System.out.println("Empty");
         }catch(Exception ex){
