@@ -232,35 +232,35 @@ public class Controller {
             System.out.format("%-10s : %s\n","Username",getUsername());
             showPrakitkoForSelect(); // โชว์ prakitko ของ user
             try{
-                   int x = prakitko.getCurrentExp()/prakitko.getCurrentMaxExp()*10;
+                   double x = ((double)prakitko.getCurrentExp()*10)/((double)prakitko.getCurrentMaxExp());
                    if (x > 8) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m█████████\u001b[0m█┫");
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█████████\u001b[0m█┫");
                    }
-                   else if (x < 7) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m████████\u001b[0m██┫");
+                   else if (x > 7) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m████████\u001b[0m██┫");
                    }
-                   else if (x < 6) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m███████\u001b[0m███┫");
+                   else if (x > 6) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m███████\u001b[0m███┫");
                    }
-                   else if (x < 5) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m██████\u001b[0m████┫");
+                   else if (x > 5) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m██████\u001b[0m████┫");
                    }
-                   else if (x < 4) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m█████\u001b[0m█████┫");
+                   else if (x > 4) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█████\u001b[0m█████┫");
                    }
-                   else if (x < 3) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m████\u001b[0m██████┫");
+                   else if (x > 3) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m████\u001b[0m██████┫");
                    }
-                   else if (x < 2) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m███\u001b[0m███████┫");
+                   else if (x > 2) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m███\u001b[0m███████┫");
                    }
-                   else if (x < 1) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m██\u001b[0m████████┫");
+                   else if (x > 1) {
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m██\u001b[0m████████┫");
                    }
                    else if (x < 0) {
-                       System.out.println("\u001b[0mExp : ┣\u001b[33;1m█\u001b[0m█████████┫");
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█\u001b[0m█████████┫");
                    }else
-                       System.out.println("\u001b[0mExp : ┣             ┫");
+                       System.out.println("\u001b[0mExp : "+x*10+"%"+"┣┣██████████┫");
             }catch(NullPointerException nullex){}
             System.out.println("\u001b[32;1m[press 1]\u001b[0m Inventory");
 
