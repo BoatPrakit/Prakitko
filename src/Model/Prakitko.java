@@ -14,7 +14,7 @@ import status.STATUS;
 
 public class Prakitko extends Character {
 
-    private final int[] EXPTOLEVELUP = {100, 120, 1000, 2000,5000,8000};
+    private final int[] EXPTOLEVELUP = {100, 120, 300, 500,700,1000,1200,1400,1700,2000,2500,3000,3900,4500,5000,6000,7000,8000,9000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000};
     private int currentExp;
     private int currentMaxExp = EXPTOLEVELUP[0];
     private ArrayList<Item> inventory = new ArrayList<Item>();
