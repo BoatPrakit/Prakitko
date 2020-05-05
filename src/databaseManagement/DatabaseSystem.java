@@ -121,13 +121,13 @@ public class DatabaseSystem {
         currentPassword = password;
         currentId = getUserId(name,password);
         status = LOGINSTATUS.LOGIN;
-        System.out.println("---------------------------------------");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
     }
     public static void login(){
         String name;
         String password;
         System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-        System.out.println("                \u001b[33;1m  Login");
+        System.out.println("                \u001b[33;1m  Login\u001b[0m");
         System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
         do{
         System.out.print("Username : ");
@@ -140,8 +140,8 @@ public class DatabaseSystem {
         currentUser = name;
         currentPassword = password;
         status = LOGINSTATUS.LOGIN;
-        System.out.println("Login success");
-        System.out.println("---------------------------------------");
+        System.out.println("\u001b[32;1mLogin success\u001b[0m");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
     }
     private static int calculateUserId(){
         String sql = "SELECT MAX(userid) FROM account";
