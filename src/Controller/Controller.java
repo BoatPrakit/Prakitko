@@ -1,6 +1,5 @@
 package Controller;
 
-
 import Model.Map;
 import Model.Character;
 import Field.Field;
@@ -23,8 +22,6 @@ public class Controller {
 
     private static Prakitko prakitko;
 
-    
-
     //=============================================================================== All menu
     public static void Apply(Scanner scanner) { //หน้า Login
         int number = 0;
@@ -34,7 +31,7 @@ public class Controller {
         System.out.println("▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤▤");
         System.out.println("");
         System.out.println("            ▒▒▒▒▒▒▒▒▒▒▒▒▒");
-        System.out.println("            \u001b[32m   Login & Register  \u001b[0m");
+        System.out.println("           \u001b[33;1m   Login & Register  \u001b[0m");
         System.out.println("            ▒▒▒▒▒▒▒▒▒▒▒▒▒");
         System.out.println("            \u001b[32;1m[press 1]\u001b[0m Login ");
         System.out.println("            \u001b[32;1m[press 2]\u001b[0m Register ");
@@ -48,7 +45,6 @@ public class Controller {
             } catch (InputMismatchException ex) {
                 scanner.nextLine(); // เก็บตัวอักษรที่หลุดมาจาก try
                 checkString = true; // set ตัวเเปล เพื่อเก็บเงื่อนไข while
-
             }
             if (checkString || number > 3 || number < 1) {
                 System.out.println("Please insert again");
@@ -77,7 +73,10 @@ public class Controller {
 
         } else if (number == 1) { //---------------------------------------------------------------login
             login(); // login
-            System.out.println("--- Your Prakitko ---"); // เด่วเเก้เป็น profile();
+            
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
+            System.out.println("\u001b[33;1m         Your Prakitko \u001b[330m");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒"); 
             showPrakitkoForSelect(); // show prakitko ของ user
 
             int num = 0;
@@ -85,8 +84,8 @@ public class Controller {
                 if (choosePrakitko() != null) {
                     prakitko = choosePrakitko(); // prakitko ของ user
                 }
-                System.out.println("[press 1] Go to Menu "); //เลือกเพื่อเล่น
-                System.out.println("[press 2] Delete "); //ลบเพื่อสร้างใหม่
+                System.out.println("\u001b[32;1m[press 1]\u001b[0m Go to Menu "); //เลือกเพื่อเล่น
+                System.out.println("\u001b[32;1m[press 2]\u001b[0m Delete "); //ลบเพื่อสร้างใหม่
                 System.out.println("");
                 System.out.print("Choose : ");
                 try {
@@ -117,7 +116,7 @@ public class Controller {
                         }
                         CreatePrakitko(scanner); // สร้าง prakitko ใหม่
                     } else {
-                        System.out.println("-----------------------");
+                        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
                         System.out.println("Please create Prakitko");
                         CreatePrakitko(scanner);
                     }
@@ -210,7 +209,9 @@ public class Controller {
                     try {
                         logout();
                         prakitko = null;
-                        System.out.println("--- Exit ---");
+                        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+                        System.out.println("        \u001b[33;1mExit\u001b[330m ");
+                        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
                         System.out.println("Thank you & See you again...");
                         for (int i = 0; i < 4; i++) {
                             Thread.sleep(1000); // ใช้เวลาหนี 1 sec ต่อ . 1 ที
@@ -230,14 +231,14 @@ public class Controller {
         int input = 0;
         boolean checkString;
         do { //คุมตัวเลขที่ใช้เลือก Inventory & Back to menu
-            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
-            System.out.println("\u001b[33;1m        Profile\u001b[330m ");
-            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+            System.out.println("        \u001b[33;1mProfile\u001b[330m ");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
             System.out.println("Your Name : " + getUsername()); // โชว์ชื่อ user
             System.out.println("Your Prakitko : ");
             showPrakitkoForSelect(); // โชว์ prakitko ของ user
             System.out.println("\u001b[32;1m[press 1]\u001b[0m Inventory");
-            System.out.println("-------------------");
+
             System.out.println("\u001b[32;1m[press 2]\u001b[0m Back to Menu");
             System.out.println("");
             System.out.print("Choose : ");
@@ -266,7 +267,10 @@ public class Controller {
         boolean checkString;
         do { //คุมตัวเลขเลือก prakitko เเต่ละตัว
             Scanner input = new Scanner(System.in);
-            System.out.println("--- Choose Prakitko ---");
+            System.out.println("");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+            System.out.println("    \u001b[33;1mChoose Prakitko \u001b[0m");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
             System.out.println("");
             System.out.println("\u001b[32;1m[press 1]\u001b[0m Dog");
             System.out.println("✪ Stat : \u001b[31;1m❤\u001b[0m Hp = 120 | \u001b[33;1m⚔\u001b[0m Atk = 30 | \u001b[32;1m🍃\u001b[0m AtkSpeed = 20 | \u001b[36;1m♨\u001b[0m Stamina = 100");
@@ -373,17 +377,17 @@ public class Controller {
 
             if (number == 1) {
                 System.out.println("===================");
-                System.out.println("   ✿ Forest ✿   ");
+                System.out.format("   %c Forest %c   \n",0x1F33F,0x1F33F);
                 System.out.println("===================");
                 UserChooseMap1(scanner);
             } else if (number == 2) {
                 System.out.println("===================");
-                System.out.println("   ✿ HideOut ✿   ");
+                System.out.format("   %c HideOut %c   \n",0x1F3E0,0x1F3E0);
                 System.out.println("===================");
                 UserChooseMap2(scanner);
             } else if (number == 3) {
                 System.out.println("===================");
-                System.out.println("   ✿ GraveYard ✿   ");
+                System.out.format("   %c GraveYard %c   \n",0x1F480,0x1F480);
                 System.out.println("===================");
                 UserChooseMap3(scanner);
             } else if (number == 4) {
@@ -449,7 +453,7 @@ public class Controller {
 
             do { //คุมเงื่อนไข การตายของ prakitko เเละ monster
 
-                System.out.println("---------------------");
+                System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
                 System.out.println("\u001b[32;1m[press 1]\u001b[0m Crash");
                 System.out.println("\u001b[32;1m[press 2]\u001b[0m Use item");
                 System.out.println("\u001b[32;1m[press 3]\u001b[0m Run!!");
@@ -499,7 +503,7 @@ public class Controller {
 
     public static void FightisEnd(Scanner scanner, Field field) { // จบการต่อสู้
         if (field.isBattleEnd() == 1) { // ถ้าชนะ จะทำเมื่อ Monster ตาย
-            System.out.println("--- You win!!! ---");
+            System.out.println("★★★ You win!!! ★★★");
             field.battleReward(); //ให้รางวัล ผู้เล่น Exp & Item 
             try {
                 Thread.sleep(2000); //รอ 2 วิ ในการหลุดออกจาก หน้าให้ reward
@@ -509,9 +513,9 @@ public class Controller {
             }
 
         } else if (field.isBattleEnd() == 2) { // ถ้าเเพ้ จะทำเมื่อ Prakitko ตาย
-            System.out.println("--- You lose!!! ---");
+            System.out.println("☠☠☠ You lose!!! ☠☠☠");
             field.battleReward(); //หัก Exp ที่ผู้เล่นได้ เเละ ไม่ได้ item 
-            System.out.println("--------------------");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
 
             try { // Prakitko Respawning
                 System.out.println("--- ☠ Your Prakitko is dead ☠ ---");
@@ -555,7 +559,9 @@ public class Controller {
 
     //====================================================================================== Item
     public static void useItemInInventory(Scanner scanner) { // Inventory ใช้ใน Menu
-        System.out.println("--- Inventory ---");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
+        System.out.println(" \u001b[33;1m     inventory\u001b[0m ");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒\n");
         ArrayList<Item> inventory = prakitko.getInventory();
 
         prakitko.showInventory();
@@ -564,9 +570,10 @@ public class Controller {
         boolean checkString;
 
         do {
-            System.out.println("-------------------------------");
+            System.out.println("");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
             try {
-                System.out.println("[press 6] Back to menu");
+                System.out.println("\u001b[32;1m[press 6]\u001b[0m Back to menu");
                 System.out.print("Choose your item number : ");
                 input = scanner.nextInt();
                 checkString = false;
@@ -585,7 +592,9 @@ public class Controller {
     }
 
     public static void useItemInBattle(Scanner scanner, Field field, int turn, boolean isFirstTurn) { // Inventory ใช้ใน Battle
-        System.out.println("--- Inventory ---");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒");
+        System.out.println(" \u001b[33;1m     inventory\u001b[0m ");
+        System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒\n");
         ArrayList<Item> inventory = prakitko.getInventory(); // เอา ของใน Inventory โยนลงไปใน ArrayList
 
         prakitko.showInventory(); // โชว์ item ใน inventory
@@ -594,9 +603,10 @@ public class Controller {
         boolean checkString;
 
         do {
-            System.out.println("-------------------------------");
+            System.out.println("");
+            System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
             try {
-                System.out.println("[press 6] Back to Battle");
+                System.out.println("\u001b[32;1m[press 6]\u001b[0m Back to Battle");
                 System.out.print("Choose your item number : ");
 
                 input = scanner.nextInt();
