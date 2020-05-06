@@ -73,8 +73,8 @@ public class Field {
         return false;
     }
 
-    public int loseExp(int currentExp) {
-        int loseExp = -(currentExp * 5 / 100);
+    public int loseExp(int currentMaxExp) {
+        int loseExp = -(currentMaxExp * 5 / 100);
         prakitko.receiveExp(loseExp);
         return loseExp;
     }
