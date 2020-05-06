@@ -457,7 +457,7 @@ public class Controller {
 
     private static Field fightMode(Map m) { // เเสดงชื่อ prakitko ใน map เเละ สร้าง field
         System.out.println("\u001b[33;1m Your Prakitko ⬇ \n" + prakitko);
-        m.reRandomLevelMonster(); // สุ่ม level เเละ สุ่ม monster 
+        m.reRandomLevelMonster(); // สุ่ม level
         Field newField = new Field(prakitko, m.getRandomMonster()); // สร้าง field
         return newField;
     }
@@ -476,7 +476,7 @@ public class Controller {
         do { //คุมเงื่อนไขตัวเลขเลือก choice
 
             do { //คุมเงื่อนไข การตายของ prakitko เเละ monster
-
+                
                 System.out.println("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
                 System.out.println("\u001b[32;1m[press 1]\u001b[0m Crash");
                 System.out.println("\u001b[32;1m[press 2]\u001b[0m Use item");
@@ -642,7 +642,7 @@ public class Controller {
             } else if (input == 6) { // จะย้อนกลับไปการต่อสู้ต่อ
                 inBattle(scanner, field, turn, isFirstTurn);
             }
-        } while (checkString || input > 1 || input <= 6);
+        } while (checkString || input > 1 || input < 6);
 
     }
 
