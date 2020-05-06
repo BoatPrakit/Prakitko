@@ -608,7 +608,7 @@ public class Controller {
             } else if (input == 6) {
                 Menu(scanner);
             }
-        } while (checkString || input > 1 || input <= 6);
+        } while (checkString || input > 1 || input < 6);
 
     }
 
