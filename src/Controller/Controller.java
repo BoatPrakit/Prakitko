@@ -233,31 +233,31 @@ public class Controller {
             showPrakitkoForSelect(); // โชว์ prakitko ของ user
             try{
                    double x = ((double)prakitko.getCurrentExp()*10)/((double)prakitko.getCurrentMaxExp());
-                   if (x > 8) {
+                   if (x >= 9) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█████████\u001b[0m█┫");
                    }
-                   else if (x > 7) {
+                   else if (x >= 8) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m████████\u001b[0m██┫");
                    }
-                   else if (x > 6) {
+                   else if (x >= 7) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m███████\u001b[0m███┫");
                    }
-                   else if (x > 5) {
+                   else if (x >= 6) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m██████\u001b[0m████┫");
                    }
-                   else if (x > 4) {
+                   else if (x >= 5) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█████\u001b[0m█████┫");
                    }
-                   else if (x > 3) {
+                   else if (x >= 4) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m████\u001b[0m██████┫");
                    }
-                   else if (x > 2) {
+                   else if (x >= 3) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m███\u001b[0m███████┫");
                    }
-                   else if (x > 1) {
+                   else if (x >= 2) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m██\u001b[0m████████┫");
                    }
-                   else if (x > 0) {
+                   else if (x >= 1) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█\u001b[0m█████████┫");
                    }else
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣┣██████████┫");
