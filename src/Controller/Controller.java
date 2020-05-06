@@ -257,7 +257,7 @@ public class Controller {
                    else if (x > 1) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m██\u001b[0m████████┫");
                    }
-                   else if (x < 0) {
+                   else if (x > 0) {
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣\u001b[33;1m█\u001b[0m█████████┫");
                    }else
                        System.out.println("\u001b[0mExp : "+x*10+"%"+"┣┣██████████┫");
